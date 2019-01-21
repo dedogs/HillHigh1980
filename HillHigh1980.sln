@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillHigh1980.UI", "HillHigh1980.UI\HillHigh1980.UI.csproj", "{235CF5E4-7CC8-4C43-BCF2-AE9A4F3E8E7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillHigh1980.UI", "HillHigh1980.UI\HillHigh1980.UI.csproj", "{235CF5E4-7CC8-4C43-BCF2-AE9A4F3E8E7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{08378885-D2FA-4CD4-8D0A-F84634E1CB5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8EF7BBF2-D8F2-4CC3-8476-2CBACCD0384B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillHigh1980.Infrastructure.Data", "HillHigh1980.Infrastructure.Data\HillHigh1980.Infrastructure.Data.csproj", "{D8D86A90-B286-4732-88CF-CFA13E6E3C74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DA0F478F-ABFE-4A3C-A7E7-718AA29B1AA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillHigh1980.Core", "HillHigh1980.Core\HillHigh1980.Core.csproj", "{BB54F829-29DD-4350-9A81-4C98CB67A390}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillHigh1980.Core.Entity", "HillHigh1980.Core.Entity\HillHigh1980.Core.Entity.csproj", "{61A8BF00-7747-4037-9B59-1318FD826E96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,27 @@ Global
 		{235CF5E4-7CC8-4C43-BCF2-AE9A4F3E8E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{235CF5E4-7CC8-4C43-BCF2-AE9A4F3E8E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{235CF5E4-7CC8-4C43-BCF2-AE9A4F3E8E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8D86A90-B286-4732-88CF-CFA13E6E3C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D86A90-B286-4732-88CF-CFA13E6E3C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D86A90-B286-4732-88CF-CFA13E6E3C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D86A90-B286-4732-88CF-CFA13E6E3C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB54F829-29DD-4350-9A81-4C98CB67A390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB54F829-29DD-4350-9A81-4C98CB67A390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB54F829-29DD-4350-9A81-4C98CB67A390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB54F829-29DD-4350-9A81-4C98CB67A390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61A8BF00-7747-4037-9B59-1318FD826E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61A8BF00-7747-4037-9B59-1318FD826E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61A8BF00-7747-4037-9B59-1318FD826E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61A8BF00-7747-4037-9B59-1318FD826E96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{235CF5E4-7CC8-4C43-BCF2-AE9A4F3E8E7A} = {08378885-D2FA-4CD4-8D0A-F84634E1CB5C}
+		{D8D86A90-B286-4732-88CF-CFA13E6E3C74} = {8EF7BBF2-D8F2-4CC3-8476-2CBACCD0384B}
+		{BB54F829-29DD-4350-9A81-4C98CB67A390} = {DA0F478F-ABFE-4A3C-A7E7-718AA29B1AA4}
+		{61A8BF00-7747-4037-9B59-1318FD826E96} = {DA0F478F-ABFE-4A3C-A7E7-718AA29B1AA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD561B67-C08C-45BA-940E-22736A6AD64E}
