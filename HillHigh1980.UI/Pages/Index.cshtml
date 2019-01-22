@@ -1,53 +1,53 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page Content -->
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-
-        <h1 class="my-4 text-center text-lg-left">Hill High School Class 1980</h1>
-
-        <div class="row text-center text-lg-left">
-
-            @foreach (var roster in Model.Roster)
-            {
-                <div class="col-lg-2 col-md-3 col-xs-4">
-                    <a href="#" class="d-block mb-4 h-100 align-content-center">
-                        <img class="img-fluid img-thumbnail" src="~/images/roster/@roster.Image" alt='@String.Format("{0} {1}",roster.FirstName, roster.LastName)' title='@String.Format("{0} {1}",roster.FirstName, roster.LastName)'>
-                        @String.Format("{0} {1}", roster.FirstName, roster.LastName)
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        Home
+                        <span class="sr-only">(current)</span>
                     </a>
-                </div>
-            }
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Rosters/Create">Create New</a>
+                </li>
+            </ul>
         </div>
-
     </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+    <h1 class="my-4 text-center text-lg-left">Hill High School Class 1980</h1>
+
+    <div class="row text-center text-lg-left">
+
+        @foreach (var roster in Model.Roster)
+        {
+        <div class="col-lg-2 col-md-3 col-xs-4">
+            <a class="d-block mb-4 h-100 align-content-center" asp-page="./Rosters//Details" asp-route-id="@roster.RosterId">
+                <img class="img-fluid img-thumbnail" src="~/images/roster/@roster.Image" alt='@String.Format("{0} {1}",roster.FirstName, roster.LastName)' title='@String.Format("{0} {1}",roster.FirstName, roster.LastName)'>
+                @String.Format("{0} {1}", roster.FirstName, roster.LastName)
+            </a>
+        </div>
+        }
+    </div>
+
+</div>

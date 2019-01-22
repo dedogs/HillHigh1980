@@ -9,6 +9,7 @@ namespace HillHigh1980.Infrastructure.Data.Configuration
         public void Configure(EntityTypeBuilder<Roster> builder)
         {
             builder.HasKey(r => r.RosterId);
+            builder.Property(r => r.RosterId).ValueGeneratedOnAdd();
         }
     }
 }
