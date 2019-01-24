@@ -6,13 +6,18 @@
     <title>@ViewData["Title"] - Hill High Graduation Class 1980</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
-        <link href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
-        <link rel="stylesheet" href="~/css/thumbnail-gallery.css" />
+        <link href="~/lib/bootstrap-4.0.0/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-4.0.0/dist/css/bootstrap-grid.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-4.0.0/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
     </environment>                                                            
     <environment exclude="Development">
-        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-4.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-4.0.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-4.0.0/dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
+        <link href="~/css/thumbnail-gallery.css" rel="stylesheet" />
         <link href="~/css/site.min.css" rel="stylesheet" />
     </environment>
 </head>
@@ -37,12 +42,14 @@
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/bootstrap-4.0.0/assets/js/vendor/popper.min.js"></script>
+        <script src="~/lib/bootstrap-4.0.0/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/bootstrap-4.0.0/assets/js/vendor/popper.min.js"></script>
+        <script src="~/lib/bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
         <script src="~/js/site.min.js"></script>
     </environment>
 

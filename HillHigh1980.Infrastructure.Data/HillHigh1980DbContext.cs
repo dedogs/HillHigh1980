@@ -26,5 +26,6 @@ namespace HillHigh1980.Infrastructure.Data
         }
 
         public DbSet<Roster> Rosters { get; set; }
+        public DbSet<Location> Locations { get; set; }
     }
 }

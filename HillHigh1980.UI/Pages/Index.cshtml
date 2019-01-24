@@ -19,13 +19,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-page="/Rosters/Create">Create New</a>
+                    <a class="nav-link" href="#">Roster</a>
                 </li>
             </ul>
         </div>
@@ -36,17 +30,42 @@
 <div class="container">
 
     <h1 class="my-4 text-center text-lg-left">Hill High School Class 1980</h1>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Sort By</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">First Name</option>
+            <option value="2">Last Name</option>
+            <option value="3">Found</option>
+            <option value="3">Missing</option>
+        </select>
 
-    <div class="row text-center text-lg-left">
+        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By...</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Last Name</a>
+                <a class="dropdown-item" href="#">First Name</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center text-lg-left text-hide">
 
         @foreach (var roster in Model.Roster)
         {
-        <div class="col-lg-2 col-md-3 col-xs-4">
-            <a class="d-block mb-4 h-100 align-content-center" asp-page="./Rosters//Details" asp-route-id="@roster.RosterId">
-                <img class="img-fluid img-thumbnail" src="~/images/roster/@roster.Image" alt='@String.Format("{0} {1}",roster.FirstName, roster.LastName)' title='@String.Format("{0} {1}",roster.FirstName, roster.LastName)'>
-                @String.Format("{0} {1}", roster.FirstName, roster.LastName)
-            </a>
-        </div>
+            <div class="col-lg-2 col-md-3 col-xs-4">
+                <a class="d-block mb-4 h-100 align-content-center" asp-page="./Rosters//Details" asp-route-id="@roster.RosterId">
+                    <img class="img-fluid img-thumbnail" src="~/images/roster/@roster.Image" alt='@String.Format("{0} {1}",roster.FirstName, roster.LastName)' title='@String.Format("{0} {1}",roster.FirstName, roster.LastName)'>
+                    @String.Format("{0} {1}", roster.FirstName, roster.LastName)
+                </a>
+            </div>
         }
     </div>
 

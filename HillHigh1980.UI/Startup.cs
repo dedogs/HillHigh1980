@@ -47,15 +47,23 @@ namespace HillHigh1980.UI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Error");
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                using (IServiceScope scope = app.ApplicationServices.CreateScope())
+                {
+                    //var context = scope.ServiceProvider.GetService<HillHigh1980DbContext>();
+
+                    //context.Database.EnsureDeleted();
+                    //context.Database.EnsureCreated();
+                }
+
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

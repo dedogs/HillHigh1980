@@ -10,6 +10,7 @@ namespace HillHigh1980.Infrastructure.Data.Configuration
         {
             builder.HasKey(r => r.RosterId);
             builder.Property(r => r.RosterId).ValueGeneratedOnAdd();
+            //builder.HasMany(r => r.Locations).WithOne(r => r.Roster).HasForeignKey(r => r.RosterId);
         }
     }
 }

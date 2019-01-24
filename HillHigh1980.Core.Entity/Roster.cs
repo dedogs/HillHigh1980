@@ -14,5 +14,6 @@ namespace HillHigh1980.Core.Entity
         public string Image { get; set; }
         public string Caption { get; set; }
         public string Link { get; set; }
+        public IEnumerable<Location> Locations { get; set; }
     }
 }
