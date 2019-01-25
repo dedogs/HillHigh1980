@@ -68,6 +68,8 @@ namespace HillHigh1980.UI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseMvc();
 
             app.UseMvc(routes =>
             {
