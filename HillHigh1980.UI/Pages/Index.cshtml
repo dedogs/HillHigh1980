@@ -31,18 +31,15 @@
 
     <h1 class="my-4 text-center text-lg-left">Hill High School Class 1980</h1>
     <div class="input-group">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Sort By</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Choose...</option>
+        <select id="filterBy" class="custom-select" id="inputGroupSelect01" style="width="100px;">
+            <option selected>Filter By...</option>
             <option value="1">First Name</option>
             <option value="2">Last Name</option>
             <option value="3">Found</option>
             <option value="3">Missing</option>
         </select>
 
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Text input with dropdown button">
 
         <div class="input-group-append">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By...</button>
