@@ -1,30 +1,53 @@
 ﻿@page
 @model HillHigh1980.UI.Pages.Rosters.DetailsModel
+@using HillHigh1980.Core.Entity
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Roster Details</h2>
 
-<h4>Roster</h4>
 <hr />
+
 <div class="row">
-    <div class="col-xs-6 col-sm-4">
+    <div class="col-sm-3 col-md-2">
         <img class="img-fluid img-thumbnail" src="~/images/roster/@Model.Roster.Image" alt='@String.Format("{0} {1}",Model.Roster.FirstName, Model.Roster.LastName)' title='@String.Format("{0} {1}",Model.Roster.FirstName, Model.Roster.LastName)'>
     </div>
-    <div class="col-xs-6 col-sm-4">
-        <div class="list-group">
-            <a href="#" class="list-group-item disabled">First item</a>
-            <a href="#" class="list-group-item">Second item</a>
-            <a href="#" class="list-group-item">Third item</a>
+    <div class="col-sm-9 col-md-10">
+        <h4>
+            Enter Current and past places lived
+        </h4>
+        <div class="row">
+            <form method="post">
+                <input asp-route-rosterId="@Model.Roster.RosterId" type="hidden" />
+                <div class="form-row" style="margin-bottom: 8px;">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="City">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="State">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-dark">Add Location</button>
+                    </div>
+                </div>
+            </form>
+            <div class="list-group">
+                @foreach (Location item in Model.Roster.Locations)
+                {
+                    <a href="#" class="list-group-item disabled">
+                        @String.Format("{0} {1}", item.City, item.State)
+                    </a>
+                }
+            </div>
         </div>
     </div>
-    <div class="col-xs-6 col-sm-4">
-        &nbsp;
-    </div>
-    <div class="col-xs-6 col-sm-4">
-        <a asp-page="./Edit" asp-route-id="@Model.Roster.RosterId">Edit</a> |
-        <a asp-page="../Index">Back to List</a>
+</div>
+<div class="row">
+    <div class="col">
+        <button type="button" class="btn btn-link text-dark"> Back to List</button>
     </div>
 </div>

@@ -6,6 +6,10 @@ namespace HillHigh1980.Core.Entity
 {
     public class Roster
     {
+        public Roster()
+        {
+            this.Locations = new List<Location>();
+        }
         public int RosterId { get; set; }
         public string FirstName { get; set; }
         public string Middle { get; set; }

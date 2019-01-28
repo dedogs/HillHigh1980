@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

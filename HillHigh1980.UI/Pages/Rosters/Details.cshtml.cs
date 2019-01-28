@@ -1,34 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using HillHigh1980.Core.Entity;
-using HillHigh1980.Infrastructure.Data;
+using HillHigh1980.Core.ApplicationService;
 
 namespace HillHigh1980.UI.Pages.Rosters
 {
     public class DetailsModel : PageModel
     {
-        private readonly HillHigh1980.Infrastructure.Data.HillHigh1980DbContext _context;
+        private readonly IRosterService _service;
 
-        public DetailsModel(HillHigh1980.Infrastructure.Data.HillHigh1980DbContext context)
+        public DetailsModel(IRosterService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public Roster Roster { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            Roster = await _context.Rosters.FirstOrDefaultAsync(m => m.RosterId == id);
+            Roster = await _service.FindRosterByIdAsync(id);
 
             if (Roster == null)
             {
