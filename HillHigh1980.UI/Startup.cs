@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.ApplicationService.Service;
 using HillHigh1980.Core.DomainService;
@@ -30,7 +27,7 @@ namespace HillHigh1980.UI
         {
             services.AddScoped<IRosterService, RosterService>();
             services.AddScoped<IRosterRepository, RosterRepository>();
-            services.AddScoped<IHillHigh1980DbContext, HillHigh1980DbContext>();
+            services.AddScoped<HillHigh1980DbContext>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

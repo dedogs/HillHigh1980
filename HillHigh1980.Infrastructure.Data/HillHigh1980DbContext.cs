@@ -7,7 +7,7 @@ using System.Text;
 
 namespace HillHigh1980.Infrastructure.Data
 {
-    public class HillHigh1980DbContext : DbContext, IHillHigh1980DbContext
+    public class HillHigh1980DbContext : DbContext
     {
         public HillHigh1980DbContext()
         {
@@ -17,7 +17,12 @@ namespace HillHigh1980.Infrastructure.Data
             base(options)
         {
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
 
+            optionsBuilder.UseSqlServer("Data Source=deDogs-PC\\DEDOGSSQL;Initial Catalog=HillHigh1980;User ID=sa;Password=moclay9330;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

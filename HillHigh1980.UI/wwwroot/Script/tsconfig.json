@@ -1,0 +1,11 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "allowJs": false,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "outDir": "../Js/",
+    "rootDir": "."
+  }
+}

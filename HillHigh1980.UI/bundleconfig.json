@@ -1,0 +1,46 @@
+[
+  {
+    "outputFileName": "wwwroot/js/Bundles/Library.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jQuery.min.js",
+      "wwwroot/lib/bootstrap-4.0.0/assets/js/vendor/popper.min.js",
+      "wwwroot/lib/bootstrap-4.0.0/dist/js/bootstrap.min.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
+    "outputFileName": "wwwroot/js/Bundles/application.js",
+    "inputFiles": [
+      "wwwroot/js/Application/**/*.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/js/Bundles/core.js",
+    "inputFiles": [
+      "wwwroot/js/Core/**/*.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/js/Bundles/entity.js",
+    "inputFiles": [
+      "wwwroot/js/Entity/**/*.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/js/Bundles/infrastructure.js",
+    "inputFiles": [
+      "wwwroot/js/Infrastructure/**/*.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/js/Bundles/rosterDetails.js",
+    "inputFiles": [
+      "wwwroot/js/Pages/Roster/**/*.js"
+    ],
+    "minify": { "enabled": true }
+  }
+]

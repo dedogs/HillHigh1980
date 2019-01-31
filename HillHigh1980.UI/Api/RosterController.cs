@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity;
 using HillHigh1980.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
@@ -13,33 +14,30 @@ namespace HillHigh1980.UI.Api
     [ApiController]
     public class RosterController : ControllerBase
     {
-        private readonly HillHigh1980DbContext _context;
+        private readonly IRosterService _service;
 
-        public RosterController(HillHigh1980DbContext context)
+        public RosterController(IRosterService service)
         {
-            _context = context;
+            _service = service;
         }
         // GET: api/Default
         [HttpGet]
-        public IEnumerable<Roster> Get()
+        public async Task<IEnumerable<Roster>> Get()
         {
-            return _context.Rosters;
+            return await _service.GetAllRostersAsync();
         }
 
         // GET: api/Default/5
         [HttpGet("{name}", Name = "Get")]
-        public Roster Get(string name)
+        public async Task<List<Roster>> Get(string name)
         {
-            return _context.Rosters.FirstOrDefault(r => r.FirstName == name);
+            return await _service.FindRostersByLastName(name);
         }
 
         // POST: api/Default
         [HttpPost]
         public ActionResult Post([FromBody] Roster roster)
         {
-            _context.Rosters.Add(roster);
-            _context.SaveChanges();
-
             return Ok(roster);
         }
 

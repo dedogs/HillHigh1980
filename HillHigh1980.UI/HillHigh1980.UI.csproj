@@ -2,13 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Script\Core\ApplicationService\IRosterService.ts" />
+    <Content Remove="wwwroot\Script\Core\RepositoryService\IRosterRepository.ts" />
+    <Content Remove="wwwroot\Script\Entity\Location.ts" />
+    <Content Remove="wwwroot\Script\Entity\Roster.ts" />
+    <Content Remove="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
+    <Content Remove="wwwroot\Script\Pages\Roster\DetailsView.ts" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="appsettings.json~RF51a858b.TMP" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="buildbundlerminifier" Version="2.8.391" />
+    <PackageReference Include="buildbundlerminifier-typescript" Version="2.1.258" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
@@ -17,10 +29,28 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="wwwroot\Script\Core\ApplicationService\Service\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HillHigh1980.Infrastructure.Data\HillHigh1980.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\Script\Application\Application.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Application\Modules\EventManager.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Application\Modules\MappedIds.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Application\Modules\Publisher.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Application\Utility.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Core\ApplicationService\IRosterService.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Core\RepositoryService\IRosterRepository.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Entity\Cost.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Entity\GrowingInfo.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Entity\Location.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Entity\Roster.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Entity\Seed.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Pages\Roster\DetailsView.ts" />
   </ItemGroup>
 
 </Project>

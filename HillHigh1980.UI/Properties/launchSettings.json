@@ -15,9 +15,9 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "HillHigh1980.UI": {
+    "Kestrel": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

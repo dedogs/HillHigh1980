@@ -1,8 +1,7 @@
-﻿using HillHigh1980.Core.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using HillHigh1980.Core.Entity;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace HillHigh1980.Core.DomainService
 {
@@ -10,6 +9,7 @@ namespace HillHigh1980.Core.DomainService
     {
         Task<IEnumerable<Roster>> ReadAll(IFilterData filter = null);
         Task<Roster> FindById(int rosterId);
-
+        Task<IEnumerable<Roster>> FindRostersByLastName(string name);
+        Task<int> Update(Roster roster);
     }
 }

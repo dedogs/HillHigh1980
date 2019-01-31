@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HillHigh1980.Core.DomainService;
@@ -20,9 +21,16 @@ namespace HillHigh1980.Core.ApplicationService.Service
             return await _repository.FindById(rosterId);
         }
 
-        public async Task<IEnumerable<Roster>> GetAllRostersAsync()
+        public async Task<List<Roster>> GetAllRostersAsync()
         {
-            return await _repository.ReadAll();
+            IEnumerable<Roster> rosters = await _repository.ReadAll();
+
+            return rosters.ToList();
+        }
+
+        public async Task<List<Roster>> FindRostersByLastName(string name)
+        {
+            return (await _repository.FindRostersByLastName(name)).ToList();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace HillHigh1980.Core.ApplicationService
     public interface IRosterService
     {
         Task<Roster> FindRosterByIdAsync(int seedId);
-        Task<IEnumerable<Roster>> GetAllRostersAsync();
+        Task<List<Roster>> FindRostersByLastName(string name);
+        Task<List<Roster>> GetAllRostersAsync();
     }
 }
