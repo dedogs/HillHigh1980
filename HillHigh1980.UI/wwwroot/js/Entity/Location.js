@@ -4,34 +4,30 @@ var GScope;
     (function (Entity) {
         var Location = /** @class */ (function () {
             function Location() {
-                this.locationId = 0;
-                this.city = "";
-                this.state = "";
-                this.rosterId = 0;
             }
             Location.prototype.LocationId = function (locationId) {
                 if (!GScope.Utility.is(locationId).nul().ok()) {
-                    this.locationId = locationId;
+                    this._locationId = locationId;
                 }
-                return this.locationId;
+                return this._locationId;
             };
             Location.prototype.City = function (city) {
                 if (!GScope.Utility.is(city).nul().ok()) {
-                    this.city = city;
+                    this._city = city;
                 }
-                return this.city;
+                return this._city;
             };
             Location.prototype.State = function (state) {
                 if (!GScope.Utility.is(state).nul().ok()) {
-                    this.state = state;
+                    this._state = state;
                 }
-                return this.state;
+                return this._state;
             };
             Location.prototype.RosterId = function (rosterId) {
-                if (!GScope.Utility.is(rosterId).nul().ok()) {
-                    this.rosterId = rosterId;
+                if (!GScope.Utility.is(rosterId).nul().or().undef().ok()) {
+                    this._rosterId = rosterId;
                 }
-                return this.rosterId;
+                return this._rosterId;
             };
             return Location;
         }());

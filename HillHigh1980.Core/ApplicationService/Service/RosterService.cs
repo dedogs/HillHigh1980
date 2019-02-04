@@ -33,9 +33,29 @@ namespace HillHigh1980.Core.ApplicationService.Service
             return (await _repository.FindRostersByLastName(name)).ToList();
         }
 
-        public async Task<int> UpdateRosterAsync(Roster roster)
+        public async Task<int> CreateRosterLocation(Location[] locations)
         {
-            return await _repository.Update(roster);
+            return await _repository.CreateLocation(locations);
+        }
+
+        public async Task<List<Location>> GetRosterLocations()
+        {
+            return (await _repository.GetLocations()).ToList();
+        }
+
+        public async Task<Location> GetRosterLocation(int rosterId)
+        {
+            return await _repository.GetLocation(rosterId);
+        }
+
+        public async Task<Location> UpdateRosterLocation(Location location)
+        {
+            return await _repository.UpdateLocation(location);
+        }
+
+        public async Task RemoveRosterLocation(Location location)
+        {
+            await _repository.DeleteLocation(location);
         }
     }
 }

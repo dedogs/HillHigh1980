@@ -2,9 +2,9 @@
     export module ApplicationService {
         export module Service {
             export class RosterService implements IRosterService {
-                private readonly _repository: RepositoryService.IRosterRepository<Entity.Roster>;
+                private readonly _repository: RepositoryService.IRosterRepository;
 
-                constructor(repository: RepositoryService.IRosterRepository<Entity.Roster>) {
+                constructor(repository: RepositoryService.IRosterRepository) {
                     this._repository = repository;
                 }
 
@@ -18,8 +18,8 @@
                     return this._repository.ReadAll();
                 }
 
-                UpdateRoster(roster: Entity.Roster): Promise<Entity.Roster> {
-                    return this._repository.Update(roster);
+                CreateRosterLocations(locations: [Entity.Location]): Promise<Entity.Roster> {
+                    return this._repository.CreateLocations(locations);
                 }
             }
         }

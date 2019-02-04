@@ -17,8 +17,8 @@ var GScope;
                 RosterService.prototype.GetAllRosters = function () {
                     return this._repository.ReadAll();
                 };
-                RosterService.prototype.UpdateRoster = function (roster) {
-                    return this._repository.Update(roster);
+                RosterService.prototype.CreateRosterLocations = function (locations) {
+                    return this._repository.CreateLocations(locations);
                 };
                 return RosterService;
             }());

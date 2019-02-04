@@ -26,15 +26,12 @@ var GScope;
                     method: "GET"
                 });
             };
-            RosterRepository.prototype.Update = function (roster) {
-                var data1 = GScope.Utility.assign(roster);
-                console.log(roster);
-                console.log(data1);
+            RosterRepository.prototype.CreateLocations = function (locations) {
                 return $.ajax({
                     dataType: "json",
                     contentType: "application/json",
-                    url: "/api/Roster",
-                    data: JSON.stringify(roster),
+                    url: "/api/Locations",
+                    data: JSON.stringify(locations),
                     method: "Post"
                 });
             };

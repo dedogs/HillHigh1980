@@ -4,7 +4,7 @@
             FindRosterById(rosterId: number): Promise<Entity.Roster>;
             FindRostersByLastName(rosterName: string): Promise<Entity.Roster[]>;
             GetAllRosters(): Promise<Entity.Roster[]>;
-            UpdateRoster(roster: Entity.Roster): Promise<Entity.Roster>;
+            CreateRosterLocations(locations: [Entity.Location]): Promise<Entity.Roster>;
         }
     }
 }

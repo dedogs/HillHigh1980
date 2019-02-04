@@ -43,14 +43,13 @@
             postNewLocation = (e: Event) => {
                 const { City, State, NewLocation, Locations, RosterId } = DetailsView.ElementIds;
 
-                var roster: Entity.Roster = new Entity.Roster();
                 var location: Entity.Location = new Entity.Location();
 
-                location.City = this.mapped[City].value;
-                location.State = this.mapped[State].value;
-                roster.RosterId = this.mapped[RosterId].getAttribute("data-id");
-                roster.Location(location);
-                this._service.UpdateRoster(roster);
+                location.City(this.mapped[City].value);
+                location.State(this.mapped[State].value);
+                location.RosterId(this.mapped[RosterId].getAttribute("data-id"));
+
+                this._service.CreateRosterLocations([location]);
             };
         }
 

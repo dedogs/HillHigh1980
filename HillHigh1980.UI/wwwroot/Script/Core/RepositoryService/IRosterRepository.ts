@@ -1,10 +1,10 @@
 ﻿module GScope {
     export module RepositoryService {
-        export interface IRosterRepository<T> {
+        export interface IRosterRepository {
             ReadAll(): Promise<any>;
             FindById(id: number): Promise<any>;
             FindByName(name: string):Promise<any>
-            Update(obj: T): Promise<any>;
+            CreateLocations(locations: [Entity.Location]): Promise<any>;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace HillHigh1980.UI.Api
 
             try
             {
-                _service.UpdateRosterAsync(roster);
+                //_service.CreateRosterLocation(roster.Locations);
             }
             catch (Exception e)
             {

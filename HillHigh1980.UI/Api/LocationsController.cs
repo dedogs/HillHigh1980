@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HillHigh1980.Core.Entity;
 using HillHigh1980.Infrastructure.Data;
+using HillHigh1980.Core.ApplicationService;
 
 namespace HillHigh1980.UI.Api
 {
@@ -14,30 +15,30 @@ namespace HillHigh1980.UI.Api
     [ApiController]
     public class LocationsController : ControllerBase
     {
-        private readonly HillHigh1980DbContext _service;
+        private readonly IRosterService _service;
 
-        public LocationsController(HillHigh1980DbContext service)
+        public LocationsController(IRosterService service)
         {
             _service = service;
         }
 
         // GET: api/Locations
         [HttpGet]
-        public IEnumerable<Location> GetLocations()
+        public async Task<List<Location>> GetLocations()
         {
-            return _service.Locations;
+            return await _service.GetRosterLocations();
         }
 
         // GET: api/Locations/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetLocation([FromRoute] int id)
+        [HttpGet("{rosterId}")]
+        public async Task<IActionResult> GetLocation([FromRoute] int rosterId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var location = await _service.Locations.FindAsync(id);
+            var location = await _service.GetRosterLocation(rosterId);
 
             if (location == null)
             {
@@ -48,38 +49,29 @@ namespace HillHigh1980.UI.Api
         }
 
         // PUT: api/Locations/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLocation([FromRoute] int id, [FromBody] Location location)
+        [HttpPut("{locationId}")]
+        public async Task<IActionResult> PutLocation([FromRoute] int locationId, [FromBody] Location location)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != location.LocationId)
+            if (locationId != location.LocationId)
             {
                 return BadRequest();
             }
 
-            _service.Entry(location).State = EntityState.Modified;
-
             try
             {
-                await _service.SaveChangesAsync();
+                location = await _service.UpdateRosterLocation(location);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LocationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest("Database Error");
             }
 
-            return NoContent();
+            return Ok(location);
         }
 
         // POST: api/Locations
@@ -91,36 +83,33 @@ namespace HillHigh1980.UI.Api
                 return BadRequest(ModelState);
             }
 
-            _service.Locations.AddRange(locations);
-            await _service.SaveChangesAsync();
-
+            try
+            {
+                await _service.CreateRosterLocation(locations);
+            }
+            catch (Exception e)
+            {
+                BadRequest(e);
+            }
             return Ok(locations);
         }
 
         // DELETE: api/Locations/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLocation([FromRoute] int id)
+        [HttpDelete("{locationId}")]
+        public async Task<IActionResult> DeleteLocation([FromRoute] int locationId,[FromBody] Location location)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            var location = await _service.Locations.FindAsync(id);
-            if (location == null)
+            if (locationId != location.LocationId)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            _service.Locations.Remove(location);
-            await _service.SaveChangesAsync();
+            await _service.RemoveRosterLocation(location);
 
             return Ok(location);
-        }
-
-        private bool LocationExists(int id)
-        {
-            return _service.Locations.Any(e => e.LocationId == id);
         }
     }
 }

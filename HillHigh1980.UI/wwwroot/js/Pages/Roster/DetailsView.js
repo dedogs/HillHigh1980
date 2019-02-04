@@ -10,13 +10,11 @@ var GScope;
                 };
                 this.postNewLocation = function (e) {
                     var _a = DetailsView.ElementIds, City = _a.City, State = _a.State, NewLocation = _a.NewLocation, Locations = _a.Locations, RosterId = _a.RosterId;
-                    var roster = new GScope.Entity.Roster();
                     var location = new GScope.Entity.Location();
-                    location.City = _this.mapped[City].value;
-                    location.State = _this.mapped[State].value;
-                    roster.RosterId = _this.mapped[RosterId].getAttribute("data-id");
-                    roster.Location(location);
-                    _this._service.UpdateRoster(roster);
+                    location.City(_this.mapped[City].value);
+                    location.State(_this.mapped[State].value);
+                    location.RosterId(_this.mapped[RosterId].getAttribute("data-id"));
+                    _this._service.CreateRosterLocations([location]);
                 };
                 var _a = DetailsView.ElementIds, City = _a.City, State = _a.State, NewLocation = _a.NewLocation, Locations = _a.Locations, RosterId = _a.RosterId;
                 this.manager = new GScope.Module.EventManager(this);

@@ -1,6 +1,6 @@
 ﻿module GScope {
     export module Infrastructure {
-        export class RosterRepository implements RepositoryService.IRosterRepository<Entity.Roster> {
+        export class RosterRepository implements RepositoryService.IRosterRepository {
             FindByName(name: string): Promise<Entity.Roster> {
                 return $.ajax({
                     dataType: "json",
@@ -22,17 +22,12 @@
                     method: "GET"
                 });
             }
-            Update(roster: Entity.Roster): JQuery.Promise<any> {
-                var data1 = Utility.assign(roster);
-
-                console.log(roster);
-                console.log(data1);
-
+            CreateLocations(locations: [Entity.Location]): JQuery.Promise<any> {
                 return $.ajax({
                     dataType: "json",
                     contentType: "application/json",
-                    url: "/api/Roster",
-                    data: JSON.stringify(roster),
+                    url: "/api/Locations",
+                    data: JSON.stringify(locations),
                     method: "Post"
                 });
             }

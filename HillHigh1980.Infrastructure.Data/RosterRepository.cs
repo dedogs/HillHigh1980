@@ -19,11 +19,10 @@ namespace HillHigh1980.Infrastructure.Data
             _context = context;
         }
 
-        public async Task<int> Update(Roster roster)
+        public async Task<int> CreateLocation(Location[] locations)
         {
-            foreach (var location in roster.Locations)
+            foreach (var location in locations)
             {
-                location.RosterId = roster.RosterId;
                 _context.Attach(location).State = EntityState.Added;
             }
 
@@ -44,6 +43,33 @@ namespace HillHigh1980.Infrastructure.Data
         {
             IEnumerable<Roster> rosters = _context.Rosters;
             return rosters.Where(r => r.LastName.ToLower().Contains(name.ToLower()));
+        }
+
+        public async Task<IEnumerable<Location>> GetLocations()
+        {
+            return _context.Locations;
+        }
+
+        public async Task<Location> GetLocation(int rosterId)
+        {
+            return _context.Locations.FirstOrDefault(r => r.RosterId == rosterId);
+        }
+
+        public async Task<Location> UpdateLocation(Location location)
+        {
+            Location oldLocation = _context.Locations.FirstOrDefault(o => o.LocationId == location.LocationId);
+
+            oldLocation.City = location.City;
+            oldLocation.State = location.State;
+
+            _context.SaveChanges();
+            return oldLocation;
+        }
+
+        public async Task DeleteLocation(Location location)
+        {
+            _context.Locations.Remove(location);
+            _context.SaveChanges();
         }
     }
 }
