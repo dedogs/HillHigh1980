@@ -112,30 +112,34 @@ var GScope;
     (function (Entity) {
         var Location = /** @class */ (function () {
             function Location() {
+                this.locationId = 0;
+                this.city = "";
+                this.state = "";
+                this.rosterId = 0;
             }
             Location.prototype.LocationId = function (locationId) {
                 if (!GScope.Utility.is(locationId).nul().ok()) {
-                    this._locationId = locationId;
+                    this.locationId = locationId;
                 }
-                return this._locationId;
+                return this.locationId;
             };
             Location.prototype.City = function (city) {
                 if (!GScope.Utility.is(city).nul().ok()) {
-                    this._city = city;
+                    this.city = city;
                 }
-                return this._city;
+                return this.city;
             };
             Location.prototype.State = function (state) {
                 if (!GScope.Utility.is(state).nul().ok()) {
-                    this._state = state;
+                    this.state = state;
                 }
-                return this._state;
+                return this.state;
             };
             Location.prototype.RosterId = function (rosterId) {
                 if (!GScope.Utility.is(rosterId).nul().ok()) {
-                    this._rosterId = rosterId;
+                    this.rosterId = rosterId;
                 }
-                return this._rosterId;
+                return this.rosterId;
             };
             return Location;
         }());
@@ -149,63 +153,72 @@ var GScope;
     (function (Entity) {
         var Roster = /** @class */ (function () {
             function Roster() {
+                this.rosterId = 0;
+                this.firstName = "";
+                this.middle = "";
+                this.lastName = "";
+                this.found = false;
+                this.image = "";
+                this.caption = "";
+                this.link = "";
+                this.locations = [];
             }
             Roster.prototype.RosterId = function (rosterId) {
                 if (!GScope.Utility.is(rosterId).nul().ok()) {
-                    this._rosterId = rosterId;
+                    this.rosterId = rosterId;
                 }
-                return this._rosterId;
+                return this.rosterId;
             };
             Roster.prototype.FirstName = function (firstName) {
                 if (!GScope.Utility.is(firstName).nul().ok()) {
-                    this._firstName = name;
+                    this.firstName = name;
                 }
-                return this._firstName;
+                return this.firstName;
             };
             Roster.prototype.Middle = function (middle) {
                 if (!GScope.Utility.is(middle).nul().ok()) {
-                    this._middle = middle;
+                    this.middle = middle;
                 }
-                return this._middle;
+                return this.middle;
             };
             Roster.prototype.LastName = function (lastName) {
                 if (!GScope.Utility.is(lastName).nul().ok()) {
-                    this._lastName = lastName;
+                    this.lastName = lastName;
                 }
-                return this._lastName;
+                return this.lastName;
             };
             Roster.prototype.Found = function (found) {
                 if (!GScope.Utility.is(found).nul().ok()) {
-                    this._found = found;
+                    this.found = found;
                 }
-                return this._found;
+                return this.found;
             };
             Roster.prototype.Image = function (image) {
                 if (!GScope.Utility.is(image).nul().ok()) {
-                    this._image = image;
+                    this.image = image;
                 }
-                return this._image;
+                return this.image;
             };
             Roster.prototype.Caption = function (caption) {
                 if (!GScope.Utility.is(caption).nul().ok()) {
-                    this._caption = caption;
+                    this.caption = caption;
                 }
-                return this._caption;
+                return this.caption;
             };
             Roster.prototype.Link = function (link) {
                 if (!GScope.Utility.is(link).nul().ok()) {
-                    this._link = link;
+                    this.link = link;
                 }
-                return this._link;
+                return this.link;
             };
             Roster.prototype.Location = function (location, locations) {
-                if (!GScope.Utility.is(locations).nul().ok()) {
-                    this._locations.concat(locations);
+                if (!(GScope.Utility.is(locations).nul().ok() || GScope.Utility.is(locations).undef().ok())) {
+                    this.locations.concat(locations);
                 }
-                else if (!GScope.Utility.is(location).nul().ok()) {
-                    this._locations.push(location);
+                else if (!(GScope.Utility.is(location).nul().ok() || GScope.Utility.is(location).undef().ok())) {
+                    this.locations.push(location);
                 }
-                return this._locations;
+                return this.locations;
             };
             return Roster;
         }());
@@ -213,73 +226,3 @@ var GScope;
     })(Entity = GScope.Entity || (GScope.Entity = {}));
 })(GScope || (GScope = {}));
 //# sourceMappingURL=Roster.js.map
-var GScope;
-(function (GScope) {
-    var Entity;
-    (function (Entity) {
-        var Seed = /** @class */ (function () {
-            function Seed() {
-            }
-            Seed.prototype.SeedId = function (seedId) {
-                if (!GScope.Utility.is(seedId).nul().ok()) {
-                    this._seedId = seedId;
-                }
-                return this._seedId;
-            };
-            Seed.prototype.Name = function (name) {
-                if (!GScope.Utility.is(name).nul().ok()) {
-                    this._name = name;
-                }
-                return this._name;
-            };
-            Seed.prototype.Description = function (description) {
-                if (!GScope.Utility.is(description).nul().ok()) {
-                    this._description = description;
-                }
-                return this._description;
-            };
-            Seed.prototype.Maximum = function (maximum) {
-                if (!GScope.Utility.is(maximum).nul().ok()) {
-                    this._maximum = maximum;
-                }
-                return this._maximum;
-            };
-            Seed.prototype.Minimum = function (minimum) {
-                if (!GScope.Utility.is(minimum).nul().ok()) {
-                    this._minimum = minimum;
-                }
-                return this._minimum;
-            };
-            Seed.prototype.SeedLink = function (seedLink) {
-                if (!GScope.Utility.is(seedLink).nul().ok()) {
-                    this._seedLink = seedLink;
-                }
-                return this._seedLink;
-            };
-            Seed.prototype.SeedSupplierLink = function (seedSupplierLink) {
-                if (!GScope.Utility.is(seedSupplierLink).nul().ok()) {
-                    this._seedSupplierLink = seedSupplierLink;
-                }
-                return this._seedSupplierLink;
-            };
-            Seed.prototype.Costs = function (costs, cost) {
-                if (!GScope.Utility.is(costs).nul().ok()) {
-                    this._costs.concat(costs);
-                }
-                else if (!GScope.Utility.is(cost).nul().ok()) {
-                    this._costs.push(cost);
-                }
-                return this._costs;
-            };
-            Seed.prototype.GrowingInfo = function (growingInfo) {
-                if (growingInfo !== null) {
-                    this._growingInfo = growingInfo;
-                }
-                return this._growingInfo;
-            };
-            return Seed;
-        }());
-        Entity.Seed = Seed;
-    })(Entity = GScope.Entity || (GScope.Entity = {}));
-})(GScope || (GScope = {}));
-//# sourceMappingURL=Seed.js.map

@@ -32,5 +32,10 @@ namespace HillHigh1980.Core.ApplicationService.Service
         {
             return (await _repository.FindRostersByLastName(name)).ToList();
         }
+
+        public async Task<int> UpdateRosterAsync(Roster roster)
+        {
+            return await _repository.Update(roster);
+        }
     }
 }

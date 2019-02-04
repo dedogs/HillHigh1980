@@ -3,25 +3,28 @@
         export class DetailsView {
             private static instance: DetailsView;
             private manager: Module.EventManager;
+            private _service: ApplicationService.Service.RosterService;
 
             private mapped: any;
 
             private constructor() {
-                const { City, State, RosterForm, Locations } = DetailsView.ElementIds;
+                const { City, State, NewLocation, Locations, RosterId } = DetailsView.ElementIds;
 
                 this.manager = new Module.EventManager(this);
+                this._service = new ApplicationService.Service.RosterService(new Infrastructure.RosterRepository());
 
                 this.mapped = (() => {
                     return Module.MappedIds.get([
                         { key: City, value: City },
                         { key: State, value: State },
-                        { key: RosterForm, value: RosterForm },
-                        { key: Locations, value: Locations }
+                        { key: NewLocation, value: NewLocation },
+                        { key: Locations, value: Locations },
+                        { key: RosterId, value: RosterId }
                     ])
                 })();
 
-                this.manager.add([new Module.EventManager.EventAction(RosterForm, this.mapped[RosterForm], "click")]);
-                this.manager.add([new Module.EventManager.EventAction(RosterForm, this.mapped[Locations], "click")]);
+                this.manager.add([new Module.EventManager.EventAction(NewLocation, this.mapped[NewLocation], "click")]);
+                this.manager.add([new Module.EventManager.EventAction(NewLocation, this.mapped[Locations], "click")]);
                 this.manager.attach();
             }
 
@@ -37,8 +40,17 @@
                 alert((<HTMLDivElement>e.target).id);
             };
 
-            postLocation = (e: Event) => {
-                alert("clicked");
+            postNewLocation = (e: Event) => {
+                const { City, State, NewLocation, Locations, RosterId } = DetailsView.ElementIds;
+
+                var roster: Entity.Roster = new Entity.Roster();
+                var location: Entity.Location = new Entity.Location();
+
+                location.City = this.mapped[City].value;
+                location.State = this.mapped[State].value;
+                roster.RosterId = this.mapped[RosterId].getAttribute("data-id");
+                roster.Location(location);
+                this._service.UpdateRoster(roster);
             };
         }
 
@@ -46,8 +58,9 @@
             export enum ElementIds {
                 City = "rosterCity",
                 State = "rosterState",
-                RosterForm = "postLocation",
-                Locations = "detailsLocations"
+                NewLocation = "postNewLocation",
+                Locations = "detailsLocations",
+                RosterId = "rosterId"
             }
         }
     }

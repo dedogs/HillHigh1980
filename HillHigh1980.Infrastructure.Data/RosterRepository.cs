@@ -21,11 +21,12 @@ namespace HillHigh1980.Infrastructure.Data
 
         public async Task<int> Update(Roster roster)
         {
-            _context.Attach(roster).State = EntityState.Modified;
             foreach (var location in roster.Locations)
             {
+                location.RosterId = roster.RosterId;
                 _context.Attach(location).State = EntityState.Added;
             }
+
             return await _context.SaveChangesAsync();
         }
 

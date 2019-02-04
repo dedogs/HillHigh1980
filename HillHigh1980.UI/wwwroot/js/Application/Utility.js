@@ -157,6 +157,25 @@ var GScope;
             }
             return uuid.join('');
         };
+        Utility.assign = function (source) {
+            var i;
+            if (Utility.is(source).obj().ok()) {
+                Object.keys(source).forEach(function (key, index) {
+                    if (Utility.is(source[key]).obj().or().arry().ok()) {
+                        source[key] = Utility.assign(source[key]);
+                    }
+                });
+                return source;
+            }
+            else if (Utility.is(source).arry().ok()) {
+                for (i = 0; i < source.length; i++) {
+                    if (Utility.is(source[i]).obj().or().arry().ok()) {
+                        source[i] = Utility.assign(source[i]);
+                    }
+                }
+                return source;
+            }
+        };
         return Utility;
     }());
     GScope.Utility = Utility;

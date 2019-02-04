@@ -169,11 +169,43 @@ var GScope;
             }
             return uuid.join('');
         };
+        Utility.assign = function (source) {
+            var i;
+            if (Utility.is(source).obj().ok()) {
+                Object.keys(source).forEach(function (key, index) {
+                    if (Utility.is(source[key]).obj().or().arry().ok()) {
+                        source[key] = Utility.assign(source[key]);
+                    }
+                });
+                return source;
+            }
+            else if (Utility.is(source).arry().ok()) {
+                for (i = 0; i < source.length; i++) {
+                    if (Utility.is(source[i]).obj().or().arry().ok()) {
+                        source[i] = Utility.assign(source[i]);
+                    }
+                }
+                return source;
+            }
+        };
         return Utility;
     }());
     GScope.Utility = Utility;
 })(GScope || (GScope = {}));
 //# sourceMappingURL=Utility.js.map
+var GScope;
+(function (GScope) {
+    var Module;
+    (function (Module) {
+        var Assign = /** @class */ (function () {
+            function Assign() {
+            }
+            return Assign;
+        }());
+        Module.Assign = Assign;
+    })(Module = GScope.Module || (GScope.Module = {}));
+})(GScope || (GScope = {}));
+//# sourceMappingURL=Assign.js.map
 var GScope;
 (function (GScope) {
     var Module;
@@ -280,6 +312,40 @@ var GScope;
     })(Module = GScope.Module || (GScope.Module = {}));
 })(GScope || (GScope = {}));
 //# sourceMappingURL=EventManager.js.map
+var GScope;
+(function (GScope) {
+    var Module;
+    (function (Module) {
+        var Injector = /** @class */ (function () {
+            function Injector() {
+                var _this = this;
+                this.register = function (key, value) { _this.dependencies[key] = value; };
+                this.resolve = function () {
+                    var items = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        items[_i] = arguments[_i];
+                    }
+                    var args = [], func = items[0], deps = func.toString().match(/^function\s*[^\(]*\(\s*([^\)]*)\)/m)[1].replace(/ /g, '').split(','), scope = items[1] || {};
+                    return function () {
+                        var arry = [];
+                        for (var _i = 0; _i < arguments.length; _i++) {
+                            arry[_i] = arguments[_i];
+                        }
+                        for (var i = 0; i < deps.length; i++) {
+                            var d = deps[i];
+                            args.push(_this.dependencies[d] && d != '' ? _this.dependencies[d] : arry.shift());
+                        }
+                        func.apply(scope || {}, args);
+                    };
+                };
+            }
+            return Injector;
+        }());
+        Module.Injector = Injector;
+        ;
+    })(Module = GScope.Module || (GScope.Module = {}));
+})(GScope || (GScope = {}));
+//# sourceMappingURL=Injector.js.map
 var GScope;
 (function (GScope) {
     var Module;

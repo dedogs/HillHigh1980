@@ -38,6 +38,19 @@ namespace HillHigh1980.UI.Api
         [HttpPost]
         public ActionResult Post([FromBody] Roster roster)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                _service.UpdateRosterAsync(roster);
+            }
+            catch (Exception e)
+            {
+                BadRequest(e);
+            }
             return Ok(roster);
         }
 

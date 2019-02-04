@@ -2,29 +2,45 @@ var GScope;
 (function (GScope) {
     var Infrastructure;
     (function (Infrastructure) {
-        var RosterDetailsRepository = /** @class */ (function () {
-            function RosterDetailsRepository() {
+        var RosterRepository = /** @class */ (function () {
+            function RosterRepository() {
             }
-            RosterDetailsRepository.prototype.ReadAll = function () {
+            RosterRepository.prototype.FindByName = function (name) {
+                return $.ajax({
+                    dataType: "json",
+                    url: "/api/Roster/" + name,
+                    method: "GET"
+                });
+            };
+            RosterRepository.prototype.ReadAll = function () {
                 return $.ajax({
                     dataType: "json",
                     url: "/api/Roster",
                     method: "GET"
                 });
             };
-            RosterDetailsRepository.prototype.FindById = function (rosterId) {
+            RosterRepository.prototype.FindById = function (id) {
                 return $.ajax({
                     dataType: "json",
-                    url: "/api/Roster",
+                    url: "/api/Roster/" + id,
                     method: "GET"
                 });
             };
-            RosterDetailsRepository.prototype.Update = function (roster) {
-                throw new Error("Method not implemented.");
+            RosterRepository.prototype.Update = function (roster) {
+                var data1 = GScope.Utility.assign(roster);
+                console.log(roster);
+                console.log(data1);
+                return $.ajax({
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: "/api/Roster",
+                    data: JSON.stringify(roster),
+                    method: "Post"
+                });
             };
-            return RosterDetailsRepository;
+            return RosterRepository;
         }());
-        Infrastructure.RosterDetailsRepository = RosterDetailsRepository;
+        Infrastructure.RosterRepository = RosterRepository;
     })(Infrastructure = GScope.Infrastructure || (GScope.Infrastructure = {}));
 })(GScope || (GScope = {}));
 //# sourceMappingURL=RosterRepository.js.map

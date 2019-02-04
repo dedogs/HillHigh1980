@@ -20,22 +20,20 @@
                 <h4>
                     Enter Current and past places lived
                 </h4>
-                <form id="postLocation" method="post">
-                    <input asp-route-rosterId="@Model.Roster.RosterId" type="hidden" />
-                    <div class="form-row" style="margin-bottom: 8px;">
-                        <div class="col">
-                            <input type="text" id="rosterCity" class="form-control" placeholder="City">
-                        </div>
-                        <div class="col">
-                            <input type="text" id="rosterState" class="form-control" placeholder="State">
-                        </div>
+                <input id="rosterId" data-id="@Model.Roster.RosterId" type="hidden" />
+                <div class="form-row" style="margin-bottom: 8px;">
+                    <div class="col">
+                        <input type="text" id="rosterCity" class="form-control" placeholder="City">
                     </div>
-                    <div class="form-row">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-dark">Add Location</button>
-                        </div>
+                    <div class="col">
+                        <input type="text" id="rosterState" class="form-control" placeholder="State">
                     </div>
-                </form>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <button id="postNewLocation" type="button" class="btn btn-outline-dark">Add Location</button>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-12 col-md-6">
                 <h4>

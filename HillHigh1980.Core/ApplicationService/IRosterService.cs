@@ -11,5 +11,6 @@ namespace HillHigh1980.Core.ApplicationService
         Task<Roster> FindRosterByIdAsync(int seedId);
         Task<List<Roster>> FindRostersByLastName(string name);
         Task<List<Roster>> GetAllRostersAsync();
+        Task<int> UpdateRosterAsync(Roster roster);
     }
 }

@@ -1,4 +1,3 @@
-//# sourceMappingURL=IRosterService.js.map
 var GScope;
 (function (GScope) {
     var ApplicationService;
@@ -28,4 +27,3 @@ var GScope;
     })(ApplicationService = GScope.ApplicationService || (GScope.ApplicationService = {}));
 })(GScope || (GScope = {}));
 //# sourceMappingURL=RosterService.js.map
-//# sourceMappingURL=IRosterRepository.js.map
