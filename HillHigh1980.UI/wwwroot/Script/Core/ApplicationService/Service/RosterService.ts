@@ -18,8 +18,14 @@
                     return this._repository.ReadAll();
                 }
 
-                CreateRosterLocations(locations: [Entity.Location]): Promise<Entity.Roster> {
+                CreateRosterLocations(locations: [Entity.Location]): Promise<any> {
                     return this._repository.CreateLocations(locations);
+                }
+                UpdateRosterLocation(location: Entity.Location): Promise<any> {
+                    return this._repository.UpdateLocation(location);
+                }
+                DeleteRosterLocation(location: Entity.Location): Promise<any> {
+                    return this._repository.DeleteLocation(location);
                 }
             }
         }

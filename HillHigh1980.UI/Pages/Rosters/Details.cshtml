@@ -16,11 +16,39 @@
     </div>
     <div class="col-sm-9 col-md-10">
         <div class="row">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-md-12 col-lg-6">
                 <h4>
-                    Enter Current and past places lived
+                    Current and Past City, State(s)
                 </h4>
-                <input id="rosterId" data-id="@Model.Roster.RosterId" type="hidden" />
+                <div id="detailsLocations" class="list-group">
+                    @foreach (Location item in Model.Roster.Locations)
+                    {
+                        <div href="#" class="list-group-item">
+                            <div class="row">
+                                <div class="col-6">
+                                    @String.Format("{0}, {1}", item.City, item.State)
+                                </div>
+                                <div class="col-6 text-right">
+                                    <div id="@item.LocationId" data-cityState=" @String.Format("{0},{1}", item.City, item.State)" class="row float-right">
+                                        <div class="sprite contact-Add" title="Add City/State">
+                                        </div>
+                                        <div class="sprite contact-Edit" title="Update City/State">
+                                        </div>
+                                        <div class="sprite contact-Remove" title="Remove City/State">
+                                        </div>
+                                    </div>
+                                    <div class="float-none">&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id="addUpdateForm" class="col-md-12 col-lg-6">
+                <h4>
+                    Add Current and past places lived
+                </h4>
+                <input id="rosterId" data-rosterId="@Model.Roster.RosterId" type="hidden" />
                 <div class="form-row" style="margin-bottom: 8px;">
                     <div class="col">
                         <input type="text" id="rosterCity" class="form-control" placeholder="City">
@@ -31,21 +59,8 @@
                 </div>
                 <div class="form-row">
                     <div class="col">
-                        <button id="postNewLocation" type="button" class="btn btn-outline-dark">Add Location</button>
+                        <button id="postLoctaion" type="button" class="btn btn-outline-dark">Add Location</button>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <h4>
-                    Current and Past City, State(s)
-                </h4>
-                <div id="detailsLocations" class="list-group">
-                    @foreach (Location item in Model.Roster.Locations)
-                    {
-                        <a id="@item.LocationId" href="#" class="list-group-item">
-                            @String.Format("{0} {1}", item.City, item.State)
-                        </a>
-                    }
                 </div>
             </div>
         </div>

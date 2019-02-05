@@ -20,6 +20,12 @@ var GScope;
                 RosterService.prototype.CreateRosterLocations = function (locations) {
                     return this._repository.CreateLocations(locations);
                 };
+                RosterService.prototype.UpdateRosterLocation = function (location) {
+                    return this._repository.UpdateLocation(location);
+                };
+                RosterService.prototype.DeleteRosterLocation = function (location) {
+                    return this._repository.DeleteLocation(location);
+                };
                 return RosterService;
             }());
             Service.RosterService = RosterService;

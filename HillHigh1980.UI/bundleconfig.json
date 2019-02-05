@@ -42,5 +42,12 @@
       "wwwroot/js/Pages/Roster/**/*.js"
     ],
     "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/css/Bundles/sprite.css",
+    "inputFiles": [
+      "wwwroot/css/sprite/sp_48/*.css"
+    ],
+    "minify": { "enabled": true }
   }
 ]

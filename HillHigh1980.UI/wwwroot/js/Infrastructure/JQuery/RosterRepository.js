@@ -35,6 +35,24 @@ var GScope;
                     method: "Post"
                 });
             };
+            RosterRepository.prototype.UpdateLocation = function (location) {
+                return $.ajax({
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: "/api/Locations",
+                    data: JSON.stringify(location),
+                    method: "PUT"
+                });
+            };
+            RosterRepository.prototype.DeleteLocation = function (location) {
+                return $.ajax({
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: "/api/Locations",
+                    data: JSON.stringify(location),
+                    method: "DELETE"
+                });
+            };
             return RosterRepository;
         }());
         Infrastructure.RosterRepository = RosterRepository;

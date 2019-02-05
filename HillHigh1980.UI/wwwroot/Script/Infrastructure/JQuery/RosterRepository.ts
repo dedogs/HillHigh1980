@@ -31,6 +31,24 @@
                     method: "Post"
                 });
             }
+            UpdateLocation(location: Entity.Location): Promise<any> {
+                return $.ajax({
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: "/api/Locations",
+                    data: JSON.stringify(location),
+                    method: "PUT"
+                });
+            }
+            DeleteLocation(location: Entity.Location): Promise<any> {
+                return $.ajax({
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: "/api/Locations",
+                    data: JSON.stringify(location),
+                    method: "DELETE"
+                });
+            }
         }
     }
 }
