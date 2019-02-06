@@ -4,73 +4,105 @@ var GScope;
     (function (Entity) {
         var Roster = /** @class */ (function () {
             function Roster() {
-                this.rosterId = 0;
-                this.firstName = "";
-                this.middle = "";
-                this.lastName = "";
-                this.found = false;
-                this.image = "";
-                this.caption = "";
-                this.link = "";
-                this.locations = [];
             }
-            Roster.prototype.RosterId = function (rosterId) {
-                if (!GScope.Utility.is(rosterId).nul().ok()) {
+            Object.defineProperty(Roster.prototype, "RosterId", {
+                get: function () {
+                    return this.rosterId;
+                },
+                set: function (rosterId) {
                     this.rosterId = rosterId;
-                }
-                return this.rosterId;
-            };
-            Roster.prototype.FirstName = function (firstName) {
-                if (!GScope.Utility.is(firstName).nul().ok()) {
-                    this.firstName = name;
-                }
-                return this.firstName;
-            };
-            Roster.prototype.Middle = function (middle) {
-                if (!GScope.Utility.is(middle).nul().ok()) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "FirstName", {
+                get: function () {
+                    return this.firstName;
+                },
+                set: function (firstName) {
+                    this.firstName = firstName;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "Middle", {
+                get: function () {
+                    return this.middle;
+                },
+                set: function (middle) {
                     this.middle = middle;
-                }
-                return this.middle;
-            };
-            Roster.prototype.LastName = function (lastName) {
-                if (!GScope.Utility.is(lastName).nul().ok()) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "LastName", {
+                get: function () {
+                    return this.lastName;
+                },
+                set: function (lastName) {
                     this.lastName = lastName;
-                }
-                return this.lastName;
-            };
-            Roster.prototype.Found = function (found) {
-                if (!GScope.Utility.is(found).nul().ok()) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "Found", {
+                get: function () {
+                    return this.found;
+                },
+                set: function (found) {
                     this.found = found;
-                }
-                return this.found;
-            };
-            Roster.prototype.Image = function (image) {
-                if (!GScope.Utility.is(image).nul().ok()) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "Image", {
+                get: function () {
+                    return this.image;
+                },
+                set: function (image) {
                     this.image = image;
-                }
-                return this.image;
-            };
-            Roster.prototype.Caption = function (caption) {
-                if (!GScope.Utility.is(caption).nul().ok()) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "Caption", {
+                get: function () {
+                    return this.caption;
+                },
+                set: function (caption) {
                     this.caption = caption;
-                }
-                return this.caption;
-            };
-            Roster.prototype.Link = function (link) {
-                if (!GScope.Utility.is(link).nul().ok()) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            ;
+            Object.defineProperty(Roster.prototype, "Link", {
+                get: function () {
+                    return this.link;
+                },
+                set: function (link) {
                     this.link = link;
-                }
-                return this.link;
-            };
-            Roster.prototype.Location = function (location, locations) {
-                if (!(GScope.Utility.is(locations).nul().ok() || GScope.Utility.is(locations).undef().ok())) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "Locations", {
+                get: function () {
+                    return this.locations;
+                },
+                set: function (locations) {
                     this.locations.concat(locations);
-                }
-                else if (!(GScope.Utility.is(location).nul().ok() || GScope.Utility.is(location).undef().ok())) {
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Roster.prototype, "Location", {
+                set: function (location) {
                     this.locations.push(location);
-                }
-                return this.locations;
-            };
+                },
+                enumerable: true,
+                configurable: true
+            });
             return Roster;
         }());
         Entity.Roster = Roster;

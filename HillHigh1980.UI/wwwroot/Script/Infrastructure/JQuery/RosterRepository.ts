@@ -32,10 +32,11 @@
                 });
             }
             UpdateLocation(location: Entity.Location): Promise<any> {
+
                 return $.ajax({
                     dataType: "json",
                     contentType: "application/json",
-                    url: "/api/Locations",
+                    url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
                     method: "PUT"
                 });

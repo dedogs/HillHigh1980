@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\Bundles\application.js" />
+    <Content Remove="wwwroot\js\Bundles\application.min.js" />
     <Content Remove="wwwroot\Script\Application\Modules\Injector.ts" />
     <Content Remove="wwwroot\Script\Core\ApplicationService\IRosterService.ts" />
     <Content Remove="wwwroot\Script\Core\ApplicationService\Service\RosterService.ts" />
@@ -18,6 +20,11 @@
 
   <ItemGroup>
     <None Remove="appsettings.json~RF51a858b.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\Bundles\application.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\Bundles\application.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +42,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\Bundles\application.js" />
+    <None Include="wwwroot\js\Bundles\application.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HillHigh1980.Infrastructure.Data\HillHigh1980.Infrastructure.Data.csproj" />
   </ItemGroup>
 
@@ -48,8 +60,6 @@
     <TypeScriptCompile Include="wwwroot\Script\Core\ApplicationService\IRosterService.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Core\ApplicationService\Service\RosterService.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Core\RepositoryService\IRosterRepository.ts" />
-    <TypeScriptCompile Include="wwwroot\Script\Entity\Cost.ts" />
-    <TypeScriptCompile Include="wwwroot\Script\Entity\GrowingInfo.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Location.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Roster.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />

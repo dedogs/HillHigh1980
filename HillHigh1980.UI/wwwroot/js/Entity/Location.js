@@ -5,30 +5,46 @@ var GScope;
         var Location = /** @class */ (function () {
             function Location() {
             }
-            Location.prototype.LocationId = function (locationId) {
-                if (!GScope.Utility.is(locationId).nul().ok()) {
-                    this._locationId = locationId;
-                }
-                return this._locationId;
-            };
-            Location.prototype.City = function (city) {
-                if (!GScope.Utility.is(city).nul().ok()) {
-                    this._city = city;
-                }
-                return this._city;
-            };
-            Location.prototype.State = function (state) {
-                if (!GScope.Utility.is(state).nul().ok()) {
-                    this._state = state;
-                }
-                return this._state;
-            };
-            Location.prototype.RosterId = function (rosterId) {
-                if (!GScope.Utility.is(rosterId).nul().or().undef().ok()) {
-                    this._rosterId = rosterId;
-                }
-                return this._rosterId;
-            };
+            Object.defineProperty(Location.prototype, "LocationId", {
+                get: function () {
+                    return this.locationId;
+                },
+                set: function (locationId) {
+                    this.locationId = locationId;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Location.prototype, "City", {
+                get: function () {
+                    return this.city;
+                },
+                set: function (city) {
+                    this.city = city;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Location.prototype, "State", {
+                get: function () {
+                    return this.state;
+                },
+                set: function (state) {
+                    this.state = state;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Location.prototype, "RosterId", {
+                get: function () {
+                    return this.rosterId;
+                },
+                set: function (rosterId) {
+                    this.rosterId = rosterId;
+                },
+                enumerable: true,
+                configurable: true
+            });
             return Location;
         }());
         Entity.Location = Location;

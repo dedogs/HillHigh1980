@@ -2,37 +2,34 @@
 module GScope {
     export module Entity {
         export class Location {
-            private _locationId: number;
-            private _city: string;
-            private _state: string;
-            private _rosterId: number;
+            private locationId: number;
+            private city: string;
+            private state: string;
+            private rosterId: number;
 
-            LocationId(locationId?: number): number {
-                if (!Utility.is(locationId).nul().ok()) {
-                    this._locationId = locationId;
-                }
-                return this._locationId;
+            get LocationId(): number {
+                return this.locationId;
             }
-
-            City(city?: string): string {
-                if (!Utility.is(city).nul().ok()) {
-                    this._city = city;
-                }
-                return this._city;
+            set LocationId(locationId: number) {
+                this.locationId = locationId;
             }
-
-            State(state?: string): string {
-                if (!Utility.is(state).nul().ok()) {
-                    this._state = state;
-                }
-                return this._state;
+            get City(): string {
+                return this.city;
             }
-
-            RosterId(rosterId?: number): number {
-                if (!Utility.is(rosterId).nul().or().undef().ok()) {
-                    this._rosterId = rosterId;
-                }
-                return this._rosterId;
+            set City(city: string) {
+                this.city = city;
+            }
+            get State(): string {
+                return this.state;
+            }
+            set State(state: string) {
+                this.state = state;
+            }
+            get RosterId(): number {
+                return this.rosterId;
+            }
+            set RosterId(rosterId: number) {
+                this.rosterId = rosterId;
             }
         }
     }
