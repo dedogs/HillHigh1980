@@ -9,20 +9,25 @@ var GScope;
                 this.detailsLocations = function (e) {
                     var target = e.target, parent = $(target).parent().get(0), cityState = parent.getAttribute("data-cityState").split(',');
                     _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].show();
+                    _this._locationId = parseInt(parent.id);
                     if (target.className.lastIndexOf("Add") !== -1) {
-                        _this.mapped[DetailsView.ElementIds.PostLoctaion].html = "Add Location";
+                        _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
+                        _this._currentAction = DetailsView.Action.add;
+                        cityState[0] = "";
+                        cityState[1] = "";
                         _this._locationId = 0;
                     }
                     else if (target.className.lastIndexOf("Edit") !== -1) {
-                        _this.mapped[DetailsView.ElementIds.PostLoctaion].html = "Edit Location";
-                        _this._locationId = parseInt(parent.id);
-                        _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
-                        _this.mapped[DetailsView.ElementIds.State].value = cityState[1];
+                        _this._currentAction = DetailsView.Action.edit;
+                        _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
                     }
                     else if (target.className.lastIndexOf("Remove") !== -1) {
-                        _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
-                        _this.postLoctaion(e);
+                        _this._currentAction = DetailsView.Action.remove;
+                        _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
+                        _this._locationId = -1;
                     }
+                    _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
+                    _this.mapped[DetailsView.ElementIds.State].value = cityState[1];
                 };
                 this.postLoctaion = function (e) {
                     var location = new GScope.Entity.Location();
@@ -31,8 +36,12 @@ var GScope;
                     location.State = _this.mapped[DetailsView.ElementIds.State].value;
                     location.RosterId = _this.mapped[DetailsView.ElementIds.RosterId].getAttribute("data-rosterId");
                     _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
-                    if (_this._locationId === 0) {
+                    if (_this._currentAction === DetailsView.Action.add) {
                         _this._service.CreateRosterLocations([location]).then(function (data) {
+                        }).catch(function (e) { });
+                    }
+                    else if (_this._currentAction === DetailsView.Action.remove) {
+                        _this._service.DeleteRosterLocation(location).then(function (data) {
                         }).catch(function (e) { });
                     }
                     else {
@@ -76,6 +85,12 @@ var GScope;
                 ElementIds["RosterId"] = "rosterId";
                 ElementIds["AddUpdateForm"] = "addUpdateForm";
             })(ElementIds = DetailsView.ElementIds || (DetailsView.ElementIds = {}));
+            var Action;
+            (function (Action) {
+                Action[Action["add"] = 0] = "add";
+                Action[Action["remove"] = 1] = "remove";
+                Action[Action["edit"] = 2] = "edit";
+            })(Action = DetailsView.Action || (DetailsView.Action = {}));
         })(DetailsView = Page.DetailsView || (Page.DetailsView = {}));
     })(Page = GScope.Page || (GScope.Page = {}));
 })(GScope || (GScope = {}));

@@ -5,6 +5,7 @@
             private manager: Module.EventManager;
             private _service: ApplicationService.Service.RosterService;
             private _locationId: number = 0;
+            private _currentAction: DetailsView.Action;
             private mapped: any;
 
             private constructor() {
@@ -43,22 +44,27 @@
                     cityState: string[] = parent.getAttribute("data-cityState").split(',');
 
                 this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].show();
+                this._locationId = parseInt(parent.id);
+
                 if (target.className.lastIndexOf("Add") !== -1) {
-                    this.mapped[DetailsView.ElementIds.PostLoctaion].html = "Add Location";
+                    this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
+                    this._currentAction = DetailsView.Action.add;
+                    cityState[0] = "";
+                    cityState[1] = "";
 
                     this._locationId = 0;
                 } else if (target.className.lastIndexOf("Edit") !== -1) {
-                    this.mapped[DetailsView.ElementIds.PostLoctaion].html = "Edit Location";
+                    this._currentAction = DetailsView.Action.edit;
+                    this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
 
-                    this._locationId = parseInt(parent.id);
-
-                    this.mapped[DetailsView.ElementIds.City].value = cityState[0];
-                    this.mapped[DetailsView.ElementIds.State].value = cityState[1];
                 } else if (target.className.lastIndexOf("Remove") !== -1) {
-                    this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
-
-                    this.postLoctaion(e);
+                    this._currentAction = DetailsView.Action.remove;
+                    this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
+                    this._locationId = -1;
                 }
+
+                this.mapped[DetailsView.ElementIds.City].value = cityState[0];
+                this.mapped[DetailsView.ElementIds.State].value = cityState[1];
             };
 
             postLoctaion = (e: Event) => {
@@ -71,14 +77,16 @@
 
                 this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
 
-                if (this._locationId === 0) {
+                if (this._currentAction === DetailsView.Action.add) {
                     this._service.CreateRosterLocations([location]).then((data) => {
+                    }).catch((e) => { });
+                } else if (this._currentAction === DetailsView.Action.remove) {
+                    this._service.DeleteRosterLocation(location).then((data) => {
                     }).catch((e) => { });
                 } else {
                     this._service.UpdateRosterLocation(location).then((data) => {
                     }).catch((e) => { });
                 }
-
             };
         }
 
@@ -90,6 +98,11 @@
                 Locations = "detailsLocations",
                 RosterId = "rosterId",
                 AddUpdateForm = "addUpdateForm"
+            }
+            export enum Action {
+                add,
+                remove,
+                edit
             }
         }
     }
