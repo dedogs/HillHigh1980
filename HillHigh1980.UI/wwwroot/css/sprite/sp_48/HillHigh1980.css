@@ -11,20 +11,24 @@
         height: 48px;
     }
 
-    .sprite.contact-Add {
-        background-position: -48px 0px;
-        width: 48px;
-        height: 48px;
-    }
+.contact-Add {
+    line-height: 48px;
+}
 
-    .sprite.contact-Info {
-        background-position: -96px 0px;
-        width: 48px;
-        height: 48px;
-    }
+.sprite.contact-Add {
+    background-position: -48px 0px;
+    width: 48px;
+    height: 48px;
+}
 
-    .sprite.contact-Edit {
-        background-position: -144px 0px;
-        width: 48px;
-        height: 48px;
-    }
+.sprite.contact-Info {
+    background-position: -96px 0px;
+    width: 48px;
+    height: 48px;
+}
+
+.sprite.contact-Edit {
+    background-position: -144px 0px;
+    width: 48px;
+    height: 48px;
+}
