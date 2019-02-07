@@ -40,27 +40,29 @@
 
             detailsLocations = (e: Event) => {
                 var target = (<HTMLElement>e.target),
-                    parent = $(target).parent().get(0),
-                    cityState: string[] = parent.getAttribute("data-cityState").split(',');
+                    parent,
+                    cityState: string[] = ["",""];
 
                 this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].show();
-                this._locationId = parseInt(parent.id);
 
                 if (target.className.lastIndexOf("Add") !== -1) {
                     this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
                     this._currentAction = DetailsView.Action.add;
-                    cityState[0] = "";
-                    cityState[1] = "";
 
                     this._locationId = 0;
-                } else if (target.className.lastIndexOf("Edit") !== -1) {
-                    this._currentAction = DetailsView.Action.edit;
-                    this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
+                } else {
+                    parent = $(target).parent().get(0);
+                    cityState = parent.getAttribute("data-cityState").split(',')
+                    this._locationId = parseInt(parent.id);
 
-                } else if (target.className.lastIndexOf("Remove") !== -1) {
-                    this._currentAction = DetailsView.Action.remove;
-                    this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
-                    this._locationId = -1;
+                    if (target.className.lastIndexOf("Edit") !== -1) {
+                        this._currentAction = DetailsView.Action.edit;
+                        this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
+
+                    } else if (target.className.lastIndexOf("Remove") !== -1) {
+                        this._currentAction = DetailsView.Action.remove;
+                        this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
+                    }
                 }
 
                 this.mapped[DetailsView.ElementIds.City].value = cityState[0];

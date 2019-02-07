@@ -7,24 +7,25 @@ var GScope;
                 var _this = this;
                 this._locationId = 0;
                 this.detailsLocations = function (e) {
-                    var target = e.target, parent = $(target).parent().get(0), cityState = parent.getAttribute("data-cityState").split(',');
+                    var target = e.target, parent, cityState = ["", ""];
                     _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].show();
-                    _this._locationId = parseInt(parent.id);
                     if (target.className.lastIndexOf("Add") !== -1) {
                         _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
                         _this._currentAction = DetailsView.Action.add;
-                        cityState[0] = "";
-                        cityState[1] = "";
                         _this._locationId = 0;
                     }
-                    else if (target.className.lastIndexOf("Edit") !== -1) {
-                        _this._currentAction = DetailsView.Action.edit;
-                        _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
-                    }
-                    else if (target.className.lastIndexOf("Remove") !== -1) {
-                        _this._currentAction = DetailsView.Action.remove;
-                        _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
-                        _this._locationId = -1;
+                    else {
+                        parent = $(target).parent().get(0);
+                        cityState = parent.getAttribute("data-cityState").split(',');
+                        _this._locationId = parseInt(parent.id);
+                        if (target.className.lastIndexOf("Edit") !== -1) {
+                            _this._currentAction = DetailsView.Action.edit;
+                            _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
+                        }
+                        else if (target.className.lastIndexOf("Remove") !== -1) {
+                            _this._currentAction = DetailsView.Action.remove;
+                            _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
+                        }
                     }
                     _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
                     _this.mapped[DetailsView.ElementIds.State].value = cityState[1];

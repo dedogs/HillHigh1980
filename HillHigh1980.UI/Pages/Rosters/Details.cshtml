@@ -21,6 +21,11 @@
                     Current and Past City, State(s)
                 </h4>
                 <div id="detailsLocations" class="list-group">
+                    <div>
+                        <div class="sprite contact-Add" title="Add City/State">
+                        </div>
+                        Add Location
+                    </div>
                     @foreach (Location item in Model.Roster.Locations)
                     {
                         <div href="#" class="list-group-item">
@@ -30,8 +35,6 @@
                                 </div>
                                 <div class="col-6 text-right">
                                     <div id="@item.LocationId" data-cityState=" @String.Format("{0},{1}", item.City, item.State)" class="row float-right">
-                                        <div class="sprite contact-Add" title="Add City/State">
-                                        </div>
                                         <div class="sprite contact-Edit" title="Update City/State">
                                         </div>
                                         <div class="sprite contact-Remove" title="Remove City/State">
