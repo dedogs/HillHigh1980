@@ -48,7 +48,7 @@ var GScope;
                 return $.ajax({
                     dataType: "json",
                     contentType: "application/json",
-                    url: "/api/Locations" + location.LocationId,
+                    url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
                     method: "DELETE"
                 });

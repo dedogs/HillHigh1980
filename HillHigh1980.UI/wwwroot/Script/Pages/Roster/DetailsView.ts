@@ -19,15 +19,18 @@
                         { key: DetailsView.ElementIds.PostLoctaion, value: DetailsView.ElementIds.PostLoctaion },
                         { key: DetailsView.ElementIds.Locations, value: DetailsView.ElementIds.Locations },
                         { key: DetailsView.ElementIds.RosterId, value: DetailsView.ElementIds.RosterId },
-                        { key: DetailsView.ElementIds.AddUpdateForm, value: DetailsView.ElementIds.AddUpdateForm }
+                        { key: DetailsView.ElementIds.AddUpdateForm, value: DetailsView.ElementIds.AddUpdateForm },
+                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm}
                     ])
                 })();
 
+                console.log(this.mapped[DetailsView.ElementIds.CloseUpdateForm]);
                 this.manager.add([new Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.PostLoctaion], "click")]);
                 this.manager.add([new Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.Locations], "click")]);
+                this.manager.add([new Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.CloseUpdateForm], "click")]);
                 this.manager.attach();
 
-                this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                //this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
             }
 
             static getInstance() {
@@ -69,6 +72,9 @@
                 this.mapped[DetailsView.ElementIds.State].value = cityState[1];
             };
 
+            closeUpdateForm = (e: Event) => {
+                this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+            }
             postLoctaion = (e: Event) => {
                 var location: Entity.Location = new Entity.Location();
 
@@ -99,7 +105,8 @@
                 PostLoctaion = "postLoctaion",
                 Locations = "detailsLocations",
                 RosterId = "rosterId",
-                AddUpdateForm = "addUpdateForm"
+                AddUpdateForm = "addUpdateForm",
+                CloseUpdateForm ="closeUpdateForm"
             }
             export enum Action {
                 add,

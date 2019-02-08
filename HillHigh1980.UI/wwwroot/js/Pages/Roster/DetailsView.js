@@ -30,6 +30,9 @@ var GScope;
                     _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
                     _this.mapped[DetailsView.ElementIds.State].value = cityState[1];
                 };
+                this.closeUpdateForm = function (e) {
+                    _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                };
                 this.postLoctaion = function (e) {
                     var location = new GScope.Entity.Location();
                     location.LocationId = _this._locationId;
@@ -59,13 +62,16 @@ var GScope;
                         { key: DetailsView.ElementIds.PostLoctaion, value: DetailsView.ElementIds.PostLoctaion },
                         { key: DetailsView.ElementIds.Locations, value: DetailsView.ElementIds.Locations },
                         { key: DetailsView.ElementIds.RosterId, value: DetailsView.ElementIds.RosterId },
-                        { key: DetailsView.ElementIds.AddUpdateForm, value: DetailsView.ElementIds.AddUpdateForm }
+                        { key: DetailsView.ElementIds.AddUpdateForm, value: DetailsView.ElementIds.AddUpdateForm },
+                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm }
                     ]);
                 })();
+                console.log(this.mapped[DetailsView.ElementIds.CloseUpdateForm]);
                 this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.PostLoctaion], "click")]);
                 this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.Locations], "click")]);
+                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.CloseUpdateForm], "click")]);
                 this.manager.attach();
-                this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                //this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
             }
             DetailsView.getInstance = function () {
                 if (!DetailsView.instance) {
@@ -85,6 +91,7 @@ var GScope;
                 ElementIds["Locations"] = "detailsLocations";
                 ElementIds["RosterId"] = "rosterId";
                 ElementIds["AddUpdateForm"] = "addUpdateForm";
+                ElementIds["CloseUpdateForm"] = "closeUpdateForm";
             })(ElementIds = DetailsView.ElementIds || (DetailsView.ElementIds = {}));
             var Action;
             (function (Action) {
