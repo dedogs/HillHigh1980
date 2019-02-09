@@ -34,4 +34,5 @@ var GScope;
     })(ApplicationService = GScope.ApplicationService || (GScope.ApplicationService = {}));
 })(GScope || (GScope = {}));
 //# sourceMappingURL=RosterService.js.map
+//# sourceMappingURL=IRosterPartialRepository.js.map
 //# sourceMappingURL=IRosterRepository.js.map

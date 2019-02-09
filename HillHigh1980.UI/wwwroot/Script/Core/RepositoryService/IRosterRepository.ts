@@ -7,6 +7,8 @@
             CreateLocations(locations: [Entity.Location]): Promise<any>;
             UpdateLocation(location: Entity.Location): Promise<any>;
             DeleteLocation(location: Entity.Location): Promise<any>;
+            PartialViewReadAll: (id: number) => Promise<any>;
+            PartialViewById: (id: number) => Promise<any>
         }
     }
 }

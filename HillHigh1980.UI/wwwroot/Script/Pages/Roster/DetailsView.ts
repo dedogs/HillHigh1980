@@ -30,7 +30,7 @@
                 this.manager.add([new Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.CloseUpdateForm], "click")]);
                 this.manager.attach();
 
-                //this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
             }
 
             static getInstance() {
@@ -86,13 +86,16 @@
                 this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
 
                 if (this._currentAction === DetailsView.Action.add) {
-                    this._service.CreateRosterLocations([location]).then((data) => {
+                    this._service.CreateRosterLocations([location]).then((html) => {
+                        this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
                     }).catch((e) => { });
                 } else if (this._currentAction === DetailsView.Action.remove) {
-                    this._service.DeleteRosterLocation(location).then((data) => {
+                    this._service.DeleteRosterLocation(location).then((html) => {
+                        this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
                     }).catch((e) => { });
                 } else {
-                    this._service.UpdateRosterLocation(location).then((data) => {
+                    this._service.UpdateRosterLocation(location).then((html) => {
+                        this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
                     }).catch((e) => { });
                 }
             };

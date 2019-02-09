@@ -11,9 +11,11 @@
     <Content Remove="wwwroot\Script\Application\Modules\Injector.ts" />
     <Content Remove="wwwroot\Script\Core\ApplicationService\IRosterService.ts" />
     <Content Remove="wwwroot\Script\Core\ApplicationService\Service\RosterService.ts" />
+    <Content Remove="wwwroot\Script\Core\RepositoryService\IRosterPartialRepository.ts" />
     <Content Remove="wwwroot\Script\Core\RepositoryService\IRosterRepository.ts" />
     <Content Remove="wwwroot\Script\Entity\Location.ts" />
     <Content Remove="wwwroot\Script\Entity\Roster.ts" />
+    <Content Remove="wwwroot\Script\Infrastructure\JQuery\RosterPartialRepository.ts" />
     <Content Remove="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
     <Content Remove="wwwroot\Script\Pages\Roster\DetailsView.ts" />
   </ItemGroup>
@@ -59,9 +61,11 @@
     <TypeScriptCompile Include="wwwroot\Script\Application\Utility.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Core\ApplicationService\IRosterService.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Core\ApplicationService\Service\RosterService.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Core\RepositoryService\IRosterPartialRepository.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Core\RepositoryService\IRosterRepository.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Location.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Roster.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterPartialRepository.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Pages\Roster\DetailsView.ts" />
   </ItemGroup>

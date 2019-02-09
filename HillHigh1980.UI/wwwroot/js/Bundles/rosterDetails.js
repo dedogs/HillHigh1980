@@ -41,15 +41,18 @@ var GScope;
                     location.RosterId = _this.mapped[DetailsView.ElementIds.RosterId].getAttribute("data-rosterId");
                     _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
                     if (_this._currentAction === DetailsView.Action.add) {
-                        _this._service.CreateRosterLocations([location]).then(function (data) {
+                        _this._service.CreateRosterLocations([location]).then(function (html) {
+                            _this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
                         }).catch(function (e) { });
                     }
                     else if (_this._currentAction === DetailsView.Action.remove) {
-                        _this._service.DeleteRosterLocation(location).then(function (data) {
+                        _this._service.DeleteRosterLocation(location).then(function (html) {
+                            _this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
                         }).catch(function (e) { });
                     }
                     else {
-                        _this._service.UpdateRosterLocation(location).then(function (data) {
+                        _this._service.UpdateRosterLocation(location).then(function (html) {
+                            _this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
                         }).catch(function (e) { });
                     }
                 };
@@ -71,7 +74,7 @@ var GScope;
                 this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.Locations], "click")]);
                 this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.CloseUpdateForm], "click")]);
                 this.manager.attach();
-                //this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
             }
             DetailsView.getInstance = function () {
                 if (!DetailsView.instance) {
