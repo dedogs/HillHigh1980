@@ -48,8 +48,8 @@ var GScope;
                     url: "/api/Locations",
                     data: JSON.stringify(locations),
                     method: "Post"
-                }).done(function (location) {
-                    return _this.PartialViewById(location.rosterId);
+                }).then(function (location) {
+                    return _this.PartialViewById(location[0].rosterId);
                 });
             };
             RosterRepository.prototype.UpdateLocation = function (location) {
@@ -72,7 +72,7 @@ var GScope;
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
                     method: "DELETE"
-                }).done(function (location) {
+                }).then(function (location) {
                     return _this.PartialViewById(location.rosterId);
                 });
                 ;

@@ -45,8 +45,8 @@
                     url: "/api/Locations",
                     data: JSON.stringify(locations),
                     method: "Post"
-                }).done((location: any) => {
-                    return this.PartialViewById(location.rosterId);
+                }).then((location: any) => {
+                    return this.PartialViewById(location[0].rosterId);
                 });
             }
             UpdateLocation(location: Entity.Location): Promise<any> {
@@ -68,7 +68,7 @@
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
                     method: "DELETE"
-                }).done((location: any) => {
+                }).then((location: any) => {
                     return this.PartialViewById(location.rosterId);
                 });;
             }
