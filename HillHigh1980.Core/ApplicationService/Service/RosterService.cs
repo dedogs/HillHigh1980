@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HillHigh1980.Core.DomainService;
 using HillHigh1980.Core.Entity;
+using HillHigh1980.Core.Entity.Jut.RosterJut;
 
 namespace HillHigh1980.Core.ApplicationService.Service
 {
@@ -21,9 +22,19 @@ namespace HillHigh1980.Core.ApplicationService.Service
             return await _repository.FindById(rosterId);
         }
 
-        public async Task<List<Roster>> GetAllRostersAsync()
+        public async Task<List<RosterJut>> GetAllRostersAsync()
         {
-            IEnumerable<Roster> rosters = await _repository.ReadAll();
+            IEnumerable<RosterJut> rosters = (await _repository.ReadAll()).Select(r => new RosterJut
+            {
+                Caption = r.Caption,
+                FirstName = r.FirstName,
+                Image = r.Image,
+                Found = r.Locations.Count() > 0,
+                LastName =r.LastName,
+                Link = r.Link,
+                Middle = r.Middle,
+                RosterId =r.RosterId
+            });
 
             return rosters.ToList();
         }

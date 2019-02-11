@@ -37,9 +37,16 @@
     "minify": { "enabled": true }
   },
   {
-    "outputFileName": "wwwroot/js/Bundles/rosterDetails.js",
+    "outputFileName": "wwwroot/js/Bundles/detailsViews.js",
     "inputFiles": [
-      "wwwroot/js/Pages/Roster/**/*.js"
+      "wwwroot/js/Pages/DetailsView.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/js/Bundles/indexView.js",
+    "inputFiles": [
+      "wwwroot/js/Pages/IndexView.js"
     ],
     "minify": { "enabled": true }
   },

@@ -17,7 +17,6 @@
     <Content Remove="wwwroot\Script\Entity\Roster.ts" />
     <Content Remove="wwwroot\Script\Infrastructure\JQuery\RosterPartialRepository.ts" />
     <Content Remove="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
-    <Content Remove="wwwroot\Script\Pages\Roster\DetailsView.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,7 +66,8 @@
     <TypeScriptCompile Include="wwwroot\Script\Entity\Roster.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterPartialRepository.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
-    <TypeScriptCompile Include="wwwroot\Script\Pages\Roster\DetailsView.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Pages\DetailsView.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Pages\IndexView.ts" />
   </ItemGroup>
 
 </Project>

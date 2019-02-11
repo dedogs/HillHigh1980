@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity;
+using HillHigh1980.Core.Entity.Jut.RosterJut;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,7 +13,7 @@ namespace HillHigh1980.UI.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<Roster> Roster = new List<Roster>();
+        public List<RosterJut> Roster = new List<RosterJut>();
         private readonly IHostingEnvironment _env;
 
         public IRosterService _service { get; }

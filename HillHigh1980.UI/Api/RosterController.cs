@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity;
+using HillHigh1980.Core.Entity.Jut.RosterJut;
 using HillHigh1980.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace HillHigh1980.UI.Api
         }
         // GET: api/Default
         [HttpGet]
-        public async Task<IEnumerable<Roster>> Get()
+        public async Task<IEnumerable<RosterJut>> Get()
         {
             return await _service.GetAllRostersAsync();
         }

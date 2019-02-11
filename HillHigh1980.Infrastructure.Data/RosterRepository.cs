@@ -36,7 +36,7 @@ namespace HillHigh1980.Infrastructure.Data
 
         public async Task<IEnumerable<Roster>> ReadAll(IFilterData filter = null)
         {
-           return _context.Rosters;
+           return _context.Rosters.Include(r => r.Locations);
         }
 
         public async Task<IEnumerable<Roster>> FindRostersByLastName(string name)
