@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using HillHigh1980.Core.ApplicationService;
-using HillHigh1980.Core.Entity;
 using HillHigh1980.Core.Entity.Jut.RosterJut;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HillHigh1980.UI.Pages
@@ -14,13 +9,11 @@ namespace HillHigh1980.UI.Pages
     public class IndexModel : PageModel
     {
         public List<RosterJut> Roster = new List<RosterJut>();
-        private readonly IHostingEnvironment _env;
 
         public IRosterService _service { get; }
 
-        public IndexModel(IHostingEnvironment env, IRosterService service)
+        public IndexModel(IRosterService service)
         {
-            _env = env;
             _service = service;
         }
 
@@ -28,8 +21,6 @@ namespace HillHigh1980.UI.Pages
         {
            Roster = (await _service.GetAllRostersAsync()).ToList();
 
-            //DirectoryInfo di = new DirectoryInfo(Path.Combine(_env.WebRootPath, @"images\roster"));
-            //RosterImages = di.GetFiles().OrderBy(f => f.Name).Select(f => f.Name).ToList();
         }
     }
 }
