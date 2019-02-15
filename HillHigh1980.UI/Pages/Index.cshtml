@@ -1,4 +1,5 @@
 ﻿@page
+@using Newtonsoft.Json
 @model IndexModel
 @{
     ViewData["Title"] = "Home";
@@ -8,36 +9,40 @@
 <div class="container">
 
     <h1 class="my-4 text-center text-lg-left">Hill High School Class 1980</h1>
-    <div class="input-group">
-        <select id="filterBy" class="custom-select" id="inputGroupSelect01" style="width=" 100px;">
-            <option selected>Filter By...</option>
-            <option value="1">First Name</option>
-            <option value="2">Last Name</option>
-        </select>
-
-        <input id="rosterSearch" type="text" class="form-control" placeholder="Search" aria-label="Text input with dropdown button">
-
-        <div class="input-group-append">
-            <button id="sortBySelected" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By...</button>
-            <div id="sortBy" class="dropdown-menu">
-                <a class="dropdown-item" href="#">Sort By...</a>
-                <a class="dropdown-item" href="#">Last Name</a>
-                <a class="dropdown-item" href="#">First Name</a>
+    <div class="row">
+        <div class="col-6">
+            <div class="input-group">
+                <input id="rosterSearch" type="text" class="form-control" placeholder="Search" aria-label="Search Roster">
+                <div class="input-group-append">
+                    <select id="filterBy" class="custom-select">
+                        <option value="filterFirst">First Name</option>
+                        <option value="filterLast">Last Name</option>
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <div class="input-group-append">
+                        <button id="submitSearch" class="btn btn-outline-secondary" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            &nbsp;
+        </div>
+        <div class="col-3">
+            <div class="input-group">
+                <label class="input-group-text" for="sortBy">Sort By</label>
+                <select id="sortBy" class="custom-select">
+                    <option value="sortFirst">First Name</option>
+                    <option selected value="sortLast">Last Name</option>
+                </select>
             </div>
         </div>
     </div>
 
-    <div class="row text-center text-lg-left text-hide">
-
-        @foreach (var roster in Model.Roster)
-        {
-            <div class="col-lg-2 col-md-3 col-xs-4">
-                <a class="d-block mb-4 h-100 align-content-center" asp-page="./Rosters//Details" asp-route-id="@roster.RosterId">
-                    <img class="img-fluid img-thumbnail" src="~/images/roster/@roster.Image" alt='@String.Format("{0} {1}",roster.FirstName, roster.LastName)' title='@String.Format("{0} {1}",roster.FirstName, roster.LastName)'>
-                    @String.Format("{0} {1}", roster.FirstName, roster.LastName)
-                </a>
-            </div>
-        }
+    <div id="showRoster" class="row text-center text-lg-left text-hide">
+        <partial name="~/Views/Roster/_Rosters.cshtml"
+                 model="Model.Roster" />
     </div>
 </div>
 
@@ -48,4 +53,7 @@
     <environment exclude="Development">
         <script src="~/js/Bundles/indexView.min.js"></script>
     </environment>
+    <script>
+        var myObj = @Html.Raw(JsonConvert.SerializeObject(Model.Roster));
+    </script>
 }

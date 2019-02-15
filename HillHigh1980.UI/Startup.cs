@@ -36,7 +36,7 @@ namespace HillHigh1980.UI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<HillHigh1980DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<HillHigh1980DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HillHigh1980ContextConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

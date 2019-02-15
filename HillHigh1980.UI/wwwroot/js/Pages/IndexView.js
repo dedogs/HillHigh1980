@@ -9,20 +9,23 @@ var GScope;
                     alert("changed filter");
                 };
                 this.sortBy = function (e) {
-                    _this.mapped[IndexView.ElementIds.SortBySelected].innerHTML = e.target.innerHTML;
-                    _this.mapped[IndexView.ElementIds.SortBySelected].click();
+                    alert("changed sort");
+                };
+                this.submitSearch = function (e) {
+                    alert(_this.mapped[IndexView.ElementIds.RosterSearch].value);
                 };
                 this.mapped = (function () {
                     return GScope.Module.MappedIds.get([
-                        { key: IndexView.ElementIds.Search, value: IndexView.ElementIds.Search },
+                        { key: IndexView.ElementIds.RosterSearch, value: IndexView.ElementIds.RosterSearch },
                         { key: IndexView.ElementIds.FilterBy, value: IndexView.ElementIds.FilterBy },
                         { key: IndexView.ElementIds.SortBy, value: IndexView.ElementIds.SortBy },
-                        { key: IndexView.ElementIds.SortBySelected, value: IndexView.ElementIds.SortBySelected }
+                        { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch }
                     ]);
                 })();
                 var events = [
                     new GScope.Module.EventManager.EventAction(IndexView.ElementIds.FilterBy, this.mapped[IndexView.ElementIds.FilterBy], "change"),
-                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "click")
+                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "change"),
+                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click")
                 ];
                 this.manager = new GScope.Module.EventManager(this);
                 this.manager.add(events);
@@ -40,21 +43,21 @@ var GScope;
         (function (IndexView) {
             var ElementIds;
             (function (ElementIds) {
-                ElementIds["Search"] = "rosterSearch";
                 ElementIds["FilterBy"] = "filterBy";
                 ElementIds["SortBy"] = "sortBy";
-                ElementIds["SortBySelected"] = "sortBySelected";
+                ElementIds["RosterSearch"] = "rosterSearch";
+                ElementIds["SubmitSearch"] = "submitSearch";
             })(ElementIds = IndexView.ElementIds || (IndexView.ElementIds = {}));
             var FilterBy;
             (function (FilterBy) {
                 FilterBy["FirstName"] = "First Name";
                 FilterBy["LastName"] = "Last Name";
             })(FilterBy = IndexView.FilterBy || (IndexView.FilterBy = {}));
-            var SortBy;
-            (function (SortBy) {
-                SortBy["FirstName"] = "First Name";
-                SortBy["LastName"] = "Last Name";
-            })(SortBy = IndexView.SortBy || (IndexView.SortBy = {}));
+            var SearchBy;
+            (function (SearchBy) {
+                SearchBy["FirstName"] = "First Name";
+                SearchBy["LastName"] = "Last Name";
+            })(SearchBy = IndexView.SearchBy || (IndexView.SearchBy = {}));
         })(IndexView = Page.IndexView || (Page.IndexView = {}));
     })(Page = GScope.Page || (GScope.Page = {}));
 })(GScope || (GScope = {}));

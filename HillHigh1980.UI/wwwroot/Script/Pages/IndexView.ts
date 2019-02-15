@@ -8,16 +8,18 @@
             private constructor() {
                 this.mapped = (() => {
                     return Module.MappedIds.get([
-                        { key: IndexView.ElementIds.Search, value: IndexView.ElementIds.Search },
+                        { key: IndexView.ElementIds.RosterSearch, value: IndexView.ElementIds.RosterSearch },
                         { key: IndexView.ElementIds.FilterBy, value: IndexView.ElementIds.FilterBy },
                         { key: IndexView.ElementIds.SortBy, value: IndexView.ElementIds.SortBy },
-                        { key: IndexView.ElementIds.SortBySelected, value: IndexView.ElementIds.SortBySelected }
+                        { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch }
                     ])
                 })();
 
                 var events = [
                     new Module.EventManager.EventAction(IndexView.ElementIds.FilterBy, this.mapped[IndexView.ElementIds.FilterBy], "change"),
-                    new Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "click")
+                    new Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "change"),
+                    new Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click")
+
                 ]
 
                 this.manager = new Module.EventManager(this);
@@ -38,23 +40,27 @@
                 alert("changed filter");
             };
             sortBy = (e: Event) => {
-                this.mapped[IndexView.ElementIds.SortBySelected].innerHTML = (<HTMLElement>e.target).innerHTML;
-                this.mapped[IndexView.ElementIds.SortBySelected].click();
+                alert("changed sort");
             };
+            submitSearch = (e: Event) => {
+                alert(
+                    this.mapped[IndexView.ElementIds.RosterSearch].value
+                );
+            }
         }
 
         export module IndexView {
             export enum ElementIds {
-                Search = "rosterSearch",
                 FilterBy = "filterBy",
                 SortBy = "sortBy",
-                SortBySelected = "sortBySelected"
+                RosterSearch = "rosterSearch",
+                SubmitSearch = "submitSearch"
             }
             export enum FilterBy {
                 FirstName = "First Name",
                 LastName = "Last Name"
             }
-            export enum SortBy {
+            export enum SearchBy {
                 FirstName = "First Name",
                 LastName = "Last Name"
             }
