@@ -45,7 +45,12 @@
 
     .input-group > input + button {
         padding-top: 5px;
-        border-top:1px;
-        border-right:1px;
-        border-bottom:1px;
+        border-top: 1px;
+        border-right: 1px;
+        border-bottom: 1px;
     }
+.sprite.clear-Text-Hover {
+    background-position: -216px -12px;
+    width: 24px;
+    height: 24px;
+}

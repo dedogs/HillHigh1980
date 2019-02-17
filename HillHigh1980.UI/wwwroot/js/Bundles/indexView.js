@@ -10,14 +10,16 @@ var GScope;
                     oFilter.Value = _this.mapped[IndexView.ElementIds.RosterSearch].value;
                     return oFilter;
                 };
+                this.clearText = function (e) {
+                    _this.mapped[IndexView.ElementIds.RosterSearch].value = "";
+                    _this.submitSearch(e);
+                };
                 this.sortBy = function (e) {
                     _this.submitSearch(e);
                 };
                 this.submitSearch = function (e) {
                     var filter = _this.filter();
-                    alert("do search");
                     _this._service.FindRostersByName(filter).then(function (html) {
-                        alert("done");
                         _this.mapped[IndexView.ElementIds.ShowRoster].innerHTML = html;
                     }).catch(function (e) { });
                 };
@@ -28,15 +30,16 @@ var GScope;
                         { key: IndexView.ElementIds.SearchBy, value: IndexView.ElementIds.SearchBy },
                         { key: IndexView.ElementIds.SortBy, value: IndexView.ElementIds.SortBy },
                         { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch },
-                        { key: IndexView.ElementIds.ShowRoster, value: IndexView.ElementIds.ShowRoster }
+                        { key: IndexView.ElementIds.ShowRoster, value: IndexView.ElementIds.ShowRoster },
+                        { key: IndexView.ElementIds.ClearText, value: IndexView.ElementIds.ClearText }
                     ]);
                 })();
-                var events = [
+                this.eventActions = [
                     new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click"),
-                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "change")
+                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "change"),
+                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.ClearText, this.mapped[IndexView.ElementIds.ClearText], ["click"])
                 ];
                 this.manager = new GScope.Module.EventManager(this);
-                this.manager.add(events);
                 this.manager.attach();
             }
             IndexView.getInstance = function () {
@@ -56,6 +59,7 @@ var GScope;
                 ElementIds["RosterSearch"] = "rosterSearch";
                 ElementIds["SubmitSearch"] = "submitSearch";
                 ElementIds["ShowRoster"] = "showRoster";
+                ElementIds["ClearText"] = "clearText";
             })(ElementIds = IndexView.ElementIds || (IndexView.ElementIds = {}));
         })(IndexView = Page.IndexView || (Page.IndexView = {}));
     })(Page = GScope.Page || (GScope.Page = {}));
