@@ -10,9 +10,12 @@
 
     <h1 class="my-4 text-center text-lg-left">Hill High School Class 1980</h1>
     <div class="row">
-        <div class="col-lg-6 col-6">
+        <div class="col-md-12 col-lg-6">
             <div class="input-group">
                 <input id="rosterSearch" type="text" class="form-control" placeholder="Search - whole or any name portion" aria-label="Search Roster">
+                <button id="clearText">
+                    <span class="sprite clear-Text"></span>
+                </button>
                 <div class="input-group-append">
                     <select id="searchBy" class="custom-select">
                         <option value="searchFirst">First Name</option>
@@ -26,10 +29,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
-            &nbsp;
-        </div>
-        <div class="col-3">
+
+        <div class="col-sm-12 col-md-6 col-lg-3">
             <div class="input-group">
                 <label class="input-group-text" for="sortBy">Sort By</label>
                 <select id="sortBy" class="custom-select">
@@ -37,6 +38,9 @@
                     <option selected value="sortLast">Last Name</option>
                 </select>
             </div>
+        </div>
+        <div class="col-md-6">
+            &nbsp;
         </div>
     </div>
 

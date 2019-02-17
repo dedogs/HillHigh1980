@@ -29,12 +29,7 @@ namespace HillHigh1980.UI.Controllers
 
         public async Task<IActionResult> Search(Filter filter)
         {
-            List<RosterJut> rosters = null;
-
-            if (filter != null && filter.Value != null)
-            {
-                rosters = await _service.FindRostersByName(filter);
-            }
+            List<RosterJut> rosters = await _service.FindRostersByName(filter);
 
             return PartialView("~/Views/Roster/_Rosters.cshtml", rosters);
         }

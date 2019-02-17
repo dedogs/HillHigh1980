@@ -28,8 +28,8 @@
                 })();
 
                 var events = [
-                    new Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click")
-
+                    new Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click"),
+                    new Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "change")
                 ]
 
                 this.manager = new Module.EventManager(this);
@@ -44,6 +44,10 @@
                 }
 
                 return IndexView.instance;
+            }
+
+            sortBy = (e: Event) => {
+                this.submitSearch(e);
             }
 
             submitSearch = (e: Event) => {

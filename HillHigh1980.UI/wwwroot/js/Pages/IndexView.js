@@ -10,6 +10,9 @@ var GScope;
                     oFilter.Value = _this.mapped[IndexView.ElementIds.RosterSearch].value;
                     return oFilter;
                 };
+                this.sortBy = function (e) {
+                    _this.submitSearch(e);
+                };
                 this.submitSearch = function (e) {
                     var filter = _this.filter();
                     alert("do search");
@@ -29,7 +32,8 @@ var GScope;
                     ]);
                 })();
                 var events = [
-                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click")
+                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click"),
+                    new GScope.Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "change")
                 ];
                 this.manager = new GScope.Module.EventManager(this);
                 this.manager.add(events);

@@ -42,13 +42,26 @@ namespace HillHigh1980.Infrastructure.Data
         public async Task<IEnumerable<Roster>> FindRostersByName(Filter filter)
         {
             IEnumerable<Roster> rosters = _context.Rosters;
-            if (filter.SearchBy == Filter.Name.First)
+            if (!String.IsNullOrEmpty(filter.Value))
             {
-                rosters = rosters.Where(r => r.FirstName.ToLower().Contains(filter.Value.ToLower()));
+
+                if (filter.SearchBy == Filter.Name.First)
+                {
+                    rosters = rosters.Where(r => r.FirstName.ToLower().Contains(filter.Value.ToLower()));
+                }
+                else if (filter.SearchBy == Filter.Name.Last)
+                {
+                    rosters = rosters.Where(r => r.LastName.ToLower().Contains(filter.Value.ToLower()));
+                }
             }
-            else if (filter.SearchBy == Filter.Name.Last)
+
+            if (filter.SortBy == Filter.Name.First)
             {
-                rosters =  rosters.Where(r => r.LastName.ToLower().Contains(filter.Value.ToLower()));
+                rosters = rosters.OrderBy(r => r.FirstName);
+            }
+            else
+            {
+                rosters = rosters.OrderBy(r => r.LastName);
             }
 
             return rosters;
