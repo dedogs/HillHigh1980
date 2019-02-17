@@ -36,13 +36,22 @@ namespace HillHigh1980.Infrastructure.Data
 
         public async Task<IEnumerable<Roster>> ReadAll(IFilterData filter = null)
         {
-           return _context.Rosters.Include(r => r.Locations);
+            return _context.Rosters.Include(r => r.Locations);
         }
 
-        public async Task<IEnumerable<Roster>> FindRostersByLastName(string name)
+        public async Task<IEnumerable<Roster>> FindRostersByName(Filter filter)
         {
             IEnumerable<Roster> rosters = _context.Rosters;
-            return rosters.Where(r => r.LastName.ToLower().Contains(name.ToLower()));
+            if (filter.SearchBy == Filter.Name.First)
+            {
+                rosters = rosters.Where(r => r.FirstName.ToLower().Contains(filter.Value.ToLower()));
+            }
+            else if (filter.SearchBy == Filter.Name.Last)
+            {
+                rosters =  rosters.Where(r => r.LastName.ToLower().Contains(filter.Value.ToLower()));
+            }
+
+            return rosters;
         }
 
         public async Task<IEnumerable<Location>> GetLocations()

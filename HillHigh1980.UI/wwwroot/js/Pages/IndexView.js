@@ -5,14 +5,17 @@ var GScope;
         var IndexView = /** @class */ (function () {
             function IndexView() {
                 var _this = this;
-                this.filter = function (name) {
-                    var sortBy = _this.mapped[IndexView.ElementIds.SortBy].value, searchBy = _this.mapped[IndexView.ElementIds.SearchBy].value;
-                    return new GScope.Entity.Filter(searchBy === "searchFirst" ? GScope.Entity.Filter.Name.FirstName : GScope.Entity.Filter.Name.LastName, sortBy === "sortFirst" ? GScope.Entity.Filter.Name.FirstName : GScope.Entity.Filter.Name.FirstName);
+                this.filter = function () {
+                    var sortBy = _this.mapped[IndexView.ElementIds.SortBy].value, searchBy = _this.mapped[IndexView.ElementIds.SearchBy].value, oFilter = new GScope.Entity.Filter(searchBy === "searchFirst" ? GScope.Entity.Filter.Name.FirstName : GScope.Entity.Filter.Name.LastName, sortBy === "sortFirst" ? GScope.Entity.Filter.Name.FirstName : GScope.Entity.Filter.Name.LastName);
+                    oFilter.Value = _this.mapped[IndexView.ElementIds.RosterSearch].value;
+                    return oFilter;
                 };
                 this.submitSearch = function (e) {
-                    var searchValue = _this.mapped[IndexView.ElementIds.RosterSearch].value, filter = _this.filter(searchValue);
-                    _this._service.FindRostersByName(searchValue).then(function (html) {
-                        _this.mapped[Page.DetailsView.ElementIds.Locations].innerHTML = html;
+                    var filter = _this.filter();
+                    alert("do search");
+                    _this._service.FindRostersByName(filter).then(function (html) {
+                        alert("done");
+                        _this.mapped[IndexView.ElementIds.ShowRoster].innerHTML = html;
                     }).catch(function (e) { });
                 };
                 this._service = new GScope.ApplicationService.Service.RosterService(new GScope.Infrastructure.RosterRepository());
@@ -21,7 +24,8 @@ var GScope;
                         { key: IndexView.ElementIds.RosterSearch, value: IndexView.ElementIds.RosterSearch },
                         { key: IndexView.ElementIds.SearchBy, value: IndexView.ElementIds.SearchBy },
                         { key: IndexView.ElementIds.SortBy, value: IndexView.ElementIds.SortBy },
-                        { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch }
+                        { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch },
+                        { key: IndexView.ElementIds.ShowRoster, value: IndexView.ElementIds.ShowRoster }
                     ]);
                 })();
                 var events = [
@@ -47,6 +51,7 @@ var GScope;
                 ElementIds["SortBy"] = "sortBy";
                 ElementIds["RosterSearch"] = "rosterSearch";
                 ElementIds["SubmitSearch"] = "submitSearch";
+                ElementIds["ShowRoster"] = "showRoster";
             })(ElementIds = IndexView.ElementIds || (IndexView.ElementIds = {}));
         })(IndexView = Page.IndexView || (Page.IndexView = {}));
     })(Page = GScope.Page || (GScope.Page = {}));

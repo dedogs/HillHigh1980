@@ -12,15 +12,6 @@ namespace HillHigh1980.UI.Controllers
 {
     public class RosterController : Controller
     {
-        public class Filter
-        {
-            public enum Name { First, Last };
-
-            public Name SortBy { get; set; }
-            public Name SearchBy { get; set; }
-            public string Value { get; set; }
-        }
-
         private readonly IRosterService _service;
         private readonly HillHigh1980DbContext _context;
 
@@ -38,15 +29,11 @@ namespace HillHigh1980.UI.Controllers
 
         public async Task<IActionResult> Search(Filter filter)
         {
-            List<RosterJut> rosters = new List<RosterJut>();
+            List<RosterJut> rosters = null;
 
-            if (filter.SearchBy == Filter.Name.First)
+            if (filter != null && filter.Value != null)
             {
-                rosters = await _service.FindRostersByName(filter.Value);
-            }
-            else if (filter.SearchBy == Filter.Name.Last)
-            {
-                rosters = await _service.FindRostersByName(filter.Value);
+                rosters = await _service.FindRostersByName(filter);
             }
 
             return PartialView("~/Views/Roster/_Rosters.cshtml", rosters);

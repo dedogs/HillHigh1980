@@ -11,8 +11,8 @@ var GScope;
                 RosterService.prototype.FindRosterById = function (rosterId) {
                     return this._repository.FindById(rosterId);
                 };
-                RosterService.prototype.FindRostersByName = function (rosterName) {
-                    return this._repository.FindByName(rosterName);
+                RosterService.prototype.FindRostersByName = function (filter) {
+                    return this._repository.FindByName(filter);
                 };
                 RosterService.prototype.GetAllRosters = function () {
                     return this._repository.ReadAll();

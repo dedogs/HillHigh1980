@@ -30,9 +30,9 @@ namespace HillHigh1980.Core.ApplicationService.Service
             return rosters.Jut().ToList();
         }
 
-        public async Task<List<RosterJut>> FindRostersByName(string name)
+        public async Task<List<RosterJut>> FindRostersByName(Filter filter)
         {
-            IEnumerable<Roster> rosters = await _repository.FindRostersByLastName(name);
+            IEnumerable<Roster> rosters = await _repository.FindRostersByName(filter);
             return rosters.Jut().ToList();
         }
 

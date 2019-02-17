@@ -30,15 +30,15 @@ namespace HillHigh1980.UI.Api
 
         // GET: api/Default/5
         [HttpGet("{name}", Name = "Get")]
-        public async Task<List<RosterJut>> Get(string name)
+        public async Task<List<RosterJut>> Get(Filter filter)
         {
-            List<RosterJut> rosters = await _service.FindRostersByName(name);
+            List<RosterJut> rosters = await _service.FindRostersByName(filter);
             return rosters;
         }
 
         // POST: api/Default
         [HttpPost]
-        public ActionResult Post([FromBody] Core.Entity.Roster roster)
+        public ActionResult Post([FromBody] Roster roster)
         {
             if (!ModelState.IsValid)
             {

@@ -5,10 +5,13 @@
             private mapped: any;
             private _service: ApplicationService.Service.RosterService;
             private manager: Module.EventManager;
-            private filter: (name: string) => Entity.Filter = (name: string): Entity.Filter => {
+            private filter: () => Entity.Filter = (): Entity.Filter => {
                 var sortBy: string = this.mapped[IndexView.ElementIds.SortBy].value,
-                    searchBy: string = this.mapped[IndexView.ElementIds.SearchBy].value;
-                return new Entity.Filter(searchBy === "searchFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName, sortBy === "sortFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.FirstName);
+                    searchBy: string = this.mapped[IndexView.ElementIds.SearchBy].value,
+                    oFilter: Entity.Filter = new Entity.Filter(searchBy === "searchFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName, sortBy === "sortFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName);
+                oFilter.Value = this.mapped[IndexView.ElementIds.RosterSearch].value;
+
+                return oFilter;
             };
 
             private constructor() {
@@ -19,7 +22,8 @@
                         { key: IndexView.ElementIds.RosterSearch, value: IndexView.ElementIds.RosterSearch },
                         { key: IndexView.ElementIds.SearchBy, value: IndexView.ElementIds.SearchBy },
                         { key: IndexView.ElementIds.SortBy, value: IndexView.ElementIds.SortBy },
-                        { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch }
+                        { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch },
+                        { key: IndexView.ElementIds.ShowRoster, value: IndexView.ElementIds.ShowRoster }
                     ])
                 })();
 
@@ -43,11 +47,11 @@
             }
 
             submitSearch = (e: Event) => {
-                var searchValue: string = this.mapped[IndexView.ElementIds.RosterSearch].value,
-                    filter: Entity.Filter = this.filter(searchValue);
-
-                this._service.FindRostersByName(searchValue).then((html) => {
-                    this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
+                var filter: Entity.Filter = this.filter();
+                alert("do search");
+                this._service.FindRostersByName(filter).then((html) => {
+                    alert("done");
+                    this.mapped[IndexView.ElementIds.ShowRoster].innerHTML = html;
                 }).catch((e) => { });
             }
         }
@@ -57,7 +61,8 @@
                 SearchBy = "searchBy",
                 SortBy = "sortBy",
                 RosterSearch = "rosterSearch",
-                SubmitSearch = "submitSearch"
+                SubmitSearch = "submitSearch",
+                ShowRoster = "showRoster"
             }
         }
     }

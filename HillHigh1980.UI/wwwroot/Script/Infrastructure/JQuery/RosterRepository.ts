@@ -17,10 +17,15 @@
                 });
             };
 
-            FindByName(name: string): Promise<any> {
+            FindByName(filter: Entity.Filter): Promise<any> {
+                var result = {};
+                Object.keys(filter).forEach((item) => {
+                    result[item] = filter[item];
+                });
                 return $.ajax({
-                    dataType: "json",
-                    url: "/api/Roster/" + name,
+                    dataType: "html",
+                    url: "/Roster/Search",
+                    data: result,
                     method: "GET"
                 });
             }

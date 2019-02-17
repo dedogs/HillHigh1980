@@ -8,7 +8,7 @@ namespace HillHigh1980.Core.ApplicationService
     public interface IRosterService
     {
         Task<RosterJut> FindRosterByIdAsync(int seedId);
-        Task<List<RosterJut>> FindRostersByName(string name);
+        Task<List<RosterJut>> FindRostersByName(Filter filter);
         Task<List<RosterJut>> GetAllRostersAsync();
         Task<int> CreateRosterLocation(Location[] locations);
         Task<List<Location>> GetRosterLocations();

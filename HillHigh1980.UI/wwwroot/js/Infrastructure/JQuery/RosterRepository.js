@@ -19,10 +19,15 @@ var GScope;
                     });
                 };
             }
-            RosterRepository.prototype.FindByName = function (name) {
+            RosterRepository.prototype.FindByName = function (filter) {
+                var result = {};
+                Object.keys(filter).forEach(function (item) {
+                    result[item] = filter[item];
+                });
                 return $.ajax({
-                    dataType: "json",
-                    url: "/api/Roster/" + name,
+                    dataType: "html",
+                    url: "/Roster/Search",
+                    data: result,
                     method: "GET"
                 });
             };
