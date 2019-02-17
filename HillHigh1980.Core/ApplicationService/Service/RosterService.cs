@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HillHigh1980.Core.DomainService;
 using HillHigh1980.Core.Entity;
-using HillHigh1980.Core.Entity.Jut.RosterJut;
+using HillHigh1980.Core.Entity.Jut.Rosters;
 
 namespace HillHigh1980.Core.ApplicationService.Service
 {
@@ -17,31 +17,23 @@ namespace HillHigh1980.Core.ApplicationService.Service
         {
             _repository = repository;
         }
-        public async Task<Roster> FindRosterByIdAsync(int rosterId)
+        public async Task<RosterJut> FindRosterByIdAsync(int rosterId)
         {
-            return await _repository.FindById(rosterId);
+            Roster roster = await _repository.FindById(rosterId);
+            return roster.Jut();
         }
 
         public async Task<List<RosterJut>> GetAllRostersAsync()
         {
-            IEnumerable<RosterJut> rosters = (await _repository.ReadAll()).Select(r => new RosterJut
-            {
-                Caption = r.Caption,
-                FirstName = r.FirstName,
-                Image = r.Image,
-                Found = r.Locations.Count() > 0,
-                LastName =r.LastName,
-                Link = r.Link,
-                Middle = r.Middle,
-                RosterId =r.RosterId
-            });
+            IEnumerable<Roster> rosters = await _repository.ReadAll();
 
-            return rosters.ToList();
+            return rosters.Jut().ToList();
         }
 
-        public async Task<List<Roster>> FindRostersByLastName(string name)
+        public async Task<List<RosterJut>> FindRostersByName(string name)
         {
-            return (await _repository.FindRostersByLastName(name)).ToList();
+            IEnumerable<Roster> rosters = await _repository.FindRostersByLastName(name);
+            return rosters.Jut().ToList();
         }
 
         public async Task<int> CreateRosterLocation(Location[] locations)

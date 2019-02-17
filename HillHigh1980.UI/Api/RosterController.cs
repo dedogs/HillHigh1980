@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity;
-using HillHigh1980.Core.Entity.Jut.RosterJut;
+using HillHigh1980.Core.Entity.Jut.Rosters;
 using HillHigh1980.Infrastructure.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,21 +23,22 @@ namespace HillHigh1980.UI.Api
         }
         // GET: api/Default
         [HttpGet]
-        public async Task<IEnumerable<RosterJut>> Get()
+        public async Task<List<RosterJut>> Get()
         {
             return await _service.GetAllRostersAsync();
         }
 
         // GET: api/Default/5
         [HttpGet("{name}", Name = "Get")]
-        public async Task<List<Roster>> Get(string name)
+        public async Task<List<RosterJut>> Get(string name)
         {
-            return await _service.FindRostersByLastName(name);
+            List<RosterJut> rosters = await _service.FindRostersByName(name);
+            return rosters;
         }
 
         // POST: api/Default
         [HttpPost]
-        public ActionResult Post([FromBody] Roster roster)
+        public ActionResult Post([FromBody] Core.Entity.Roster roster)
         {
             if (!ModelState.IsValid)
             {

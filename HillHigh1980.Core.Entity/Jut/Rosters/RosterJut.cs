@@ -1,8 +1,8 @@
-﻿using System;
+﻿
+using HillHigh1980.Core.Entity.Jut.Locations;
 using System.Collections.Generic;
-using System.Text;
 
-namespace HillHigh1980.Core.Entity.Jut.RosterJut
+namespace HillHigh1980.Core.Entity.Jut.Rosters
 {
     public class RosterJut
     {
@@ -14,5 +14,6 @@ namespace HillHigh1980.Core.Entity.Jut.RosterJut
         public string Image { get; set; }
         public string Caption { get; set; }
         public string Link { get; set; }
+        public List<LocationJut> Locations { get; set; }
     }
 }

@@ -1,16 +1,14 @@
 ﻿using HillHigh1980.Core.Entity;
-using HillHigh1980.Core.Entity.Jut.RosterJut;
-using System;
+using HillHigh1980.Core.Entity.Jut.Rosters;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HillHigh1980.Core.ApplicationService
 {
     public interface IRosterService
     {
-        Task<Roster> FindRosterByIdAsync(int seedId);
-        Task<List<Roster>> FindRostersByLastName(string name);
+        Task<RosterJut> FindRosterByIdAsync(int seedId);
+        Task<List<RosterJut>> FindRostersByName(string name);
         Task<List<RosterJut>> GetAllRostersAsync();
         Task<int> CreateRosterLocation(Location[] locations);
         Task<List<Location>> GetRosterLocations();

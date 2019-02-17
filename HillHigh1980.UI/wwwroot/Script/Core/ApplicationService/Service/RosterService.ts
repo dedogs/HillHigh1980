@@ -11,7 +11,7 @@
                 FindRosterById(rosterId: number): Promise<Entity.Roster> {
                     return this._repository.FindById(rosterId);
                 }
-                FindRostersByLastName(rosterName: string): Promise<Entity.Roster[]> {
+                FindRostersByName(rosterName: string): Promise<Entity.Roster[]> {
                     return this._repository.FindByName(rosterName);
                 }
                 GetAllRosters(): Promise<Entity.Roster[]> {

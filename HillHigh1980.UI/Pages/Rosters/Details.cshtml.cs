@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using HillHigh1980.Core.Entity;
 using HillHigh1980.Core.ApplicationService;
+using HillHigh1980.Core.Entity.Jut.Rosters;
 
 namespace HillHigh1980.UI.Pages.Rosters
 {
@@ -16,12 +17,12 @@ namespace HillHigh1980.UI.Pages.Rosters
             _service = service;
         }
 
-        public Roster Roster { get; set; }
+        public RosterJut Roster { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int rosterid)
         {
 
-            Roster = await _service.FindRosterByIdAsync(id);
+            Roster = await _service.FindRosterByIdAsync(rosterid);
 
             if (Roster == null)
             {

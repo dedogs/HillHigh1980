@@ -1,6 +1,6 @@
 ﻿@page
 @model HillHigh1980.UI.Pages.Rosters.DetailsModel
-@using HillHigh1980.Core.Entity
+@using HillHigh1980.Core.Entity.Jut.Locations
 
 @{
     ViewData["Title"] = "Details";
@@ -35,7 +35,7 @@
                         </div>
                     </button>
 
-                    @foreach (Location item in Model.Roster.Locations)
+                    @foreach (LocationJut item in Model.Roster.Locations)
                     {
                         <div href="#" class="list-group-item">
                             <div class="row">

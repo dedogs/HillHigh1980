@@ -3,21 +3,27 @@
         export class IndexView {
             private static instance: IndexView;
             private mapped: any;
+            private _service: ApplicationService.Service.RosterService;
             private manager: Module.EventManager;
+            private filter: (name: string) => Entity.Filter = (name: string): Entity.Filter => {
+                var sortBy: string = this.mapped[IndexView.ElementIds.SortBy].value,
+                    searchBy: string = this.mapped[IndexView.ElementIds.SearchBy].value;
+                return new Entity.Filter(searchBy === "searchFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName, sortBy === "sortFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.FirstName);
+            };
 
             private constructor() {
+                this._service = new ApplicationService.Service.RosterService(new Infrastructure.RosterRepository());
+
                 this.mapped = (() => {
                     return Module.MappedIds.get([
                         { key: IndexView.ElementIds.RosterSearch, value: IndexView.ElementIds.RosterSearch },
-                        { key: IndexView.ElementIds.FilterBy, value: IndexView.ElementIds.FilterBy },
+                        { key: IndexView.ElementIds.SearchBy, value: IndexView.ElementIds.SearchBy },
                         { key: IndexView.ElementIds.SortBy, value: IndexView.ElementIds.SortBy },
                         { key: IndexView.ElementIds.SubmitSearch, value: IndexView.ElementIds.SubmitSearch }
                     ])
                 })();
 
                 var events = [
-                    new Module.EventManager.EventAction(IndexView.ElementIds.FilterBy, this.mapped[IndexView.ElementIds.FilterBy], "change"),
-                    new Module.EventManager.EventAction(IndexView.ElementIds.SortBy, this.mapped[IndexView.ElementIds.SortBy], "change"),
                     new Module.EventManager.EventAction(IndexView.ElementIds.SubmitSearch, this.mapped[IndexView.ElementIds.SubmitSearch], "click")
 
                 ]
@@ -36,33 +42,22 @@
                 return IndexView.instance;
             }
 
-            filterBy = (e: Event) => {
-                alert("changed filter");
-            };
-            sortBy = (e: Event) => {
-                alert("changed sort");
-            };
             submitSearch = (e: Event) => {
-                alert(
-                    this.mapped[IndexView.ElementIds.RosterSearch].value
-                );
+                var searchValue: string = this.mapped[IndexView.ElementIds.RosterSearch].value,
+                    filter: Entity.Filter = this.filter(searchValue);
+
+                this._service.FindRostersByName(searchValue).then((html) => {
+                    this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
+                }).catch((e) => { });
             }
         }
 
         export module IndexView {
             export enum ElementIds {
-                FilterBy = "filterBy",
+                SearchBy = "searchBy",
                 SortBy = "sortBy",
                 RosterSearch = "rosterSearch",
                 SubmitSearch = "submitSearch"
-            }
-            export enum FilterBy {
-                FirstName = "First Name",
-                LastName = "Last Name"
-            }
-            export enum SearchBy {
-                FirstName = "First Name",
-                LastName = "Last Name"
             }
         }
     }

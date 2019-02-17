@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HillHigh1980.Core.ApplicationService;
-using HillHigh1980.Core.Entity.Jut.RosterJut;
+using HillHigh1980.Core.Entity.Jut.Rosters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HillHigh1980.UI.Pages
@@ -19,7 +19,7 @@ namespace HillHigh1980.UI.Pages
 
         public async void OnGet()
         {
-           Roster = (await _service.GetAllRostersAsync()).ToList();
+           Roster = await _service.GetAllRostersAsync();
 
         }
     }

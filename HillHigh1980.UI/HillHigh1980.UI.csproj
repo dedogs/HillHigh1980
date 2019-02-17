@@ -13,6 +13,7 @@
     <Content Remove="wwwroot\Script\Core\ApplicationService\Service\RosterService.ts" />
     <Content Remove="wwwroot\Script\Core\RepositoryService\IRosterPartialRepository.ts" />
     <Content Remove="wwwroot\Script\Core\RepositoryService\IRosterRepository.ts" />
+    <Content Remove="wwwroot\Script\Entity\Filter.ts" />
     <Content Remove="wwwroot\Script\Entity\Location.ts" />
     <Content Remove="wwwroot\Script\Entity\Roster.ts" />
     <Content Remove="wwwroot\Script\Infrastructure\JQuery\RosterPartialRepository.ts" />
@@ -62,6 +63,7 @@
     <TypeScriptCompile Include="wwwroot\Script\Core\ApplicationService\Service\RosterService.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Core\RepositoryService\IRosterPartialRepository.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Core\RepositoryService\IRosterRepository.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Entity\Filter.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Location.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Roster.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterPartialRepository.ts" />
