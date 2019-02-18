@@ -11,9 +11,9 @@ var GScope;
                     if (GScope.Utility.is(expected).undef().ok()) {
                         return;
                     }
+                    _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = expected + " Location >>";
                     _this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
                     if (expected === "Add") {
-                        _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
                         _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                         _this._currentAction = DetailsView.Action.add;
                         _this._locationId = 0;
@@ -24,12 +24,10 @@ var GScope;
                         _this._locationId = parseInt(parent.id);
                         if (expected === "Edit") {
                             _this._currentAction = DetailsView.Action.edit;
-                            _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                         }
                         else if (expected === "Remove") {
                             _this._currentAction = DetailsView.Action.remove;
-                            _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
                         }
                     }

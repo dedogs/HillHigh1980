@@ -51,10 +51,11 @@
                     return;
                 }
 
+                this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = expected + " Location >>";
+
                 this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
 
                 if (expected === "Add") {
-                    this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
                     this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                     this._currentAction = DetailsView.Action.add;
 
@@ -66,11 +67,9 @@
 
                     if (expected === "Edit") {
                         this._currentAction = DetailsView.Action.edit;
-                        this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                     } else if (expected === "Remove") {
                         this._currentAction = DetailsView.Action.remove;
-                        this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
                     }
                 }
