@@ -5,38 +5,8 @@
     display: inline-block;
 }
 
-    .sprite.contact-Remove {
-        background-position: 0px 0px;
-        width: 48px;
-        height: 48px;
-    }
-
 .contact-Add {
     line-height: 48px;
-}
-
-.sprite.contact-Add {
-    background-position: -48px 0px;
-    width: 48px;
-    height: 48px;
-}
-
-.sprite.contact-Info {
-    background-position: -96px 0px;
-    width: 48px;
-    height: 48px;
-}
-
-.sprite.contact-Edit {
-    background-position: -144px 0px;
-    width: 48px;
-    height: 48px;
-}
-
-.sprite.clear-Text {
-    background-position: -192px -12px;
-    width: 24px;
-    height: 24px;
 }
 
 .input-group > input {
@@ -49,8 +19,45 @@
         border-right: 1px;
         border-bottom: 1px;
     }
-.sprite.clear-Text-Hover {
-    background-position: -216px -12px;
+
+
+.sprite.clear-Text-White {
+    background-position: 0px -12px;
+    width: 24px;
+    height: 24px;
+}
+.sprite.contact-Edit.iconWhite {
+    background-position: -24px 0px;
+    width: 48px;
+    height: 48px;
+}
+.sprite.contact-Remove.iconWhite {
+    background-position: -72px 0px;
+    width: 48px;
+    height: 48px;
+}
+.sprite.contact-Add.iconWhite {
+    background-position: -120px 0px;
+    width: 48px;
+    height: 48px;
+}
+.sprite.contact-Add.iconBlack {
+    background-position: -168px 0px;
+    width: 48px;
+    height: 48px;
+}
+.sprite.contact-Remove.iconBlack {
+    background-position: -216px 0px;
+    width: 48px;
+    height: 48px;
+}
+.sprite.contact-Edit.iconBlack {
+    background-position: -264px 0px;
+    width: 48px;
+    height: 48px;
+}
+.sprite.clear-Text.iconBlack {
+    background-position: -312px -12px;
     width: 24px;
     height: 24px;
 }

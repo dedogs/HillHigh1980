@@ -47,10 +47,13 @@
                 return IndexView.instance;
             }
 
-            clearText = (e: Event) {
-                this.mapped[IndexView.ElementIds.RosterSearch].value = "";
-                this.submitSearch(e);
+            clearText = (e: Event) => {
+                if (this.mapped[IndexView.ElementIds.RosterSearch].value !== "") {
+                    this.mapped[IndexView.ElementIds.RosterSearch].value = "";
+                    this.submitSearch(e);
+                }
             }
+
             sortBy = (e: Event) => {
                 this.submitSearch(e);
             }

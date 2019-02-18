@@ -11,8 +11,10 @@ var GScope;
                     return oFilter;
                 };
                 this.clearText = function (e) {
-                    _this.mapped[IndexView.ElementIds.RosterSearch].value = "";
-                    _this.submitSearch(e);
+                    if (_this.mapped[IndexView.ElementIds.RosterSearch].value !== "") {
+                        _this.mapped[IndexView.ElementIds.RosterSearch].value = "";
+                        _this.submitSearch(e);
+                    }
                 };
                 this.sortBy = function (e) {
                     _this.submitSearch(e);
