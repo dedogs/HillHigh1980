@@ -21,7 +21,7 @@
                         { key: DetailsView.ElementIds.DetailsFormTitle, value: DetailsView.ElementIds.DetailsFormTitle },
                         { key: DetailsView.ElementIds.RosterId, value: DetailsView.ElementIds.RosterId },
                         { key: DetailsView.ElementIds.DetailsForm, value: DetailsView.ElementIds.DetailsForm },
-                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm}
+                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm }
                     ])
                 })();
 
@@ -44,11 +44,16 @@
             detailsLocations = (e: Event) => {
                 var target = (<HTMLElement>e.target),
                     parent,
-                    cityState: string[] = ["",""];
+                    cityState: string[] = ["", ""],
+                    expected: string = (["Add", "Edit", "Remove"].filter(item => target.className.lastIndexOf(item) !== -1))[0];
+
+                if (Utility.is(expected).undef().ok()) {
+                    return;
+                }
 
                 this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
 
-                if (target.className.lastIndexOf("Add") !== -1) {
+                if (expected === "Add") {
                     this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
                     this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                     this._currentAction = DetailsView.Action.add;
@@ -59,11 +64,11 @@
                     cityState = parent.getAttribute("data-cityState").split(',')
                     this._locationId = parseInt(parent.id);
 
-                    if (target.className.lastIndexOf("Edit") !== -1) {
+                    if (expected === "Edit") {
                         this._currentAction = DetailsView.Action.edit;
                         this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
-                    } else if (target.className.lastIndexOf("Remove") !== -1) {
+                    } else if (expected === "Remove") {
                         this._currentAction = DetailsView.Action.remove;
                         this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
@@ -112,7 +117,7 @@
                 DetailsFormTitle = "detailsFormTitle",
                 RosterId = "rosterId",
                 DetailsForm = "detailsForm",
-                CloseUpdateForm ="closeUpdateForm"
+                CloseUpdateForm = "closeUpdateForm"
             }
             export enum Action {
                 add,

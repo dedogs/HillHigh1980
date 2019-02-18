@@ -7,9 +7,12 @@ var GScope;
                 var _this = this;
                 this._locationId = 0;
                 this.detailsLocations = function (e) {
-                    var target = e.target, parent, cityState = ["", ""];
+                    var target = e.target, parent, cityState = ["", ""], expected = (["Add", "Edit", "Remove"].filter(function (item) { return target.className.lastIndexOf(item) !== -1; }))[0];
+                    if (GScope.Utility.is(expected).undef().ok()) {
+                        return;
+                    }
                     _this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
-                    if (target.className.lastIndexOf("Add") !== -1) {
+                    if (expected === "Add") {
                         _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
                         _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                         _this._currentAction = DetailsView.Action.add;
@@ -19,12 +22,12 @@ var GScope;
                         parent = $(target).parent().get(0);
                         cityState = parent.getAttribute("data-cityState").split(',');
                         _this._locationId = parseInt(parent.id);
-                        if (target.className.lastIndexOf("Edit") !== -1) {
+                        if (expected === "Edit") {
                             _this._currentAction = DetailsView.Action.edit;
                             _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                         }
-                        else if (target.className.lastIndexOf("Remove") !== -1) {
+                        else if (expected === "Remove") {
                             _this._currentAction = DetailsView.Action.remove;
                             _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
