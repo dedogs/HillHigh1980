@@ -19,7 +19,7 @@ namespace HillHigh1980.Infrastructure.Data
             _context = context;
         }
 
-        public async Task<int> CreateLocation(Location[] locations)
+        public async Task<int> CreateLocation(IEnumerable<Location> locations)
         {
             foreach (var location in locations)
             {

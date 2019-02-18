@@ -8,9 +8,10 @@ var GScope;
                 this._locationId = 0;
                 this.detailsLocations = function (e) {
                     var target = e.target, parent, cityState = ["", ""];
-                    _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].show();
+                    _this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
                     if (target.className.lastIndexOf("Add") !== -1) {
                         _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Add Location";
+                        _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                         _this._currentAction = DetailsView.Action.add;
                         _this._locationId = 0;
                     }
@@ -21,17 +22,19 @@ var GScope;
                         if (target.className.lastIndexOf("Edit") !== -1) {
                             _this._currentAction = DetailsView.Action.edit;
                             _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Edit Location";
+                            _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                         }
                         else if (target.className.lastIndexOf("Remove") !== -1) {
                             _this._currentAction = DetailsView.Action.remove;
                             _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = "Remove Location";
+                            _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
                         }
                     }
                     _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
                     _this.mapped[DetailsView.ElementIds.State].value = cityState[1];
                 };
                 this.closeUpdateForm = function (e) {
-                    _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                    _this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
                 };
                 this.postLoctaion = function (e) {
                     var location = new GScope.Entity.Location();
@@ -39,20 +42,20 @@ var GScope;
                     location.City = _this.mapped[DetailsView.ElementIds.City].value;
                     location.State = _this.mapped[DetailsView.ElementIds.State].value;
                     location.RosterId = _this.mapped[DetailsView.ElementIds.RosterId].getAttribute("data-rosterId");
-                    _this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                    _this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
                     if (_this._currentAction === DetailsView.Action.add) {
                         _this._service.CreateRosterLocations([location]).then(function (html) {
-                            _this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
+                            _this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
                         }).catch(function (e) { });
                     }
                     else if (_this._currentAction === DetailsView.Action.remove) {
                         _this._service.DeleteRosterLocation(location).then(function (html) {
-                            _this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
+                            _this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
                         }).catch(function (e) { });
                     }
                     else {
                         _this._service.UpdateRosterLocation(location).then(function (html) {
-                            _this.mapped[DetailsView.ElementIds.Locations].innerHTML = html;
+                            _this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
                         }).catch(function (e) { });
                     }
                 };
@@ -63,17 +66,18 @@ var GScope;
                         { key: DetailsView.ElementIds.City, value: DetailsView.ElementIds.City },
                         { key: DetailsView.ElementIds.State, value: DetailsView.ElementIds.State },
                         { key: DetailsView.ElementIds.PostLoctaion, value: DetailsView.ElementIds.PostLoctaion },
-                        { key: DetailsView.ElementIds.Locations, value: DetailsView.ElementIds.Locations },
+                        { key: DetailsView.ElementIds.DetailsLocations, value: DetailsView.ElementIds.DetailsLocations },
+                        { key: DetailsView.ElementIds.DetailsFormTitle, value: DetailsView.ElementIds.DetailsFormTitle },
                         { key: DetailsView.ElementIds.RosterId, value: DetailsView.ElementIds.RosterId },
-                        { key: DetailsView.ElementIds.AddUpdateForm, value: DetailsView.ElementIds.AddUpdateForm },
+                        { key: DetailsView.ElementIds.DetailsForm, value: DetailsView.ElementIds.DetailsForm },
                         { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm }
                     ]);
                 })();
                 this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.PostLoctaion], "click")]);
-                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.Locations], "click")]);
+                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.DetailsLocations], "click")]);
                 this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.CloseUpdateForm], "click")]);
                 this.manager.attach();
-                this.mapped["$" + DetailsView.ElementIds.AddUpdateForm].hide();
+                this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
             }
             DetailsView.getInstance = function () {
                 if (!DetailsView.instance) {
@@ -90,9 +94,10 @@ var GScope;
                 ElementIds["City"] = "rosterCity";
                 ElementIds["State"] = "rosterState";
                 ElementIds["PostLoctaion"] = "postLoctaion";
-                ElementIds["Locations"] = "detailsLocations";
+                ElementIds["DetailsLocations"] = "detailsLocations";
+                ElementIds["DetailsFormTitle"] = "detailsFormTitle";
                 ElementIds["RosterId"] = "rosterId";
-                ElementIds["AddUpdateForm"] = "addUpdateForm";
+                ElementIds["DetailsForm"] = "detailsForm";
                 ElementIds["CloseUpdateForm"] = "closeUpdateForm";
             })(ElementIds = DetailsView.ElementIds || (DetailsView.ElementIds = {}));
             var Action;
@@ -101,6 +106,12 @@ var GScope;
                 Action[Action["remove"] = 1] = "remove";
                 Action[Action["edit"] = 2] = "edit";
             })(Action = DetailsView.Action || (DetailsView.Action = {}));
+            var FormMessages;
+            (function (FormMessages) {
+                FormMessages["Add"] = "Add Current and past places lived";
+                FormMessages["Remove"] = "Remove Roster's Location";
+                FormMessages["Edit"] = "Edit Roster's Location";
+            })(FormMessages = DetailsView.FormMessages || (DetailsView.FormMessages = {}));
         })(DetailsView = Page.DetailsView || (Page.DetailsView = {}));
     })(Page = GScope.Page || (GScope.Page = {}));
 })(GScope || (GScope = {}));

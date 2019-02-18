@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HillHigh1980.Core.Entity;
 using HillHigh1980.Infrastructure.Data;
 using HillHigh1980.Core.ApplicationService;
+using HillHigh1980.Core.Entity.Jut.Locations;
 
 namespace HillHigh1980.UI.Api
 {
@@ -22,12 +23,6 @@ namespace HillHigh1980.UI.Api
             _service = service;
         }
 
-        // GET: api/Locations
-        [HttpGet]
-        public async Task<List<Location>> GetLocations()
-        {
-            return await _service.GetRosterLocations();
-        }
 
         // GET: api/Locations/5
         [HttpGet("{rosterId}")]
@@ -38,7 +33,7 @@ namespace HillHigh1980.UI.Api
                 return BadRequest(ModelState);
             }
 
-            var location = await _service.GetRosterLocation(rosterId);
+            var location = await _service.GetRosterLocations(rosterId);
 
             if (location == null)
             {
@@ -50,7 +45,7 @@ namespace HillHigh1980.UI.Api
 
         // PUT: api/Locations/5
         [HttpPut("{locationId}")]
-        public async Task<IActionResult> PutLocation([FromRoute] int locationId, [FromBody] Location location)
+        public async Task<IActionResult> PutLocation([FromRoute] int locationId, [FromBody] LocationJut location)
         {
             if (!ModelState.IsValid)
             {
@@ -76,7 +71,7 @@ namespace HillHigh1980.UI.Api
 
         // POST: api/Locations
         [HttpPost]
-        public async Task<IActionResult> PostLocation([FromBody] Location[] locations)
+        public async Task<IActionResult> PostLocation([FromBody] LocationJut[] locations)
         {
             if (!ModelState.IsValid)
             {
@@ -85,7 +80,7 @@ namespace HillHigh1980.UI.Api
 
             try
             {
-                await _service.CreateRosterLocation(locations);
+                await _service.CreateRosterLocation(locations.ToList());
             }
             catch (Exception e)
             {
@@ -96,7 +91,7 @@ namespace HillHigh1980.UI.Api
 
         // DELETE: api/Locations/5
         [HttpDelete("{locationId}")]
-        public async Task<IActionResult> DeleteLocation([FromRoute] int locationId,[FromBody] Location location)
+        public async Task<IActionResult> DeleteLocation([FromRoute] int locationId,[FromBody] LocationJut location)
         {
             if (!ModelState.IsValid)
             {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HillHigh1980.Core.DomainService;
 using HillHigh1980.Core.Entity;
+using HillHigh1980.Core.Entity.Jut.Locations;
 using HillHigh1980.Core.Entity.Jut.Rosters;
 
 namespace HillHigh1980.Core.ApplicationService.Service
@@ -36,29 +37,24 @@ namespace HillHigh1980.Core.ApplicationService.Service
             return rosters.Jut().ToList();
         }
 
-        public async Task<int> CreateRosterLocation(Location[] locations)
+        public async Task<int> CreateRosterLocation(List<LocationJut> locations)
         {
-            return await _repository.CreateLocation(locations);
+            return await _repository.CreateLocation(locations.JutToLocation());
         }
 
-        public async Task<List<Location>> GetRosterLocations()
+        public async Task<List<LocationJut>> GetRosterLocations(int rosterId)
         {
-            return (await _repository.GetLocations()).ToList();
+            return (await _repository.GetLocations()).Jut().ToList();
         }
 
-        public async Task<Location> GetRosterLocation(int rosterId)
+        public async Task<LocationJut> UpdateRosterLocation(LocationJut location)
         {
-            return await _repository.GetLocation(rosterId);
+            return (await _repository.UpdateLocation(location.JutToLocation())).Jut();
         }
 
-        public async Task<Location> UpdateRosterLocation(Location location)
+        public async Task RemoveRosterLocation(LocationJut location)
         {
-            return await _repository.UpdateLocation(location);
-        }
-
-        public async Task RemoveRosterLocation(Location location)
-        {
-            await _repository.DeleteLocation(location);
+            await _repository.DeleteLocation(location.JutToLocation());
         }
     }
 }

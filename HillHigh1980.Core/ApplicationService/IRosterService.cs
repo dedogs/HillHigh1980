@@ -1,4 +1,5 @@
 ﻿using HillHigh1980.Core.Entity;
+using HillHigh1980.Core.Entity.Jut.Locations;
 using HillHigh1980.Core.Entity.Jut.Rosters;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,11 +11,10 @@ namespace HillHigh1980.Core.ApplicationService
         Task<RosterJut> FindRosterByIdAsync(int seedId);
         Task<List<RosterJut>> FindRostersByName(Filter filter);
         Task<List<RosterJut>> GetAllRostersAsync();
-        Task<int> CreateRosterLocation(Location[] locations);
-        Task<List<Location>> GetRosterLocations();
-        Task<Location> GetRosterLocation(int rosterId);
-        Task<Location> UpdateRosterLocation(Location location);
-        Task RemoveRosterLocation(Location location);
+        Task<int> CreateRosterLocation(List<LocationJut> locations);
+        Task<List<LocationJut>> GetRosterLocations(int rosterId);
+        Task<LocationJut> UpdateRosterLocation(LocationJut location);
+        Task RemoveRosterLocation(LocationJut location);
 
 
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity;
+using HillHigh1980.Core.Entity.Jut.Locations;
 using HillHigh1980.Core.Entity.Jut.Rosters;
 using HillHigh1980.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,9 @@ namespace HillHigh1980.UI.Controllers
             _service = service;
             _context = context;
         }
-        public IActionResult Index(int id)
+        public async Task<IActionResult> Index(int rosterId)
         {
-            IEnumerable<Location> locations = _context.Locations.Where(r => r.RosterId == id);
+            List<LocationJut> locations = await _service.GetRosterLocations(rosterId);
 
             return PartialView("_Locations", locations);
         }
