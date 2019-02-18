@@ -1,30 +1,29 @@
 ﻿@model IEnumerable<HillHigh1980.Core.Entity.Jut.Locations.LocationJut>
 @using HillHigh1980.Core.Entity.Jut.Locations
 
-<button type="button" class="btn btn-link text-dark contact-Add">
-    <div class="row">
-        <div class="sprite contact-Add iconBlack" title="Add City/State">
-        </div>
-        Add Location
-    </div>
-</button>
-
-@foreach (LocationJut item in Model)
-{
-    <div href="#" class="list-group-item">
-        <div class="row">
-            <div class="col-6">
-                @String.Format("{0}, {1}", item.City, item.State)
-            </div>
-            <div class="col-6 text-right">
-                <div id="@item.LocationId" data-cityState=" @String.Format("{0},{1}", item.City, item.State)" class="row float-right">
-                    <div class="sprite contact-Edit iconBlack" title="Update City/State">
-                    </div>
-                    <div class="sprite contact-Remove iconBlack" title="Remove City/State">
-                    </div>
+<div class="contact-Add">
+    <span class="sprite contact-Add iconBlack" title="Add City/State">
+    </span>
+    Add Location
+</div>
+<div id="detailsLocations" class="list-group">
+    @foreach (LocationJut item in Model)
+    {
+        <div href="#" class="list-group-item">
+            <div class="row">
+                <div class="col-6">
+                    @String.Format("{0}, {1}", item.City, item.State)
                 </div>
-                <div class="float-none">&nbsp;</div>
+                <div class="col-6 text-right">
+                    <div id="@item.LocationId" data-cityState=" @String.Format("{0},{1}", item.City, item.State)" class="row float-right">
+                        <div class="sprite contact-Edit iconBlack" title="Update City/State">
+                        </div>
+                        <div class="sprite contact-Remove iconBlack" title="Remove City/State">
+                        </div>
+                    </div>
+                    <div class="float-none">&nbsp;</div>
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
+</div>
