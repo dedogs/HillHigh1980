@@ -51,10 +51,19 @@
     "minify": { "enabled": true }
   },
   {
-    "outputFileName": "wwwroot/css/Bundles/sprite.css",
+    "outputFileName": "wwwroot/css/Bundles/application.css",
     "inputFiles": [
+      "wwwroot/css/site.css",
       "wwwroot/css/sprite/sp_48/*.css"
     ],
     "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/css/Bundles/library.css",
+    "inputFiles": [
+      "wwwroot/lib/bootstrap-4.0.0/dist/css/bootstrap.min.css",
+      "wwwroot/lib/bootstrap-4.0.0/assets/js/vendor/popper.min.css"
+    ],
+    "minify": { "enabled": false }
   }
 ]

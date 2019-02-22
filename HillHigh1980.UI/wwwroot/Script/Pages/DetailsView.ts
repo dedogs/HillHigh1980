@@ -94,7 +94,7 @@
                 if (this._currentAction === DetailsView.Action.add) {
                     this._service.CreateRosterLocations([location]).then((html) => {
                         this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
-                    }).catch((e) => { });
+                    }).catch((e: any) => { console.log(e.statusText + " >> " + e.responseText) });
                 } else if (this._currentAction === DetailsView.Action.remove) {
                     this._service.DeleteRosterLocation(location).then((html) => {
                         this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;

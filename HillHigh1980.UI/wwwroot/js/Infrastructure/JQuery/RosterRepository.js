@@ -8,14 +8,16 @@ var GScope;
                     return $.ajax({
                         dataType: "html",
                         url: "/Roster/Index/" + id,
-                        method: "GET"
+                        method: "GET",
+                        cache: false
                     });
                 };
                 this.PartialViewById = function (id) {
                     return $.ajax({
                         dataType: "html",
                         url: "/Roster/Index/" + id,
-                        method: "GET"
+                        method: "GET",
+                        cache: false
                     });
                 };
             }
@@ -28,21 +30,24 @@ var GScope;
                     dataType: "html",
                     url: "/Roster/Search",
                     data: result,
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             };
             RosterRepository.prototype.ReadAll = function () {
                 return $.ajax({
                     dataType: "json",
                     url: "/api/Roster",
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             };
             RosterRepository.prototype.FindById = function (id) {
                 return $.ajax({
                     dataType: "json",
                     url: "/api/Roster/" + id,
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             };
             RosterRepository.prototype.CreateLocations = function (locations) {
@@ -52,9 +57,10 @@ var GScope;
                     contentType: "application/json",
                     url: "/api/Locations",
                     data: JSON.stringify(locations),
-                    method: "Post"
-                }).then(function (location) {
-                    return _this.PartialViewById(location[0].rosterId);
+                    method: "Post",
+                    cache: false
+                }).then(function (locations) {
+                    return _this.PartialViewById(locations[0].rosterId);
                 });
             };
             RosterRepository.prototype.UpdateLocation = function (location) {
@@ -64,7 +70,8 @@ var GScope;
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
-                    method: "PUT"
+                    method: "POST",
+                    cache: false
                 }).then(function (location) {
                     return _this.PartialViewById(location.rosterId);
                 });
@@ -76,7 +83,8 @@ var GScope;
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
-                    method: "DELETE"
+                    method: "DELETE",
+                    cache: false
                 }).then(function (location) {
                     return _this.PartialViewById(location.rosterId);
                 });

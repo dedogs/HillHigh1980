@@ -71,7 +71,7 @@ namespace HillHigh1980.UI
             {
                 routes.MapRoute(
                     name: "Default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{rosterid?}");
             });
         }
     }

@@ -47,7 +47,7 @@ var GScope;
                     if (_this._currentAction === DetailsView.Action.add) {
                         _this._service.CreateRosterLocations([location]).then(function (html) {
                             _this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
-                        }).catch(function (e) { });
+                        }).catch(function (e) { console.log(e.statusText + " >> " + e.responseText); });
                     }
                     else if (_this._currentAction === DetailsView.Action.remove) {
                         _this._service.DeleteRosterLocation(location).then(function (html) {

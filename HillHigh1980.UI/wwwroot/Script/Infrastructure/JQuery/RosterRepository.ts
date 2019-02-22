@@ -5,7 +5,8 @@
                 return $.ajax({
                     dataType: "html",
                     url: "/Roster/Index/" + id,
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             };
 
@@ -13,7 +14,8 @@
                 return $.ajax({
                     dataType: "html",
                     url: "/Roster/Index/" + id,
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             };
 
@@ -26,21 +28,24 @@
                     dataType: "html",
                     url: "/Roster/Search",
                     data: result,
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             }
             ReadAll(): JQuery.Promise<any> {
                 return $.ajax({
                     dataType: "json",
                     url: "/api/Roster",
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             }
             FindById(id: number): JQuery.Promise<any> {
                 return $.ajax({
                     dataType: "json",
                     url: "/api/Roster/" + id,
-                    method: "GET"
+                    method: "GET",
+                    cache: false
                 });
             }
             CreateLocations(locations: [Entity.Location]): JQuery.Promise<any> {
@@ -49,9 +54,10 @@
                     contentType: "application/json",
                     url: "/api/Locations",
                     data: JSON.stringify(locations),
-                    method: "Post"
-                }).then((location: any) => {
-                    return this.PartialViewById(location[0].rosterId);
+                    method: "Post",
+                    cache: false
+                }).then((locations: any) => {
+                    return this.PartialViewById(locations[0].rosterId);
                 });
             }
             UpdateLocation(location: Entity.Location): Promise<any> {
@@ -61,7 +67,8 @@
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
-                    method: "PUT"
+                    method: "POST",
+                    cache: false
                 }).then((location: any) => {
                     return this.PartialViewById(location.rosterId);
                 });
@@ -72,7 +79,8 @@
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
-                    method: "DELETE"
+                    method: "DELETE",
+                    cache: false
                 }).then((location: any) => {
                     return this.PartialViewById(location.rosterId);
                 });;

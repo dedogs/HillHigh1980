@@ -37,14 +37,15 @@ namespace HillHigh1980.Core.ApplicationService.Service
             return rosters.Jut().ToList();
         }
 
-        public async Task<int> CreateRosterLocation(List<LocationJut> locations)
+        public async Task<List<LocationJut>> CreateRosterLocation(List<LocationJut> locations)
         {
-            return await _repository.CreateLocation(locations.JutToLocation());
+            IEnumerable<Location> result = await _repository.CreateLocation(locations.JutToLocation());
+            return result.Jut().ToList();
         }
 
         public async Task<List<LocationJut>> GetRosterLocations(int rosterId)
         {
-            return (await _repository.GetLocations()).Jut().ToList();
+            return (await _repository.GetLocations(rosterId)).Jut().ToList();
         }
 
         public async Task<LocationJut> UpdateRosterLocation(LocationJut location)

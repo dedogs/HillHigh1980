@@ -17,6 +17,12 @@ namespace HillHigh1980.UI.Api
     public class LocationsController : ControllerBase
     {
         private readonly IRosterService _service;
+        private bool ValidName(string name)
+        {
+            bool result = !String.IsNullOrEmpty(name);
+            result = result && name.Length > 2;
+            return result;
+        }
 
         public LocationsController(IRosterService service)
         {
@@ -75,7 +81,11 @@ namespace HillHigh1980.UI.Api
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return StatusCode(StatusCodes.Status400BadRequest, ModelState);
+            }
+            else if (locations.Any(r => !(ValidName(r.City) || ValidName(r.State))))
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Missing city and/or state");
             }
 
             try
@@ -84,14 +94,15 @@ namespace HillHigh1980.UI.Api
             }
             catch (Exception e)
             {
-                BadRequest(e);
+                return StatusCode(StatusCodes.Status400BadRequest, e);
             }
-            return Ok(locations);
+
+            return StatusCode(StatusCodes.Status201Created, locations);
         }
 
         // DELETE: api/Locations/5
         [HttpDelete("{locationId}")]
-        public async Task<IActionResult> DeleteLocation([FromRoute] int locationId,[FromBody] LocationJut location)
+        public async Task<IActionResult> DeleteLocation([FromRoute] int locationId, [FromBody] LocationJut location)
         {
             if (!ModelState.IsValid)
             {

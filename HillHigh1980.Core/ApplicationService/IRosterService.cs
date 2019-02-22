@@ -11,7 +11,7 @@ namespace HillHigh1980.Core.ApplicationService
         Task<RosterJut> FindRosterByIdAsync(int seedId);
         Task<List<RosterJut>> FindRostersByName(Filter filter);
         Task<List<RosterJut>> GetAllRostersAsync();
-        Task<int> CreateRosterLocation(List<LocationJut> locations);
+        Task<List<LocationJut>> CreateRosterLocation(List<LocationJut> locations);
         Task<List<LocationJut>> GetRosterLocations(int rosterId);
         Task<LocationJut> UpdateRosterLocation(LocationJut location);
         Task RemoveRosterLocation(LocationJut location);
