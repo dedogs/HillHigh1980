@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using HillHigh1980.Core.Entity;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity.Jut.Rosters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HillHigh1980.UI.Pages.Rosters
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly IRosterService _service;

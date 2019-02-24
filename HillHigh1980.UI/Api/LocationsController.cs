@@ -9,9 +9,11 @@ using HillHigh1980.Core.Entity;
 using HillHigh1980.Infrastructure.Data;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity.Jut.Locations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HillHigh1980.UI.Api
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LocationsController : ControllerBase

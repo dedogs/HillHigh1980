@@ -7,6 +7,7 @@ using HillHigh1980.Core.Entity;
 using HillHigh1980.Core.Entity.Jut.Locations;
 using HillHigh1980.Core.Entity.Jut.Rosters;
 using HillHigh1980.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HillHigh1980.UI.Controllers
@@ -21,6 +22,7 @@ namespace HillHigh1980.UI.Controllers
             _service = service;
             _context = context;
         }
+        [Authorize]
         public async Task<IActionResult> Index(int rosterId)
         {
             List<LocationJut> locations = await _service.GetRosterLocations(rosterId);

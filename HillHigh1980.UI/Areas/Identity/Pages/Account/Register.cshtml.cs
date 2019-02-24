@@ -49,6 +49,10 @@ namespace HillHigh1980.UI.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
+            [Display(Name = "User Name")]
+            public string UserName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -79,7 +83,8 @@ namespace HillHigh1980.UI.Areas.Identity.Pages.Account
 
                 if (emailExist == null)
                 {
-                    var user = new HillHigh1980SecurityUser { UserName = String.Format("{0}_{1}",Input.FirstName, Input.LastName), Email = Input.Email };
+                    var user = new HillHigh1980SecurityUser { UserName = Input.UserName, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName };
+
                     var result = await _userManager.CreateAsync(user, Input.Password);
                     if (result.Succeeded)
                     {

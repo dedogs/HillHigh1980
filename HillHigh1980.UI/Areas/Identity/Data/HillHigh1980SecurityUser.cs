@@ -9,5 +9,7 @@ namespace HillHigh1980.UI.Areas.Identity.Data
     // Add profile data for application users by adding properties to the HillHigh1980SecurityUser class
     public class HillHigh1980SecurityUser : IdentityUser
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
