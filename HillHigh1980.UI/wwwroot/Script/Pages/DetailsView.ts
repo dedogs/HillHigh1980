@@ -21,7 +21,9 @@
                         { key: DetailsView.ElementIds.DetailsFormTitle, value: DetailsView.ElementIds.DetailsFormTitle },
                         { key: DetailsView.ElementIds.RosterId, value: DetailsView.ElementIds.RosterId },
                         { key: DetailsView.ElementIds.DetailsForm, value: DetailsView.ElementIds.DetailsForm },
-                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm }
+                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm },
+                        { key: DetailsView.ElementIds.RosterCityStaticName, value: DetailsView.ElementIds.RosterCityStaticName },
+                        { key: DetailsView.ElementIds.RosterStateStaticName, value: DetailsView.ElementIds.RosterStateStaticName }
                     ])
                 })();
 
@@ -55,12 +57,21 @@
 
                 this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
 
+                this.mapped["$" + DetailsView.ElementIds.City].show();
+                this.mapped["$" + DetailsView.ElementIds.State].show();
+                this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].hide();
+                this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].hide();
+
                 if (expected === "Add") {
+                    this.mapped["$" + DetailsView.ElementIds.City].show();
+                    this.mapped["$" + DetailsView.ElementIds.State].show();
+
                     this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                     this._currentAction = DetailsView.Action.add;
 
                     this._locationId = 0;
                 } else {
+
                     parent = $(target).parent().get(0);
                     cityState = parent.getAttribute("data-cityState").split(',')
                     this._locationId = parseInt(parent.id);
@@ -69,13 +80,24 @@
                         this._currentAction = DetailsView.Action.edit;
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                     } else if (expected === "Remove") {
+                        this.mapped["$" + DetailsView.ElementIds.City].hide();
+                        this.mapped["$" + DetailsView.ElementIds.State].hide();
+                        this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].show();
+                        this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].show();
+
                         this._currentAction = DetailsView.Action.remove;
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
                     }
                 }
 
-                this.mapped[DetailsView.ElementIds.City].value = cityState[0];
-                this.mapped[DetailsView.ElementIds.State].value = cityState[1];
+                if (expected === "Add" || expected === "Edit") {
+                    this.mapped[DetailsView.ElementIds.City].value = cityState[0];
+                    this.mapped[DetailsView.ElementIds.State].value = cityState[1];
+                } else {
+                    this.mapped[DetailsView.ElementIds.RosterCityStaticName].innerHTML = cityState[0];
+                    this.mapped[DetailsView.ElementIds.RosterStateStaticName].innerHTML = cityState[1];
+
+                }
             };
 
             closeUpdateForm = (e: Event) => {
@@ -94,7 +116,7 @@
                 if (this._currentAction === DetailsView.Action.add) {
                     this._service.CreateRosterLocations([location]).then((html) => {
                         this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
-                    }).catch((e: any) => { console.log(e.statusText + " >> " + e.responseText) });
+                    }).catch((e: any) => { console.error(e.statusText + " >> " + e.responseText) });
                 } else if (this._currentAction === DetailsView.Action.remove) {
                     this._service.DeleteRosterLocation(location).then((html) => {
                         this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
@@ -116,7 +138,9 @@
                 DetailsFormTitle = "detailsFormTitle",
                 RosterId = "rosterId",
                 DetailsForm = "detailsForm",
-                CloseUpdateForm = "closeUpdateForm"
+                CloseUpdateForm = "closeUpdateForm",
+                RosterCityStaticName = "rosterCityStaticName",
+                RosterStateStaticName = "rosterStateStaticName"
             }
             export enum Action {
                 add,

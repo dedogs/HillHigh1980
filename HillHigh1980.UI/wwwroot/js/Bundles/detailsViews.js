@@ -13,7 +13,13 @@ var GScope;
                     }
                     _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = expected + " Location >>";
                     _this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
+                    _this.mapped["$" + DetailsView.ElementIds.City].show();
+                    _this.mapped["$" + DetailsView.ElementIds.State].show();
+                    _this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].hide();
+                    _this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].hide();
                     if (expected === "Add") {
+                        _this.mapped["$" + DetailsView.ElementIds.City].show();
+                        _this.mapped["$" + DetailsView.ElementIds.State].show();
                         _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                         _this._currentAction = DetailsView.Action.add;
                         _this._locationId = 0;
@@ -27,12 +33,22 @@ var GScope;
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                         }
                         else if (expected === "Remove") {
+                            _this.mapped["$" + DetailsView.ElementIds.City].hide();
+                            _this.mapped["$" + DetailsView.ElementIds.State].hide();
+                            _this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].show();
+                            _this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].show();
                             _this._currentAction = DetailsView.Action.remove;
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
                         }
                     }
-                    _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
-                    _this.mapped[DetailsView.ElementIds.State].value = cityState[1];
+                    if (expected === "Add" || expected === "Edit") {
+                        _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
+                        _this.mapped[DetailsView.ElementIds.State].value = cityState[1];
+                    }
+                    else {
+                        _this.mapped[DetailsView.ElementIds.RosterCityStaticName].innerHTML = cityState[0];
+                        _this.mapped[DetailsView.ElementIds.RosterStateStaticName].innerHTML = cityState[1];
+                    }
                 };
                 this.closeUpdateForm = function (e) {
                     _this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
@@ -47,7 +63,7 @@ var GScope;
                     if (_this._currentAction === DetailsView.Action.add) {
                         _this._service.CreateRosterLocations([location]).then(function (html) {
                             _this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
-                        }).catch(function (e) { console.log(e.statusText + " >> " + e.responseText); });
+                        }).catch(function (e) { console.error(e.statusText + " >> " + e.responseText); });
                     }
                     else if (_this._currentAction === DetailsView.Action.remove) {
                         _this._service.DeleteRosterLocation(location).then(function (html) {
@@ -71,7 +87,9 @@ var GScope;
                         { key: DetailsView.ElementIds.DetailsFormTitle, value: DetailsView.ElementIds.DetailsFormTitle },
                         { key: DetailsView.ElementIds.RosterId, value: DetailsView.ElementIds.RosterId },
                         { key: DetailsView.ElementIds.DetailsForm, value: DetailsView.ElementIds.DetailsForm },
-                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm }
+                        { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm },
+                        { key: DetailsView.ElementIds.RosterCityStaticName, value: DetailsView.ElementIds.RosterCityStaticName },
+                        { key: DetailsView.ElementIds.RosterStateStaticName, value: DetailsView.ElementIds.RosterStateStaticName }
                     ]);
                 })();
                 this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.PostLoctaion], "click")]);
@@ -100,6 +118,8 @@ var GScope;
                 ElementIds["RosterId"] = "rosterId";
                 ElementIds["DetailsForm"] = "detailsForm";
                 ElementIds["CloseUpdateForm"] = "closeUpdateForm";
+                ElementIds["RosterCityStaticName"] = "rosterCityStaticName";
+                ElementIds["RosterStateStaticName"] = "rosterStateStaticName";
             })(ElementIds = DetailsView.ElementIds || (DetailsView.ElementIds = {}));
             var Action;
             (function (Action) {
