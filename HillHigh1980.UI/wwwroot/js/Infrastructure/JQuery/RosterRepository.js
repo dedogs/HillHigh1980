@@ -70,7 +70,7 @@ var GScope;
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
-                    method: "POST",
+                    method: "PUT",
                     cache: false
                 }).then(function (location) {
                     return _this.PartialViewById(location.rosterId);

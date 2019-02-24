@@ -67,7 +67,7 @@
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
                     data: JSON.stringify(location),
-                    method: "POST",
+                    method: "PUT",
                     cache: false
                 }).then((location: any) => {
                     return this.PartialViewById(location.rosterId);
