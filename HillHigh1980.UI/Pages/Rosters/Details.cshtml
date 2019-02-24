@@ -4,18 +4,19 @@
 
 @{
     ViewData["Title"] = "Details";
+    string nameof = String.Format("{0} {1}", Model.Roster.FirstName, Model.Roster.LastName);
 }
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     &nbps;
 </nav>
-<h2>Roster Details</h2>
+<h2>@nameof Details</h2>
 
 <hr />
 
 <div class="row">
     <div class="col-sm-3 col-md-2">
-        <img class="img-fluid img-thumbnail" src="~/images/roster/@Model.Roster.Image" alt='@String.Format("{0} {1}",Model.Roster.FirstName, Model.Roster.LastName)' title='@String.Format("{0} {1}",Model.Roster.FirstName, Model.Roster.LastName)'>
+        <img class="img-fluid img-thumbnail" src="~/images/roster/@Model.Roster.Image" alt='@nameof' title='@nameof'>
         <div class="row">
             <div class="col">
                 <a asp-page="/Index" class="btn btn-link text-dark"> Back to List</a>
@@ -26,7 +27,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-6">
                 <h4>
-                    Current and Past City, State(s)
+                    Known City, State(s)
                 </h4>
 
                 <partial name="~/Views/Roster/_Locations.cshtml"
@@ -46,6 +47,10 @@
                     <div class="col">
                         <div id="rosterStateStaticName">&nbsp;</div>
                         <input type="text" id="rosterState" class="form-control" placeholder="State">
+                    </div>
+                    <div class="col">
+                        <div id="rosterCountryStaticName">&nbsp;</div>
+                        <input type="text" id="rosterCountry" class="form-control" placeholder="Country">
                     </div>
                 </div>
                 <div class="form-row">

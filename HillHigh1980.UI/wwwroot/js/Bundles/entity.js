@@ -81,6 +81,16 @@ var GScope;
                 enumerable: true,
                 configurable: true
             });
+            Object.defineProperty(Location.prototype, "Country", {
+                get: function () {
+                    return this.country;
+                },
+                set: function (country) {
+                    this.country = country;
+                },
+                enumerable: true,
+                configurable: true
+            });
             Object.defineProperty(Location.prototype, "RosterId", {
                 get: function () {
                     return this.rosterId;

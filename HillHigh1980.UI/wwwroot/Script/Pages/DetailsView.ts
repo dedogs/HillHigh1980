@@ -16,6 +16,7 @@
                     return Module.MappedIds.get([
                         { key: DetailsView.ElementIds.City, value: DetailsView.ElementIds.City },
                         { key: DetailsView.ElementIds.State, value: DetailsView.ElementIds.State },
+                        { key: DetailsView.ElementIds.Country, value: DetailsView.ElementIds.Country },
                         { key: DetailsView.ElementIds.PostLoctaion, value: DetailsView.ElementIds.PostLoctaion },
                         { key: DetailsView.ElementIds.DetailsLocations, value: DetailsView.ElementIds.DetailsLocations },
                         { key: DetailsView.ElementIds.DetailsFormTitle, value: DetailsView.ElementIds.DetailsFormTitle },
@@ -23,7 +24,8 @@
                         { key: DetailsView.ElementIds.DetailsForm, value: DetailsView.ElementIds.DetailsForm },
                         { key: DetailsView.ElementIds.CloseUpdateForm, value: DetailsView.ElementIds.CloseUpdateForm },
                         { key: DetailsView.ElementIds.RosterCityStaticName, value: DetailsView.ElementIds.RosterCityStaticName },
-                        { key: DetailsView.ElementIds.RosterStateStaticName, value: DetailsView.ElementIds.RosterStateStaticName }
+                        { key: DetailsView.ElementIds.RosterStateStaticName, value: DetailsView.ElementIds.RosterStateStaticName },
+                        { key: DetailsView.ElementIds.RosterCountryStaticName, value: DetailsView.ElementIds.RosterCountryStaticName }
                     ])
                 })();
 
@@ -46,7 +48,7 @@
             detailsLocations = (e: Event) => {
                 var target = (<HTMLElement>e.target),
                     parent,
-                    cityState: string[] = ["", ""],
+                    cityState: string[] = ["", "","United States"],
                     expected: string = (["Add", "Edit", "Remove"].filter(item => target.className.lastIndexOf(item) !== -1))[0];
 
                 if (Utility.is(expected).undef().ok()) {
@@ -59,12 +61,16 @@
 
                 this.mapped["$" + DetailsView.ElementIds.City].show();
                 this.mapped["$" + DetailsView.ElementIds.State].show();
+                this.mapped["$" + DetailsView.ElementIds.Country].show();
+
                 this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].hide();
                 this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].hide();
+                this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].hide();
 
                 if (expected === "Add") {
                     this.mapped["$" + DetailsView.ElementIds.City].show();
                     this.mapped["$" + DetailsView.ElementIds.State].show();
+                    this.mapped["$" + DetailsView.ElementIds.Country].show();
 
                     this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                     this._currentAction = DetailsView.Action.add;
@@ -82,8 +88,11 @@
                     } else if (expected === "Remove") {
                         this.mapped["$" + DetailsView.ElementIds.City].hide();
                         this.mapped["$" + DetailsView.ElementIds.State].hide();
+                        this.mapped["$" + DetailsView.ElementIds.Country].hide();
+
                         this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].show();
                         this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].show();
+                        this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].show();
 
                         this._currentAction = DetailsView.Action.remove;
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
@@ -93,9 +102,12 @@
                 if (expected === "Add" || expected === "Edit") {
                     this.mapped[DetailsView.ElementIds.City].value = cityState[0];
                     this.mapped[DetailsView.ElementIds.State].value = cityState[1];
+                    this.mapped[DetailsView.ElementIds.Country].value = cityState[2];
+
                 } else {
                     this.mapped[DetailsView.ElementIds.RosterCityStaticName].innerHTML = cityState[0];
                     this.mapped[DetailsView.ElementIds.RosterStateStaticName].innerHTML = cityState[1];
+                    this.mapped[DetailsView.ElementIds.RosterCountryStaticName].innerHTML = cityState[2];
 
                 }
             };
@@ -109,6 +121,8 @@
                 location.LocationId = this._locationId;
                 location.City = this.mapped[DetailsView.ElementIds.City].value;
                 location.State = this.mapped[DetailsView.ElementIds.State].value;
+                location.Country = this.mapped[DetailsView.ElementIds.Country].value;
+
                 location.RosterId = this.mapped[DetailsView.ElementIds.RosterId].getAttribute("data-rosterId");
 
                 this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
@@ -133,6 +147,7 @@
             export enum ElementIds {
                 City = "rosterCity",
                 State = "rosterState",
+                Country = "rosterCountry",
                 PostLoctaion = "postLoctaion",
                 DetailsLocations = "detailsLocations",
                 DetailsFormTitle = "detailsFormTitle",
@@ -140,7 +155,8 @@
                 DetailsForm = "detailsForm",
                 CloseUpdateForm = "closeUpdateForm",
                 RosterCityStaticName = "rosterCityStaticName",
-                RosterStateStaticName = "rosterStateStaticName"
+                RosterStateStaticName = "rosterStateStaticName",
+                RosterCountryStaticName = "rosterCountryStaticName"
             }
             export enum Action {
                 add,

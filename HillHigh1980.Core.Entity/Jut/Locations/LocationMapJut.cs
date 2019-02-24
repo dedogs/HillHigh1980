@@ -23,7 +23,8 @@ namespace HillHigh1980.Core.Entity.Jut.Locations
                 City = location.City,
                 LocationId = location.LocationId,
                 RosterId = location.RosterId,
-                State = location.State
+                State = location.State,
+                Country = location.Country
             };
         }
         public static IEnumerable<Location> JutToLocation(this IEnumerable<LocationJut> rosterJuts)
@@ -43,7 +44,9 @@ namespace HillHigh1980.Core.Entity.Jut.Locations
                 City = locationJut.City,
                 LocationId = locationJut.LocationId,
                 RosterId = locationJut.RosterId,
-                State = locationJut.State
+                State = locationJut.State,
+                Country = locationJut.Country
+
             };
         }
     }

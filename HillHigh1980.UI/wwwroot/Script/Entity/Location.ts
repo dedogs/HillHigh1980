@@ -5,6 +5,7 @@ module GScope {
             private locationId: number;
             private city: string;
             private state: string;
+            private country: string;
             private rosterId: number;
 
             get LocationId(): number {
@@ -24,6 +25,12 @@ module GScope {
             }
             set State(state: string) {
                 this.state = state;
+            }
+            get Country(): string {
+                return this.country;
+            }
+            set Country(country: string) {
+                this.country = country;
             }
             get RosterId(): number {
                 return this.rosterId;

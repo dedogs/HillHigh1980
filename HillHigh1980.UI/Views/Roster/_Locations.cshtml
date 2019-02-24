@@ -13,10 +13,10 @@
             <div href="#" class="list-group-item">
                 <div class="row">
                     <div class="col-6">
-                        @String.Format("{0}, {1}", item.City, item.State)
+                        @String.Format("{0}, {1} {2}", item.City, item.State, item.Country)
                     </div>
                     <div class="col-6 text-right">
-                        <div id="@item.LocationId" data-cityState=" @String.Format("{0},{1}", item.City, item.State)" class="row float-right">
+                        <div id="@item.LocationId" data-cityState=" @String.Format("{0},{1},{2}", item.City, item.State, item.Country)" class="row float-right">
                             <div class="sprite contact-Edit iconBlack" title="Update City/State">
                             </div>
                             <div class="sprite contact-Remove iconBlack" title="Remove City/State">
