@@ -2,9 +2,9 @@
   {
     "outputFileName": "wwwroot/js/Bundles/Library.js",
     "inputFiles": [
-      "wwwroot/lib/jquery/dist/jQuery.min.js",
-      "wwwroot/lib/bootstrap-4.0.0/assets/js/vendor/popper.min.js",
-      "wwwroot/lib/bootstrap-4.0.0/dist/js/bootstrap.min.js"
+      "wwwroot/lib/js/jQuery.min.js",
+      "wwwroot/lib/js/vendor/popper.min.js",
+      "wwwroot/libjs/bootstrap.min.js"
     ],
     "minify": { "enabled": false }
   },
@@ -61,8 +61,10 @@
   {
     "outputFileName": "wwwroot/css/Bundles/library.css",
     "inputFiles": [
-      "wwwroot/lib/bootstrap-4.0.0/dist/css/bootstrap.min.css",
-      "wwwroot/lib/bootstrap-4.0.0/assets/js/vendor/popper.min.css"
+      "wwwroot/lib/css/bootstrap.min.css",
+      "wwwroot/lib/css/bootstrap-grid.min.css",
+      "wwwroot/lib/css/bootstrap-reboot.min.css"
+
     ],
     "minify": { "enabled": false }
   }

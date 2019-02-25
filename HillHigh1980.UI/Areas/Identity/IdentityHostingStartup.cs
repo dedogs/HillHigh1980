@@ -15,9 +15,6 @@ namespace HillHigh1980.UI.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<HillHigh1980DbContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("HillHigh1980ContextConnection")));
 
                 services.AddDefaultIdentity<HillHigh1980SecurityUser>()
                     .AddEntityFrameworkStores<HillHigh1980DbContext>();
