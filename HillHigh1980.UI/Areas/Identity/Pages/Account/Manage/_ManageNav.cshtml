@@ -1,4 +1,5 @@
-﻿@inject SignInManager<HillHigh1980SecurityUser> SignInManager
+﻿@using HillHigh1980.Infrastructure.Data
+@inject SignInManager<HillHigh1980SecurityUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

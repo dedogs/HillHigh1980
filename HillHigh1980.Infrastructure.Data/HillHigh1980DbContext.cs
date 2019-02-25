@@ -1,31 +1,23 @@
 ﻿using HillHigh1980.Core.Entity;
 using HillHigh1980.Infrastructure.Data.Configuration;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HillHigh1980.Infrastructure.Data
 {
-    public class HillHigh1980DbContext : DbContext
+    public class HillHigh1980DbContext : IdentityDbContext<HillHigh1980SecurityUser>
     {
-        public HillHigh1980DbContext()
+        public HillHigh1980DbContext(DbContextOptions<HillHigh1980DbContext> options)
+    : base(options)
         {
+        }
 
-        }
-        public HillHigh1980DbContext(DbContextOptions<HillHigh1980DbContext> options):
-            base(options)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new RosterConfiguration());
+            base.OnModelCreating(builder);
 
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new RosterConfiguration());
         }
 
         public DbSet<Roster> Rosters { get; set; }

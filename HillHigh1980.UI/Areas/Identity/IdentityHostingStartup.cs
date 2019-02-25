@@ -1,6 +1,5 @@
 ﻿using System;
-using HillHigh1980.Security.Data;
-using HillHigh1980.UI.Areas.Identity.Data;
+using HillHigh1980.Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -16,12 +15,12 @@ namespace HillHigh1980.UI.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<HillHigh1980SecurityContext>(options =>
+                services.AddDbContext<HillHigh1980DbContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("HillHigh1980SecurityContextConnection")));
+                        context.Configuration.GetConnectionString("HillHigh1980ContextConnection")));
 
                 services.AddDefaultIdentity<HillHigh1980SecurityUser>()
-                    .AddEntityFrameworkStores<HillHigh1980SecurityContext>();
+                    .AddEntityFrameworkStores<HillHigh1980DbContext>();
 
                 services.Configure<IdentityOptions>(options =>
                 {
