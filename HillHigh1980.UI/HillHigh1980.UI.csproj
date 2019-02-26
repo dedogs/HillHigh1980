@@ -33,6 +33,7 @@
     <PackageReference Include="buildbundlerminifier" Version="2.8.391" />
     <PackageReference Include="buildbundlerminifier-typescript" Version="2.1.258" />
     <PackageReference Include="Chutzpah" Version="4.4.4" />
+    <PackageReference Include="jQuery.Validation.Unobtrusive" Version="2.0.20710" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
@@ -40,8 +41,6 @@
 
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Identity\Data\" />
-    <Folder Include="Areas\Identity\Services\" />
   </ItemGroup>
 
   <ItemGroup>

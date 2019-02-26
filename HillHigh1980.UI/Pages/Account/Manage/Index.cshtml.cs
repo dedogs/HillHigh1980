@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HillHigh1980.UI.Areas.Identity.Pages.Account.Manage
+namespace HillHigh1980.UI.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {

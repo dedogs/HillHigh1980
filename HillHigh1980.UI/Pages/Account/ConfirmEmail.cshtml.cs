@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using HillHigh1980.Infrastructure.Data;
 
-namespace HillHigh1980.UI.Areas.Identity.Pages.Account
+namespace HillHigh1980.UI.Pages.Account
 {
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel

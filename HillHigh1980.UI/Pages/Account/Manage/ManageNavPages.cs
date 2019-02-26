@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace HillHigh1980.UI.Areas.Identity.Pages.Account.Manage
+namespace HillHigh1980.UI.Pages.Account.Manage
 {
     public static class ManageNavPages
     {
