@@ -16,6 +16,14 @@
     "minify": { "enabled": true }
   },
   {
+    "outputFileName": "wwwroot/js/Bundles/validate.js",
+    "inputFiles": [
+      "wwwroot/lib/js/jQuery.validate.min.js",
+      "wwwroot/lib/js/jQuery.validate.unobtrusive.min.js"
+    ],
+    "minify": { "enabled": false }
+  },
+  {
     "outputFileName": "wwwroot/js/Bundles/core.js",
     "inputFiles": [
       "wwwroot/js/Core/**/*.js"
