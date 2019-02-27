@@ -40,15 +40,16 @@ namespace HillHigh1980.UI
                 // User settings.
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = false;
+                options.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<HillHigh1980DbContext>()
+                .AddDefaultTokenProviders()
                 .Services.ConfigureApplicationCookie(options =>
                 {
                     // Cookie settings
                     options.Cookie.HttpOnly = true;
                     options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-
+                    
                     options.LoginPath = new PathString("/Account/Login");
                     options.AccessDeniedPath = new PathString("/Account/AccessDenied");
                     options.SlidingExpiration = true;
