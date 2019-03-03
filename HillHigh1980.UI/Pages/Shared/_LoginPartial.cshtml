@@ -7,14 +7,14 @@
 {
     <form asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" asp-antiforgery="true" method="post" id="logoutForm" class="navbar-right">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item text-right">
                 @{ 
-                    string[] name = UserManager.GetUserName(User).Split('_');
+                    string[] name = UserManager.GetUserName(User).Split('@');
 
                 }
-                <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @String.Format("{0} {1}",name[0], name[1])!</a>
+                <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @String.Format("{0}",name[0])!</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item text-right">
                 <button type="submit" class="btn btn-link navbar-btn nav-link">Logout</button>
             </li>
         </ul>
@@ -23,10 +23,10 @@
 else
 {
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item text-right">
             <a class="nav-link" asp-page="/Account/Register">Register</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item text-right">
             <a  class="nav-link" asp-page="/Account/Login">Login</a>
         </li>
     </ul>
