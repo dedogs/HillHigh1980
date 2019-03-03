@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\HillShield.psd" />
     <Content Remove="wwwroot\js\Bundles\application.js" />
     <Content Remove="wwwroot\js\Bundles\application.min.js" />
     <Content Remove="wwwroot\Script\Application\Modules\Injector.ts" />
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <None Remove="appsettings.json~RF51a858b.TMP" />
+    <None Remove="SiteMap.xml~RF520838a.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +47,7 @@
   <ItemGroup>
     <None Include="wwwroot\js\Bundles\application.js" />
     <None Include="wwwroot\js\Bundles\application.min.js" />
+    <None Include="wwwroot\SiteMap.xml" />
   </ItemGroup>
 
   <ItemGroup>

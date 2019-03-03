@@ -6,28 +6,30 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" asp-antiforgery="true" method="post" id="logoutForm" class="navbar-right">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item text-right">
-                @{ 
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                @{
                     string[] name = UserManager.GetUserName(User).Split('@');
 
                 }
-                <a  class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @String.Format("{0}",name[0])!</a>
-            </li>
-            <li class="nav-item text-right">
-                <button type="submit" class="btn btn-link navbar-btn nav-link">Logout</button>
-            </li>
-        </ul>
+                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @String.Format("{0}", name[0])!</a>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-link navbar-btn nav-link text-light">Logout</button>
+            </div>
+        </div>
     </form>
 }
 else
 {
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item text-right">
-            <a class="nav-link" asp-page="/Account/Register">Register</a>
-        </li>
-        <li class="nav-item text-right">
-            <a  class="nav-link" asp-page="/Account/Login">Login</a>
-        </li>
-    </ul>
+    <form>
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <a class="nav-link text-light" asp-page="/Account/Register">Register</a>
+            </div>
+            <div class="col-auto">
+                <a class="nav-link text-light" asp-page="/Account/Login">Login</a>
+            </div>
+        </div>
+    </form>
 }

@@ -3,10 +3,12 @@
 
 @foreach (var roster in Model)
 {
-    <div class="col-lg-2 col-md-3 col-xs-4">
+    string name = String.Format("{0} {1}", roster.FirstName, roster.LastName);
+
+    <figure itemscope class="col-lg-2 col-md-3 col-xs-4">
         <a class="d-block mb-4 h-100 align-content-center" href="~/Rosters/Details?rosterId=@roster.RosterId">
-            <img class="img-fluid img-thumbnail" src="~/images/roster/@roster.Image" alt='@String.Format("{0} {1}",roster.FirstName, roster.LastName)' title='@String.Format("{0} {1}",roster.FirstName, roster.LastName)'>
+            <img itemprop="name" content="@name" class="img-fluid img-thumbnail" src="~/images/roster/@roster.Image" alt='@name' title='@String.Format("{0} {1}",roster.FirstName, roster.LastName)'>
             @String.Format("{0} {1}", roster.FirstName, roster.LastName)
         </a>
-    </div>
+    </figure>
 }
