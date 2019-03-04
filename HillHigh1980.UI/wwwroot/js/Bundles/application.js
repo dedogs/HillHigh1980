@@ -197,19 +197,6 @@ var GScope;
 (function (GScope) {
     var Module;
     (function (Module) {
-        var Assign = /** @class */ (function () {
-            function Assign() {
-            }
-            return Assign;
-        }());
-        Module.Assign = Assign;
-    })(Module = GScope.Module || (GScope.Module = {}));
-})(GScope || (GScope = {}));
-//# sourceMappingURL=Assign.js.map
-var GScope;
-(function (GScope) {
-    var Module;
-    (function (Module) {
         var EventManager = /** @class */ (function () {
             function EventManager(context) {
                 var _this = this;
