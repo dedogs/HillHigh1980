@@ -48,11 +48,11 @@ namespace HillHigh1980.Infrastructure.Data
 
                 if (filter.SearchBy == Filter.Name.First)
                 {
-                    rosters = rosters.Where(r => r.FirstName.ToLower().Contains(filter.Value.ToLower()));
+                    rosters = rosters.Where(r => r.FirstName.ToLower().StartsWith(filter.Value.ToLower()));
                 }
                 else if (filter.SearchBy == Filter.Name.Last)
                 {
-                    rosters = rosters.Where(r => r.LastName.ToLower().Contains(filter.Value.ToLower()));
+                    rosters = rosters.Where(r => r.LastName.ToLower().StartsWith(filter.Value.ToLower()));
                 }
             }
 
