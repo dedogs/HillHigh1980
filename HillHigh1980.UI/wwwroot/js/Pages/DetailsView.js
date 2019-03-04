@@ -19,6 +19,8 @@ var GScope;
                     _this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].hide();
                     _this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].hide();
                     _this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].hide();
+                    _this.mapped["$" + DetailsView.ElementIds.PostLoctaion].removeClass("btn-outline-danger").addClass("btn-outline-dark");
+                    _this.mapped["$" + DetailsView.ElementIds.DetailsFormTitle].removeClass("text-danger");
                     if (expected === "Add") {
                         _this.mapped["$" + DetailsView.ElementIds.City].show();
                         _this.mapped["$" + DetailsView.ElementIds.State].show();
@@ -36,6 +38,7 @@ var GScope;
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                         }
                         else if (expected === "Remove") {
+                            _this.mapped["$" + DetailsView.ElementIds.PostLoctaion].removeClass("btn-outline-dark").addClass("btn-outline-danger");
                             _this.mapped["$" + DetailsView.ElementIds.City].hide();
                             _this.mapped["$" + DetailsView.ElementIds.State].hide();
                             _this.mapped["$" + DetailsView.ElementIds.Country].hide();
@@ -43,6 +46,7 @@ var GScope;
                             _this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].show();
                             _this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].show();
                             _this._currentAction = DetailsView.Action.remove;
+                            _this.mapped["$" + DetailsView.ElementIds.DetailsFormTitle].addClass("text-danger");
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
                         }
                     }

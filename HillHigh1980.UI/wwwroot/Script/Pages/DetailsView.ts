@@ -67,6 +67,9 @@
                 this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].hide();
                 this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].hide();
 
+                this.mapped["$" + DetailsView.ElementIds.PostLoctaion].removeClass("btn-outline-danger").addClass("btn-outline-dark");
+                this.mapped["$" + DetailsView.ElementIds.DetailsFormTitle].removeClass("text-danger");
+
                 if (expected === "Add") {
                     this.mapped["$" + DetailsView.ElementIds.City].show();
                     this.mapped["$" + DetailsView.ElementIds.State].show();
@@ -86,6 +89,8 @@
                         this._currentAction = DetailsView.Action.edit;
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
                     } else if (expected === "Remove") {
+                        this.mapped["$" + DetailsView.ElementIds.PostLoctaion].removeClass("btn-outline-dark").addClass("btn-outline-danger");
+
                         this.mapped["$" + DetailsView.ElementIds.City].hide();
                         this.mapped["$" + DetailsView.ElementIds.State].hide();
                         this.mapped["$" + DetailsView.ElementIds.Country].hide();
@@ -93,8 +98,9 @@
                         this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].show();
                         this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].show();
                         this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].show();
-
+                        
                         this._currentAction = DetailsView.Action.remove;
+                        this.mapped["$" + DetailsView.ElementIds.DetailsFormTitle].addClass("text-danger");
                         this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
                     }
                 }

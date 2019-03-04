@@ -7,63 +7,64 @@
     string nameof = String.Format("{0} {1}", Model.Roster.FirstName, Model.Roster.LastName);
 }
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    &nbps;
-</nav>
-<h2>@nameof Details</h2>
+<partial name="_NavBar" model="false" />
 
-<hr />
+<section class="container">
+    <h1>@nameof Details</h1>
 
-<div class="row">
-    <div class="col-sm-3 col-md-2">
-        <img class="img-fluid img-thumbnail" src="~/images/roster/@Model.Roster.Image" alt='@nameof' title='@nameof'>
-        <div class="row">
-            <div class="col">
-                <a asp-page="/Index" class="btn btn-link text-dark"> Back to List</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-9 col-md-10">
-        <div class="row">
-            <div class="col-md-12 col-lg-6">
-                <h4>
-                    Know Place(s) @Model.Roster.FirstName Lived
-                </h4>
+    <hr />
 
-                <partial name="~/Views/Roster/_Locations.cshtml"
-                         model="Model.Roster.Locations" />
-            </div>
-            <div id="detailsForm" class="col-md-12 col-lg-6">
-                <button id="closeUpdateForm" type="button" class="close">&times;</button>
-                <h4 id="detailsFormTitle">
-                    &nbsp;
-                </h4>
-                <input id="rosterId" data-rosterId="@Model.Roster.RosterId" type="hidden" />
-                <div class="form-row" style="margin-bottom: 8px;">
-                    <div class="col">
-                        <div id="rosterCityStaticName">&nbsp;</div>
-                        <input type="text" id="rosterCity" class="form-control" placeholder="City">
-                    </div>
-                    <div class="col">
-                        <div id="rosterStateStaticName">&nbsp;</div>
-                        <input type="text" id="rosterState" class="form-control" placeholder="State">
-                    </div>
-                    <div class="col">
-                        <div id="rosterCountryStaticName">&nbsp;</div>
-                        <input type="text" id="rosterCountry" class="form-control" placeholder="Country">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col">
-                        <button id="postLoctaion" type="button" class="btn btn-outline-dark">Add Location</button>
-                    </div>
+    <div class="row">
+        <div class="col-sm-3 col-md-2">
+            <img class="img-fluid img-thumbnail" src="~/images/roster/@Model.Roster.Image" alt='@nameof' title='@nameof'>
+            <div class="row">
+                <div class="col">
+                    <a asp-page="/Index" class="btn btn-link text-dark"> Back to List</a>
                 </div>
             </div>
         </div>
+        <div class="col-sm-9 col-md-10">
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <h4>
+                        Place(s) @Model.Roster.FirstName Lived
+                    </h4>
 
+                    <partial name="~/Views/Roster/_Locations.cshtml"
+                             model="Model.Roster.Locations" />
+                </div>
+                <div id="detailsForm" class="col-md-12 col-lg-6">
+                    <button id="closeUpdateForm" type="button" class="close">&times;</button>
+                    <h4 id="detailsFormTitle">
+                        &nbsp;
+                    </h4>
+                    <input id="rosterId" data-rosterId="@Model.Roster.RosterId" type="hidden" />
+                    <div class="form-row" style="margin-bottom: 8px;">
+                        <div class="col">
+                            <div id="rosterCityStaticName">&nbsp;</div>
+                            <input type="text" id="rosterCity" class="form-control" placeholder="City">
+                        </div>
+                        <div class="col">
+                            <div id="rosterStateStaticName">&nbsp;</div>
+                            <input type="text" id="rosterState" class="form-control" placeholder="State">
+                        </div>
+                        <div class="col">
+                            <div id="rosterCountryStaticName">&nbsp;</div>
+                            <input type="text" id="rosterCountry" class="form-control" placeholder="Country">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <button id="postLoctaion" type="button" class="btn btn-outline-dark">Add Location</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
+</section>
 
 @section Scripts {
     <environment include="Development">

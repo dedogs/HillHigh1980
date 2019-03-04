@@ -13,7 +13,8 @@
             <div href="#" class="list-group-item">
                 <div class="row">
                     <div class="col-6">
-                        @String.Format("{0}, {1} {2}", item.City, item.State, item.Country)
+                        @String.Format("{0}, {1}", item.City, item.State)<br />
+                        @item.Country
                     </div>
                     <div class="col-6 text-right">
                         <div id="@item.LocationId" data-cityState=" @String.Format("{0},{1},{2}", item.City, item.State, item.Country)" class="row float-right">
