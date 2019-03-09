@@ -3,13 +3,17 @@ var GScope;
     var Entity;
     (function (Entity) {
         var Filter = /** @class */ (function () {
-            function Filter(searchBy, sortBy) {
-                this.sortBy = sortBy;
-                this.searchBy = searchBy;
+            function Filter() {
+                this.sortBy = Filter.Name.LastName;
+                this.searchBy = Filter.Name.LastName;
+                this.value = "";
             }
             Object.defineProperty(Filter.prototype, "SortBy", {
                 get: function () {
                     return this.sortBy;
+                },
+                set: function (sortBy) {
+                    this.sortBy = sortBy;
                 },
                 enumerable: true,
                 configurable: true
@@ -17,6 +21,9 @@ var GScope;
             Object.defineProperty(Filter.prototype, "SearchBy", {
                 get: function () {
                     return this.searchBy;
+                },
+                set: function (searchBy) {
+                    this.searchBy = searchBy;
                 },
                 enumerable: true,
                 configurable: true
@@ -27,6 +34,24 @@ var GScope;
                 },
                 set: function (value) {
                     this.value = value;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Filter.prototype.storeFilterValues = function () {
+                sessionStorage.setItem("fv", JSON.stringify({ "sortBy": this.SortBy, "searchBy": this.SearchBy, "value": this.Value }));
+            };
+            Object.defineProperty(Filter.prototype, "Values", {
+                get: function () {
+                    var filter = new Filter(), fv;
+                    if (!sessionStorage.getItem("fv")) {
+                        sessionStorage.setItem("fv", JSON.stringify({ "sortBy": this.SortBy, "searchBy": this.SearchBy, "value": this.Value }));
+                    }
+                    fv = JSON.parse(sessionStorage.getItem("fv"));
+                    filter.SortBy = fv.sortBy;
+                    filter.SearchBy = fv.searchBy;
+                    filter.Value = fv.value;
+                    return filter;
                 },
                 enumerable: true,
                 configurable: true

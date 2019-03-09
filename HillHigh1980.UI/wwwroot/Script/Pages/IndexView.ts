@@ -3,19 +3,29 @@
         export class IndexView {
             private static instance: IndexView;
             private mapped: any;
+            private filter: Entity.Filter;
             private _service: ApplicationService.Service.RosterService;
             private manager: Module.EventManager;
-            private filter: () => Entity.Filter = (): Entity.Filter => {
+            private setFilterValues = () => {
+                this.mapped[IndexView.ElementIds.SortBy].selectedIndex = this.filter.Values.SortBy;
+                this.mapped[IndexView.ElementIds.SearchBy].selectedIndex = this.filter.Values.SearchBy;
+                this.mapped[IndexView.ElementIds.RosterSearch].value = this.filter.Values.Value;
+            }
+            private getFilterValues: () => void = (): void => {
                 var sortBy: string = this.mapped[IndexView.ElementIds.SortBy].value,
-                    searchBy: string = this.mapped[IndexView.ElementIds.SearchBy].value,
-                    oFilter: Entity.Filter = new Entity.Filter(searchBy === "searchFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName, sortBy === "sortFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName);
-                oFilter.Value = this.mapped[IndexView.ElementIds.RosterSearch].value;
+                    searchBy: string = this.mapped[IndexView.ElementIds.SearchBy].value;
 
-                return oFilter;
+                this.filter.SearchBy = searchBy === "searchFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName;
+                this.filter.SortBy = sortBy === "sortFirst" ? Entity.Filter.Name.FirstName : Entity.Filter.Name.LastName;
+                this.filter.Value = this.mapped[IndexView.ElementIds.RosterSearch].value;
+
+                this.filter.storeFilterValues();
             };
             eventActions: Module.EventManager.EventAction[];
 
             private constructor() {
+                this.filter = new Entity.Filter(); //Sets default values;
+
                 this._service = new ApplicationService.Service.RosterService(new Infrastructure.RosterRepository());
 
                 this.mapped = (() => {
@@ -37,6 +47,9 @@
 
                 this.manager = new Module.EventManager(this);
                 this.manager.attach();
+
+                this.setFilterValues();
+                this.mapped[IndexView.ElementIds.SubmitSearch].click();
             }
 
             static getInstance() {
@@ -59,8 +72,8 @@
             }
 
             submitSearch = (e: Event) => {
-                var filter: Entity.Filter = this.filter();
-                this._service.FindRostersByName(filter).then((html) => {
+                this.getFilterValues();
+                this._service.FindRostersByName(this.filter.Values).then((html) => {
                     this.mapped[IndexView.ElementIds.ShowRoster].innerHTML = html;
                 }).catch((e) => { });
             }

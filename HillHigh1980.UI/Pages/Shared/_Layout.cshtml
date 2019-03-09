@@ -11,6 +11,7 @@
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
     <meta name="msvalidate.01" content="78C2ACB2F55638AC1E5002535572248A" />
+    <meta name="google-site-verification" content="IgXkiCsf6Sq_N5PFTeM8pj_xC589UYWYgVEF1eIU8BA" />
     <link rel="shortcut icon" href="~/favicon.ico">
 
     <title>@ViewData["Title"] - Hill High Graduation Class 1980</title>
@@ -24,6 +25,9 @@
     </environment>
 </head>
 <body>
+    <div style="background-image:url('/images/HillShield.png');width" class="center">
+        &nbsp;
+    </div>
     <main class="container-fluid body-content">
         @RenderBody()
     </main>
@@ -49,6 +53,17 @@
         <script src="~/js/Bundles/infrastructure.min.js"></script>
     </environment>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135617834-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135617834-1');
+    </script>
+
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>
