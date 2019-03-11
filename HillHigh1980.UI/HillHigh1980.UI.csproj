@@ -16,6 +16,7 @@
     <Content Remove="wwwroot\Script\Entity\Filter.ts" />
     <Content Remove="wwwroot\Script\Entity\Location.ts" />
     <Content Remove="wwwroot\Script\Entity\Roster.ts" />
+    <Content Remove="wwwroot\Script\Infrastructure\JQuery\Antiforgery.ts" />
     <Content Remove="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
   </ItemGroup>
 
@@ -65,9 +66,16 @@
     <TypeScriptCompile Include="wwwroot\Script\Entity\Filter.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Location.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Entity\Roster.ts" />
+    <TypeScriptCompile Include="wwwroot\Script\Infrastructure\Antiforgery.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Infrastructure\JQuery\RosterRepository.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Pages\DetailsView.ts" />
     <TypeScriptCompile Include="wwwroot\Script\Pages\IndexView.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

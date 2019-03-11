@@ -3,7 +3,9 @@ var GScope;
     var Entity;
     (function (Entity) {
         var Location = /** @class */ (function () {
-            function Location() {
+            function Location(headerName, requestToken) {
+                this.requestToken = requestToken;
+                this.headerName = headerName;
             }
             Object.defineProperty(Location.prototype, "LocationId", {
                 get: function () {

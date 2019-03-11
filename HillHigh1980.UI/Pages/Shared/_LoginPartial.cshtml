@@ -5,7 +5,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" asp-antiforgery="true" method="post" id="logoutForm" class="navbar-right">
+    <form asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index")" asp-antiforgery="true" method="post" id="logoutForm" class="navbar-right">
         <div class="form-row align-items-center">
             <div class="col-auto">
                 @{

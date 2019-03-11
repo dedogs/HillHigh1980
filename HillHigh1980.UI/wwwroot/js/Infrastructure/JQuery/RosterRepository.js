@@ -4,6 +4,12 @@ var GScope;
     (function (Infrastructure) {
         var RosterRepository = /** @class */ (function () {
             function RosterRepository() {
+                this.setAntiforgery = function () {
+                    var antiforgeryVerification = new Infrastructure.Antiforgery("XSRF-Token");
+                    var antiforgery = {};
+                    antiforgery[antiforgeryVerification.HeaderName] = antiforgeryVerification.value();
+                    return antiforgery;
+                };
                 this.PartialViewReadAll = function (id) {
                     return $.ajax({
                         dataType: "html",
@@ -53,6 +59,7 @@ var GScope;
             RosterRepository.prototype.CreateLocations = function (locations) {
                 var _this = this;
                 return $.ajax({
+                    headers: this.setAntiforgery(),
                     dataType: "json",
                     contentType: "application/json",
                     url: "/api/Locations",
@@ -66,6 +73,7 @@ var GScope;
             RosterRepository.prototype.UpdateLocation = function (location) {
                 var _this = this;
                 return $.ajax({
+                    headers: this.setAntiforgery(),
                     dataType: "json",
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
@@ -79,6 +87,7 @@ var GScope;
             RosterRepository.prototype.DeleteLocation = function (location) {
                 var _this = this;
                 return $.ajax({
+                    headers: this.setAntiforgery(),
                     dataType: "json",
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,

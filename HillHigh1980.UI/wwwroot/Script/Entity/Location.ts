@@ -7,6 +7,14 @@ module GScope {
             private state: string;
             private country: string;
             private rosterId: number;
+            private requestToken: string;
+            private headerName: string;
+            private antiforgery: Infrastructure.Antiforgery;
+
+            constructor(headerName?: string, requestToken?: string) {
+                this.requestToken = requestToken;
+                this.headerName = headerName;
+            }
 
             get LocationId(): number {
                 return this.locationId;

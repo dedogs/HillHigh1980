@@ -67,6 +67,12 @@ namespace HillHigh1980.UI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddAntiforgery(options =>
+            {
+                options.Cookie.Name = "HillHigh1980_CK";
+                options.HeaderName = "XSRF-Token";
+            });
+
             services.AddDbContext<HillHigh1980DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HillHigh1980ContextConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

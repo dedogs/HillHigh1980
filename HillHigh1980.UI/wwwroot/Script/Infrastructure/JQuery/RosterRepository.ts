@@ -1,6 +1,15 @@
 ﻿module GScope {
     export module Infrastructure {
         export class RosterRepository implements RepositoryService.IRosterRepository {
+            setAntiforgery = (): {} => {
+                var antiforgeryVerification = new Antiforgery("XSRF-Token");
+                var antiforgery = {};
+
+                antiforgery[antiforgeryVerification.HeaderName] = antiforgeryVerification.value();
+
+                return antiforgery;
+            }
+
             PartialViewReadAll: (id: number) => Promise<any> = (id: number) => {
                 return $.ajax({
                     dataType: "html",
@@ -49,7 +58,10 @@
                 });
             }
             CreateLocations(locations: [Entity.Location]): JQuery.Promise<any> {
+                
+
                 return $.ajax({
+                    headers: this.setAntiforgery(),
                     dataType: "json",
                     contentType: "application/json",
                     url: "/api/Locations",
@@ -61,8 +73,8 @@
                 });
             }
             UpdateLocation(location: Entity.Location): Promise<any> {
-
                 return $.ajax({
+                    headers: this.setAntiforgery(),
                     dataType: "json",
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,
@@ -75,6 +87,7 @@
             }
             DeleteLocation(location: Entity.Location): Promise<any> {
                 return $.ajax({
+                    headers: this.setAntiforgery(),
                     dataType: "json",
                     contentType: "application/json",
                     url: "/api/Locations/" + location.LocationId,

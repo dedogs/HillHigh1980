@@ -6,65 +6,71 @@ var GScope;
             function DetailsView() {
                 var _this = this;
                 this._locationId = 0;
-                this.detailsLocations = function (e) {
-                    var target = e.target, parent, cityState = ["", "", "United States"], expected = (["Add", "Edit", "Remove"].filter(function (item) { return target.className.lastIndexOf(item) !== -1; }))[0];
-                    if (GScope.Utility.is(expected).undef().ok()) {
-                        return;
-                    }
-                    _this.mapped[DetailsView.ElementIds.PostLoctaion].innerHTML = expected + " Location >>";
-                    _this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
+                this.showFields = function () {
                     _this.mapped["$" + DetailsView.ElementIds.City].show();
                     _this.mapped["$" + DetailsView.ElementIds.State].show();
                     _this.mapped["$" + DetailsView.ElementIds.Country].show();
                     _this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].hide();
                     _this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].hide();
                     _this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].hide();
-                    _this.mapped["$" + DetailsView.ElementIds.PostLoctaion].removeClass("btn-outline-danger").addClass("btn-outline-dark");
-                    _this.mapped["$" + DetailsView.ElementIds.DetailsFormTitle].removeClass("text-danger");
+                };
+                this.hideFields = function () {
+                    _this.mapped["$" + DetailsView.ElementIds.City].hide();
+                    _this.mapped["$" + DetailsView.ElementIds.State].hide();
+                    _this.mapped["$" + DetailsView.ElementIds.Country].hide();
+                    _this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].show();
+                    _this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].show();
+                    _this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].show();
+                };
+                this.setValue = function (fields) {
+                    _this.mapped[DetailsView.ElementIds.City].value = fields[0];
+                    _this.mapped[DetailsView.ElementIds.State].value = fields[1];
+                    _this.mapped[DetailsView.ElementIds.Country].value = fields[2];
+                };
+                this.appendHTML = function (fields) {
+                    _this.mapped[DetailsView.ElementIds.RosterCityStaticName].innerHTML = fields[0];
+                    _this.mapped[DetailsView.ElementIds.RosterStateStaticName].innerHTML = fields[1];
+                    _this.mapped[DetailsView.ElementIds.RosterCountryStaticName].innerHTML = fields[2];
+                };
+                this.detailsLocations = function (e) {
+                    var target = e.target, parent, cityState = ["", "", "United States"], expected = (["Add", "Edit", "Remove"].filter(function (item) { return target.className.lastIndexOf(item) !== -1; }))[0];
+                    if (GScope.Utility.is(expected).undef().ok()) {
+                        return;
+                    }
+                    _this.mapped["$" + DetailsView.ElementIds.DetailsForm].show();
+                    _this.mapped["$" + DetailsView.ElementIds.SubmitLocation].removeClass("btn-outline-danger btn-outline-dark").html(expected + " Location >>");
+                    _this.mapped["$" + DetailsView.ElementIds.DetailsFormTitle].removeClass("text-danger").show();
                     if (expected === "Add") {
-                        _this.mapped["$" + DetailsView.ElementIds.City].show();
-                        _this.mapped["$" + DetailsView.ElementIds.State].show();
-                        _this.mapped["$" + DetailsView.ElementIds.Country].show();
+                        _this.showFields();
                         _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Add;
                         _this._currentAction = DetailsView.Action.add;
                         _this._locationId = 0;
+                        _this.setValue(cityState);
                     }
                     else {
                         parent = $(target).parent().get(0);
                         cityState = parent.getAttribute("data-cityState").split(',');
                         _this._locationId = parseInt(parent.id);
                         if (expected === "Edit") {
+                            _this.showFields();
                             _this._currentAction = DetailsView.Action.edit;
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Edit;
+                            _this.setValue(cityState);
                         }
                         else if (expected === "Remove") {
-                            _this.mapped["$" + DetailsView.ElementIds.PostLoctaion].removeClass("btn-outline-dark").addClass("btn-outline-danger");
-                            _this.mapped["$" + DetailsView.ElementIds.City].hide();
-                            _this.mapped["$" + DetailsView.ElementIds.State].hide();
-                            _this.mapped["$" + DetailsView.ElementIds.Country].hide();
-                            _this.mapped["$" + DetailsView.ElementIds.RosterCityStaticName].show();
-                            _this.mapped["$" + DetailsView.ElementIds.RosterStateStaticName].show();
-                            _this.mapped["$" + DetailsView.ElementIds.RosterCountryStaticName].show();
+                            _this.mapped["$" + DetailsView.ElementIds.SubmitLocation].addClass("btn-outline-danger");
+                            _this.hideFields();
                             _this._currentAction = DetailsView.Action.remove;
                             _this.mapped["$" + DetailsView.ElementIds.DetailsFormTitle].addClass("text-danger");
                             _this.mapped[DetailsView.ElementIds.DetailsFormTitle].innerHTML = DetailsView.FormMessages.Remove;
+                            _this.appendHTML(cityState);
                         }
-                    }
-                    if (expected === "Add" || expected === "Edit") {
-                        _this.mapped[DetailsView.ElementIds.City].value = cityState[0];
-                        _this.mapped[DetailsView.ElementIds.State].value = cityState[1];
-                        _this.mapped[DetailsView.ElementIds.Country].value = cityState[2];
-                    }
-                    else {
-                        _this.mapped[DetailsView.ElementIds.RosterCityStaticName].innerHTML = cityState[0];
-                        _this.mapped[DetailsView.ElementIds.RosterStateStaticName].innerHTML = cityState[1];
-                        _this.mapped[DetailsView.ElementIds.RosterCountryStaticName].innerHTML = cityState[2];
                     }
                 };
                 this.closeUpdateForm = function (e) {
                     _this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
                 };
-                this.postLoctaion = function (e) {
+                this.submitLocation = function (e) {
                     var location = new GScope.Entity.Location();
                     location.LocationId = _this._locationId;
                     location.City = _this.mapped[DetailsView.ElementIds.City].value;
@@ -95,7 +101,7 @@ var GScope;
                         { key: DetailsView.ElementIds.City, value: DetailsView.ElementIds.City },
                         { key: DetailsView.ElementIds.State, value: DetailsView.ElementIds.State },
                         { key: DetailsView.ElementIds.Country, value: DetailsView.ElementIds.Country },
-                        { key: DetailsView.ElementIds.PostLoctaion, value: DetailsView.ElementIds.PostLoctaion },
+                        { key: DetailsView.ElementIds.SubmitLocation, value: DetailsView.ElementIds.SubmitLocation },
                         { key: DetailsView.ElementIds.DetailsLocations, value: DetailsView.ElementIds.DetailsLocations },
                         { key: DetailsView.ElementIds.DetailsFormTitle, value: DetailsView.ElementIds.DetailsFormTitle },
                         { key: DetailsView.ElementIds.RosterId, value: DetailsView.ElementIds.RosterId },
@@ -106,9 +112,9 @@ var GScope;
                         { key: DetailsView.ElementIds.RosterCountryStaticName, value: DetailsView.ElementIds.RosterCountryStaticName }
                     ]);
                 })();
-                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.PostLoctaion], "click")]);
-                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.DetailsLocations], "click")]);
-                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.PostLoctaion, this.mapped[DetailsView.ElementIds.CloseUpdateForm], "click")]);
+                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.SubmitLocation, this.mapped[DetailsView.ElementIds.SubmitLocation], "click")]);
+                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.SubmitLocation, this.mapped[DetailsView.ElementIds.DetailsLocations], "click")]);
+                this.manager.add([new GScope.Module.EventManager.EventAction(DetailsView.ElementIds.SubmitLocation, this.mapped[DetailsView.ElementIds.CloseUpdateForm], "click")]);
                 this.manager.attach();
                 this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
             }
@@ -127,7 +133,7 @@ var GScope;
                 ElementIds["City"] = "rosterCity";
                 ElementIds["State"] = "rosterState";
                 ElementIds["Country"] = "rosterCountry";
-                ElementIds["PostLoctaion"] = "postLoctaion";
+                ElementIds["SubmitLocation"] = "submitLocation";
                 ElementIds["DetailsLocations"] = "detailsLocations";
                 ElementIds["DetailsFormTitle"] = "detailsFormTitle";
                 ElementIds["RosterId"] = "rosterId";

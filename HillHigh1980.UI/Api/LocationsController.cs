@@ -53,6 +53,7 @@ namespace HillHigh1980.UI.Api
 
         // PUT: api/Locations/5
         [HttpPut("{locationId}")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> PutLocation([FromRoute] int locationId, [FromBody] LocationJut location)
         {
             if (!ModelState.IsValid)
@@ -79,6 +80,7 @@ namespace HillHigh1980.UI.Api
 
         // POST: api/Locations
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostLocation([FromBody] LocationJut[] locations)
         {
             if (!ModelState.IsValid)
@@ -104,6 +106,7 @@ namespace HillHigh1980.UI.Api
 
         // DELETE: api/Locations/5
         [HttpDelete("{locationId}")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteLocation([FromRoute] int locationId, [FromBody] LocationJut location)
         {
             if (!ModelState.IsValid)
