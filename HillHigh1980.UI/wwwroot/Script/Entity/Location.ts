@@ -7,6 +7,8 @@ module GScope {
             private state: string;
             private country: string;
             private rosterId: number;
+            private latitude: number;
+            private longitude: number;
             private requestToken: string;
             private headerName: string;
             private antiforgery: Infrastructure.Antiforgery;
@@ -39,6 +41,18 @@ module GScope {
             }
             set Country(country: string) {
                 this.country = country;
+            }
+            get Latitude(): number {
+                return this.latitude;
+            }
+            set Latitude(latitude: number) {
+                this.latitude = latitude;
+            }
+            get Longitude(): number {
+                return this.longitude;
+            }
+            set Longitude(longitude: number) {
+                this.longitude = longitude;
             }
             get RosterId(): number {
                 return this.rosterId;

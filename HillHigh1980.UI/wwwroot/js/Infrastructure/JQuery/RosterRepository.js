@@ -10,12 +10,16 @@ var GScope;
                     antiforgery[antiforgeryVerification.HeaderName] = antiforgeryVerification.value();
                     return antiforgery;
                 };
-                this.PartialViewReadAll = function (id) {
+                this.GetGPS = function (location) {
                     return $.ajax({
-                        dataType: "html",
-                        url: "/Roster/Index/" + id,
+                        dataType: "json",
+                        url: "http://dev.virtualearth.net/REST/v1/Locations?countryRegion=" + location.Country + "&adminDistrict=" + location.State + "&locality=" + location.City + "&key=An9kkg2bad9Hot2soadq7tL_NllNH7d_PvWUUUtbGyxCWjiBFmPeChD0Ec8FbmyZ",
                         method: "GET",
                         cache: false
+                    }).then(function (result) {
+                        location.Latitude = result.resourceSets[0].resources[0].point.coordinates[0];
+                        location.Longitude = result.resourceSets[0].resources[0].point.coordinates[1];
+                        return location;
                     });
                 };
                 this.PartialViewById = function (id) {
@@ -56,18 +60,20 @@ var GScope;
                     cache: false
                 });
             };
-            RosterRepository.prototype.CreateLocations = function (locations) {
-                var _this = this;
-                return $.ajax({
-                    headers: this.setAntiforgery(),
-                    dataType: "json",
-                    contentType: "application/json",
-                    url: "/api/Locations",
-                    data: JSON.stringify(locations),
-                    method: "Post",
-                    cache: false
-                }).then(function (location) {
-                    return _this.PartialViewById(location.rosterId);
+            RosterRepository.prototype.CreateLocations = function (location) {
+                var that = this;
+                return this.GetGPS(location).then(function (result) {
+                    return $.ajax({
+                        headers: that.setAntiforgery(),
+                        dataType: "json",
+                        contentType: "application/json",
+                        url: "/api/Locations",
+                        data: JSON.stringify(result),
+                        method: "Post",
+                        cache: false
+                    }).then(function (location) {
+                        return that.PartialViewById(location.rosterId);
+                    });
                 });
             };
             RosterRepository.prototype.UpdateLocation = function (location) {

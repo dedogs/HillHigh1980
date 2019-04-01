@@ -47,6 +47,26 @@ var GScope;
                 enumerable: true,
                 configurable: true
             });
+            Object.defineProperty(Location.prototype, "Latitude", {
+                get: function () {
+                    return this.latitude;
+                },
+                set: function (latitude) {
+                    this.latitude = latitude;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(Location.prototype, "Longitude", {
+                get: function () {
+                    return this.longitude;
+                },
+                set: function (longitude) {
+                    this.longitude = longitude;
+                },
+                enumerable: true,
+                configurable: true
+            });
             Object.defineProperty(Location.prototype, "RosterId", {
                 get: function () {
                     return this.rosterId;
