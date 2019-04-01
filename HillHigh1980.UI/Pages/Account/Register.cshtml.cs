@@ -18,6 +18,7 @@ namespace HillHigh1980.UI.Pages.Account
     {
         private readonly SignInManager<HillHigh1980SecurityUser> _signInManager;
         private readonly UserManager<HillHigh1980SecurityUser> _userManager;
+        private readonly RoleManager<HillHigh1980SecurityRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 

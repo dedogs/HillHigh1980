@@ -81,27 +81,27 @@ namespace HillHigh1980.UI.Api
         // POST: api/Locations
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostLocation([FromBody] LocationJut[] locations)
+        public async Task<IActionResult> PostLocation([FromBody] LocationJut location)
         {
             if (!ModelState.IsValid)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, ModelState);
             }
-            else if (locations.Any(r => !(ValidName(r.City) || ValidName(r.State))))
+            else if (!(ValidName(location.City) && ValidName(location.State)))
             {
                 return StatusCode(StatusCodes.Status400BadRequest, "Missing city and/or state");
             }
 
             try
             {
-                await _service.CreateRosterLocation(locations.ToList());
+                await _service.CreateRosterLocation(location);
             }
             catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, e);
             }
 
-            return StatusCode(StatusCodes.Status201Created, locations);
+            return StatusCode(StatusCodes.Status201Created, location);
         }
 
         // DELETE: api/Locations/5

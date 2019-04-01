@@ -2,25 +2,26 @@
 using System.Linq;
 using HillHigh1980.Core.ApplicationService;
 using HillHigh1980.Core.Entity.Jut.Rosters;
+using HillHigh1980.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HillHigh1980.UI.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<RosterJut> Roster = new List<RosterJut>();
+        private UserManager<HillHigh1980SecurityUser> _userManager;
 
-        public IRosterService _service { get; }
-
-        public IndexModel(IRosterService service)
+        public IndexModel(UserManager<HillHigh1980SecurityUser> userManager)
         {
-            _service = service;
+            _userManager = userManager;
         }
+
+        public int NumberRosters { get; set; }
 
         public async void OnGet()
         {
-           Roster = await _service.GetAllRostersAsync();
-
+            NumberRosters = _userManager.Users.Count();
         }
     }
 }

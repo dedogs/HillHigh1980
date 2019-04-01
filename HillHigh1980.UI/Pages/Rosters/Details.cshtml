@@ -69,6 +69,9 @@
 
 </section>
 
+<section>
+    <partial name="_MapRoster" />
+</section>
 @section Scripts {
     <environment include="Development">
         <script src="~/js/Bundles/detailsViews.js"></script>
@@ -76,4 +79,18 @@
     <environment exclude="Development">
         <script src="~/js/Bundles/detailsViews.min.js"></script>
     </environment>
+
+    <script type='text/javascript'>
+        function loadMapScenario() {
+            var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                /* No need to set credentials if already passed in URL */
+                center: new Microsoft.Maps.Location(51.50632, -0.12714),
+                mapTypeId: Microsoft.Maps.MapTypeId.aerial,
+                zoom: 10
+            });
+
+        }
+
+    </script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=An9kkg2bad9Hot2soadq7tL_NllNH7d_PvWUUUtbGyxCWjiBFmPeChD0Ec8FbmyZ&callback=loadMapScenario' async defer></script>
 }

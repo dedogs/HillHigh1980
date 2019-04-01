@@ -145,7 +145,7 @@
                 this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
 
                 if (this._currentAction === DetailsView.Action.add) {
-                    this._service.CreateRosterLocations([location]).then((html) => {
+                    this._service.CreateRosterLocations(location).then((html) => {
                         this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
                     }).catch((e: any) => { console.error(e.statusText + " >> " + e.responseText) });
                 } else if (this._currentAction === DetailsView.Action.remove) {

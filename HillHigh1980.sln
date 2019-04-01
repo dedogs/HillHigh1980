@@ -17,10 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillHigh1980.Core", "HillHi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillHigh1980.Core.Entity", "HillHigh1980.Core.Entity\HillHigh1980.Core.Entity.csproj", "{61A8BF00-7747-4037-9B59-1318FD826E96}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{ABA5BFF4-4929-4B76-BDB7-85F95ACA9E28}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HillHigh1980.Security.Data", "HillHigh1980.Security.Data\HillHigh1980.Security.Data.csproj", "{A2F480F8-BA93-421C-A467-AB584909BD5A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +39,6 @@ Global
 		{61A8BF00-7747-4037-9B59-1318FD826E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61A8BF00-7747-4037-9B59-1318FD826E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61A8BF00-7747-4037-9B59-1318FD826E96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2F480F8-BA93-421C-A467-AB584909BD5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2F480F8-BA93-421C-A467-AB584909BD5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2F480F8-BA93-421C-A467-AB584909BD5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2F480F8-BA93-421C-A467-AB584909BD5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,7 +48,6 @@ Global
 		{D8D86A90-B286-4732-88CF-CFA13E6E3C74} = {8EF7BBF2-D8F2-4CC3-8476-2CBACCD0384B}
 		{BB54F829-29DD-4350-9A81-4C98CB67A390} = {DA0F478F-ABFE-4A3C-A7E7-718AA29B1AA4}
 		{61A8BF00-7747-4037-9B59-1318FD826E96} = {DA0F478F-ABFE-4A3C-A7E7-718AA29B1AA4}
-		{A2F480F8-BA93-421C-A467-AB584909BD5A} = {ABA5BFF4-4929-4B76-BDB7-85F95ACA9E28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD561B67-C08C-45BA-940E-22736A6AD64E}

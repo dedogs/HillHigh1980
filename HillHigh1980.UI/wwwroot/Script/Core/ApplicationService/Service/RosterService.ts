@@ -18,7 +18,7 @@
                     return this._repository.ReadAll();
                 }
 
-                CreateRosterLocations(locations: [Entity.Location]): Promise<any> {
+                CreateRosterLocations(locations: Entity.Location): Promise<any> {
                     return this._repository.CreateLocations(locations);
                 }
                 UpdateRosterLocation(location: Entity.Location): Promise<any> {

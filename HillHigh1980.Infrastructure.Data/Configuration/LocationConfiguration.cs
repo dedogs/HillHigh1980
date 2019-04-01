@@ -13,6 +13,8 @@ namespace HillHigh1980.Infrastructure.Data.Configuration
         {
             builder.HasKey(c => c.LocationId);
             builder.Property(c => c.LocationId).ValueGeneratedOnAdd();
+            builder.Property(c => c.LocationId).IsRequired();
+            builder.Property(c => c.Longitude).IsRequired();
             builder.HasOne(r => r.Roster).WithMany(r => r.Locations).HasForeignKey(r => r.RosterId);
 
         }

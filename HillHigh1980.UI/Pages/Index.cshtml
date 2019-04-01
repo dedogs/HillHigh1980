@@ -10,8 +10,17 @@
 
 <!-- Page Content -->
 <section class="container">
-    <h1 class="my-4 text-center text-lg-left">Lansing Hill High School Classmates 1980</h1>
-    <h2 class="my-4 text-center text-lg-left">Lansing, Michigan</h2>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="my-4 text-center text-lg-left">Lansing Hill High School Classmates 1980</h1>
+        </div>
+        <div class="col-6">
+            <h3 class="my-4">Lansing, Michigan</h3>
+        </div>
+        <div class="col-6">
+            <h3 class="my-4">Joined: <span class="text-orange">@Model.NumberRosters</span></h3>
+        </div>
+    </div>
 
     <div id="showRoster" class="row text-center text-lg-left text-hide">
     </div>
@@ -24,7 +33,4 @@
     <environment exclude="Development">
         <script src="~/js/Bundles/indexView.min.js"></script>
     </environment>
-    <script>
-        var myObj = @Html.Raw(JsonConvert.SerializeObject(Model.Roster));
-    </script>
 }

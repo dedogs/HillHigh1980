@@ -4,25 +4,23 @@
 
     @if (Model)
     {
-        <div class="col-md-12 col-lg-6 input-group">
-            <input id="rosterSearch" type="text" class="form-control" placeholder="Search - whole or any portion" value="" aria-label="Search Roster">
-            <button id="clearText" class="btn-orange" data-toggle="clearText">
+        <div class="col-md-12 col-lg-3 input-group">
+
+            <input id="rosterSearch" type="text" class="form-control" placeholder="Search - any portion" value="" aria-label="Search Roster">
+            <button id="clearText" class="btn-orange input-group-append" data-toggle="clearText">
                 <span class="sprite clear-Text iconWhite"></span>
             </button>
-            <div class="input-group-append">
-                <select id="searchBy" class="custom-select">
-                    <option value="searchFirst">First Name</option>
-                    <option value="searchLast">Last Name</option>
-                </select>
-            </div>
-            <div class="input-group-append">
-                <div class="input-group-append">
-                    <button id="submitSearch" class="btn btn-orange" type="button">Search</button>
-                </div>
-            </div>
         </div>
 
-        <div class="col-md-6 col-lg-3 input-group">
+        <div class="col-md-4 col-lg-3 input-group">
+            <select id="searchBy" class="custom-select">
+                <option value="searchFirst">First Name</option>
+                <option value="searchLast">Last Name</option>
+            </select>
+            <button id="submitSearch" class="btn btn-orange input-group-append" type="button">Search</button>
+
+        </div>
+        <div class="col-md-4 col-lg-3 input-group">
             <label class="input-group-text" for="sortBy">Sort By</label>
             <select id="sortBy" class="custom-select">
                 <option value="sortFirst">First Name</option>
@@ -38,7 +36,7 @@
         </div>
     }
 
-    <div class="col-md-3  input-group">
+    <div class="col input-group">
         <partial name="_LoginPartial" />
     </div>
 </nav>

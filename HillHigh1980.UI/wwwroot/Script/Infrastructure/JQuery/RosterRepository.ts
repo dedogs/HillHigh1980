@@ -57,9 +57,7 @@
                     cache: false
                 });
             }
-            CreateLocations(locations: [Entity.Location]): JQuery.Promise<any> {
-                
-
+            CreateLocations(locations: Entity.Location): JQuery.Promise<any> {
                 return $.ajax({
                     headers: this.setAntiforgery(),
                     dataType: "json",
@@ -68,8 +66,8 @@
                     data: JSON.stringify(locations),
                     method: "Post",
                     cache: false
-                }).then((locations: any) => {
-                    return this.PartialViewById(locations[0].rosterId);
+                }).then((location: any) => {
+                    return this.PartialViewById(location.rosterId);
                 });
             }
             UpdateLocation(location: Entity.Location): Promise<any> {

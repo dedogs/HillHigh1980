@@ -105,8 +105,8 @@ var GScope;
                     data: JSON.stringify(locations),
                     method: "Post",
                     cache: false
-                }).then(function (locations) {
-                    return _this.PartialViewById(locations[0].rosterId);
+                }).then(function (location) {
+                    return _this.PartialViewById(location.rosterId);
                 });
             };
             RosterRepository.prototype.UpdateLocation = function (location) {

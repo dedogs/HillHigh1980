@@ -4,14 +4,16 @@ using HillHigh1980.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HillHigh1980.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(HillHigh1980DbContext))]
-    partial class HillHigh1980DbContextModelSnapshot : ModelSnapshot
+    [Migration("20190331204912_ChangedLocation")]
+    partial class ChangedLocation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

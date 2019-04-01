@@ -79,7 +79,7 @@ var GScope;
                     location.RosterId = _this.mapped[DetailsView.ElementIds.RosterId].getAttribute("data-rosterId");
                     _this.mapped["$" + DetailsView.ElementIds.DetailsForm].hide();
                     if (_this._currentAction === DetailsView.Action.add) {
-                        _this._service.CreateRosterLocations([location]).then(function (html) {
+                        _this._service.CreateRosterLocations(location).then(function (html) {
                             _this.mapped[DetailsView.ElementIds.DetailsLocations].innerHTML = html;
                         }).catch(function (e) { console.error(e.statusText + " >> " + e.responseText); });
                     }

@@ -4,6 +4,7 @@ using HillHigh1980.Core.ApplicationService.Service;
 using HillHigh1980.Core.DomainService;
 using HillHigh1980.Infrastructure.Data;
 using HillHigh1980.UI.Pages.Account;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -69,8 +70,8 @@ namespace HillHigh1980.UI
 
             services.AddAntiforgery(options =>
             {
-                options.Cookie.Name = "HillHigh1980_CK";
-                options.HeaderName = "XSRF-Token";
+                options.Cookie.Name = ContantsSecurity.CookieName;
+                options.HeaderName = ContantsSecurity.HeaderName;
             });
 
             services.AddDbContext<HillHigh1980DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HillHigh1980ContextConnection")));

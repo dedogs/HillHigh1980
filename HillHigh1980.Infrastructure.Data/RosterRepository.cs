@@ -19,15 +19,13 @@ namespace HillHigh1980.Infrastructure.Data
             _context = context;
         }
 
-        public async Task<IEnumerable<Location>> CreateLocation(IEnumerable<Location> locations)
+        public async Task<Location> CreateLocation(Location location)
         {
-            foreach (var location in locations)
-            {
-                _context.Attach(location).State = EntityState.Added;
-            }
+
+            _context.Attach(location).State = EntityState.Added;
 
             await _context.SaveChangesAsync();
-            return locations;
+            return location;
         }
 
         public async Task<Roster> FindById(int rosterId)
