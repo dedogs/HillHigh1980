@@ -72,6 +72,8 @@ namespace HillHigh1980.UI
             {
                 options.Cookie.Name = ContantsSecurity.CookieName;
                 options.HeaderName = ContantsSecurity.HeaderName;
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             });
 
             services.AddDbContext<HillHigh1980DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HillHigh1980ContextConnection")));
@@ -99,14 +101,6 @@ namespace HillHigh1980.UI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                using (IServiceScope scope = app.ApplicationServices.CreateScope())
-                {
-                    //var context = scope.ServiceProvider.GetService<HillHigh1980DbContext>();
-
-                    //context.Database.EnsureDeleted();
-                    //context.Database.EnsureCreated();
-                }
-
                 app.UseDatabaseErrorPage();
             }
             else
