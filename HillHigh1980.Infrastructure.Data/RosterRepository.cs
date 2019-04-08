@@ -32,7 +32,10 @@ namespace HillHigh1980.Infrastructure.Data
         {
             return _context.Rosters.Include(r => r.Locations).FirstOrDefault(r => r.RosterId == rosterId);
         }
-
+        public async Task<Roster> FindByFileName(string fileName)
+        {
+            return _context.Rosters.FirstOrDefault(r => r.Image == fileName);
+        }
         public async Task<IEnumerable<Roster>> ReadAll(IFilterData filter = null)
         {
             return _context.Rosters.Include(r => r.Locations);

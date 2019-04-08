@@ -10,6 +10,7 @@ namespace HillHigh1980.Core.DomainService
         Task<IEnumerable<Roster>> ReadAll(IFilterData filter = null);
         Task<Roster> FindById(int rosterId);
         Task<IEnumerable<Roster>> FindRostersByName(Filter filter);
+        Task<Roster> FindByFileName(string fileName);
         Task<Location> CreateLocation(Location location);
         Task<IEnumerable<Location>> GetLocations(int rosterId);
         Task<Location> UpdateLocation(Location location);

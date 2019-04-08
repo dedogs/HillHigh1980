@@ -24,6 +24,12 @@ namespace HillHigh1980.Core.ApplicationService.Service
             return roster.Jut();
         }
 
+        public async Task<RosterJut> FindRosterByFileNameAsync(string fileName)
+        {
+            Roster roster = await _repository.FindByFileName(fileName);
+            return roster.Jut();
+        }
+
         public async Task<List<RosterJut>> GetAllRostersAsync()
         {
             IEnumerable<Roster> rosters = await _repository.ReadAll();
