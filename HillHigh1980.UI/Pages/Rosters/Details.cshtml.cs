@@ -32,14 +32,14 @@ namespace HillHigh1980.UI.Pages.Rosters
             //var di = new DirectoryInfo(path);
 
             //List<FileInfo> fi = new List<FileInfo>(di.GetFiles());
-            
+
             //List<RosterJut> result = rosters.Where(r => fi.Any(f => f.Name == r.Image)).ToList();
 
             //result.ForEach(r =>
             //{
             //    var s = $"{path}{r.Image}";
-            //    var s0 = $"{r.FirstName}-{r.LastName}";
-            //    var s1 =$"{path}{s0}.jpg";
+            //    var s0 = $"{r.FirstName}_{r.LastName}";
+            //    var s1 = $"{path}{s0}.jpg";
 
             //    if (System.IO.File.Exists(s))
             //    {
